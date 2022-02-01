@@ -1,0 +1,17 @@
+rootProject.name = 'world'
+
+include 'domain-api'
+include 'domain'
+include 'client'
+include 'client-local'
+include 'client-remote'
+//include 'load-test'
+include 'server'
+include 'server-monitor'
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}

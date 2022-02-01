@@ -1,0 +1,94 @@
+plugins {
+    id 'world.application'
+}
+
+dependencies {
+    runtimeOnly "is.codion.jdk11:codion-framework-server:${version}"
+
+    runtimeOnly project(":domain")
+
+    runtimeOnly "is.codion.jdk11:codion-plugin-hikari-pool:${version}"
+    runtimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
+    runtimeOnly "com.h2database:h2:1.4.200"
+
+    //logging library, skipping the email stuff
+    runtimeOnly ("is.codion.jdk11:codion-plugin-logback-proxy:${version}") {
+        exclude group: 'com.sun.mail', module: 'javax.mail'
+    }
+}
+
+applicationDefaultJvmArgs = [
+        "-Xmx256m",
+        "-Dlogback.configurationFile=logback.xml",
+        //add-reads for accessing default methods for Entity types
+        "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
+        //RMI configuration
+        "-Djava.rmi.server.hostname=${serverHost}",
+        "-Dcodion.server.registryPort=1098",
+        "-Djava.rmi.server.randomIDs=true",
+        "-Djava.rmi.server.useCodebaseOnly=true",
+        //The serialization whitelist
+        "-Dcodion.server.serializationFilterWhitelist=classpath:serialization-whitelist.txt",
+        //SSL configuration
+        "-Dcodion.server.classpathKeyStore=keystore.jks",
+        "-Djavax.net.ssl.keyStorePassword=crappypass",
+        //The port used by clients
+        "-Dcodion.server.port=2223",
+        //The port for the admin interface, used by the server monitor
+        "-Dcodion.server.admin.port=4445",
+        //The admin user credentials, used by the server monitor application
+        "-Dcodion.server.admin.user=scott:tiger",
+        //Database configuration
+        "-Dcodion.db.url=jdbc:h2:mem:h2db",
+        "-Dcodion.db.initScripts=classpath:create_schema.sql",
+        //A connection pool based on this user is created on startup
+        "-Dcodion.server.pooling.startupPoolUsers=scott:tiger",
+        //Client logging disabled by default
+        "-Dcodion.server.clientLoggingEnabled=false"
+]
+
+application {
+    mainModule = "is.codion.framework.server"
+    getMainClass().set("is.codion.framework.server.EntityServer")
+}
+
+jlink {
+    imageName = project.name
+    moduleName = application.mainModule
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--add-modules',
+               'is.codion.framework.db.local,is.codion.dbms.h2database,is.codion.plugin.hikari.pool,' +
+                       'is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain']
+
+    launcher {
+        jvmArgs = applicationDefaultJvmArgs
+    }
+
+    jpackage {
+        imageName = "World-Server"
+        appVersion = project.version.replace('-SNAPSHOT', '')
+        if (org.gradle.internal.os.OperatingSystem.current().linux) {
+            installerType = 'deb'
+            icon = "../world.png"
+            installerOptions = [
+                    '--resource-dir', 'build/jpackage/World-Server/lib',
+                    '--linux-shortcut'
+            ]
+        }
+        if (org.gradle.internal.os.OperatingSystem.current().windows) {
+            installerType = 'msi'
+            icon = "../world.ico"
+            imageOptions += ['--win-console']
+            installerOptions = [
+                    '--win-menu',
+                    '--win-shortcut'
+            ]
+        }
+    }
+}
+
+prepareMergedJarsDir.doLast {
+    copy {
+        from 'src/main/resources'
+        into "$jlinkBasePath/mergedjars"
+    }
+}

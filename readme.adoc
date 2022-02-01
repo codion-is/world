@@ -1,0 +1,61 @@
+= Codion World Demo
+
+A demo application based on the Codion application framework.
+
+== Modules
+
+=== domain-api
+
+The domain API.
+
+=== domain
+
+The domain implementation.
+
+=== client
+
+Swing client application.
+
+=== server
+
+A Codion server configured for the World application.
+
+=== server-monitor
+
+A Codion server monitor configured to connect to the server.
+
+== Running
+
+=== JDBC
+
+To run the World client with a local JDBC connection.
+
+[source,shell]
+----
+gradlew client-local:run
+----
+
+=== RMI
+
+To run the World client with an RMI connection start by running the server.
+
+[source,shell]
+----
+gradlew server:run
+----
+
+Then run the World remote client.
+
+[source,shell]
+----
+gradlew client-remote:run
+----
+
+==== Server Monitor
+
+To run the Codion server monitor.
+
+[source,shell]
+----
+gradlew server-monitor:run
+----

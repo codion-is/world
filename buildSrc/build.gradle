@@ -1,0 +1,12 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation "org.beryx:badass-jlink-plugin:${jlinkVersion}"
+    implementation "de.jjohannes.gradle:extra-java-module-info:${extraJavaModuleInfoVersion}"
+}

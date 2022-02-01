@@ -1,0 +1,64 @@
+plugins {
+    id 'world.application'
+}
+
+dependencies {
+    implementation project(':client')
+
+    runtimeOnly "is.codion.jdk11:codion-framework-db-rmi:${version}"
+}
+
+applicationDefaultJvmArgs = [
+        //add-reads for accessing default methods for Entity types
+        "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
+        "-Dcodion.client.connectionType=remote",
+        "-Dcodion.server.hostname=${serverHost}",
+        "-Dcodion.server.registryPort=${serverRegistryPort}",
+        "-Djavax.net.ssl.trustStore=truststore.jks",
+        "-Djavax.net.ssl.trustStorePassword=crappypass",
+        "-Dsun.awt.disablegrab=true"
+]
+
+application {
+    mainModule = "is.codion.framework.demos.world.client"
+    getMainClass().set("is.codion.framework.demos.world.ui.WorldAppPanel")
+}
+
+jlink {
+    imageName = project.name
+    moduleName = application.mainModule
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--add-modules',
+               'is.codion.framework.db.rmi,is.codion.plugin.logback.proxy']
+
+    launcher {
+        jvmArgs = applicationDefaultJvmArgs
+    }
+
+    jpackage {
+        imageName = "World-Remote"
+        appVersion = project.version.replace('-SNAPSHOT', '')
+        if (org.gradle.internal.os.OperatingSystem.current().linux) {
+            installerType = 'deb'
+            icon = "../world.png"
+            installerOptions = [
+                    '--resource-dir', 'build/jpackage/World-Remote/lib',
+                    '--linux-shortcut'
+            ]
+        }
+        if (org.gradle.internal.os.OperatingSystem.current().windows) {
+            installerType = 'msi'
+            icon = "../world.ico"
+            installerOptions = [
+                    '--win-menu',
+                    '--win-shortcut'
+            ]
+        }
+    }
+}
+
+prepareMergedJarsDir.doLast {
+    copy {
+        from 'src/main/resources'
+        into "$jlinkBasePath/mergedjars"
+    }
+}

@@ -1,0 +1,4 @@
+sudo ufw allow 1098
+sudo ufw allow 2223
+sudo ufw allow 4445
+sudo ufw allow 8081

@@ -1,0 +1,48 @@
+plugins {
+    id 'world.library'
+}
+
+apply plugin: BuildReportsPlugin
+
+dependencies {
+    implementation project(':domain-api')
+
+    implementation "is.codion.jdk11:codion-swing-framework-ui:${version}"
+    implementation "is.codion.jdk11:codion-plugin-jasperreports:${version}"
+
+    implementation "org.json:json:${jsonVersion}"
+    implementation "org.jfree:jfreechart:${jfreeChartVersion}"
+    implementation 'com.formdev:flatlaf:2.0.1'
+
+    implementation("net.sf.jasperreports:jasperreports:${jasperReportsVersion}") {
+        transitive = false
+    }
+
+    runtimeOnly ("is.codion.jdk11:codion-plugin-logback-proxy:${version}") {
+        exclude group: 'com.sun.mail', module: 'javax.mail'
+    }
+
+    runtimeOnly "commons-logging:commons-logging:${commonsLoggingVersion}"
+    runtimeOnly "commons-digester:commons-digester:${commonsDigesterVersion}"
+    runtimeOnly "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
+    runtimeOnly "commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}"
+    runtimeOnly "org.eclipse.jdt:ecj:${ecjVersion}"
+
+    testImplementation "is.codion.jdk11:codion-framework-db-local:${version}"
+    testImplementation "is.codion.jdk11:codion-dbms-h2database:${version}"
+    testImplementation "com.h2database:h2:1.4.200"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly project(':domain')
+}
+
+buildReports {
+    sourceDir = file('src/main/reports')
+    targetDir = file(sourceSets.main.output.resourcesDir.toString() + '/is/codion/framework/demos/world/model')
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "codion.db.url", "jdbc:h2:mem:h2db"
+    systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
+}

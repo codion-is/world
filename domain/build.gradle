@@ -1,0 +1,21 @@
+plugins {
+    id 'world.library'
+}
+
+dependencies {
+    api project(':domain-api')
+
+    testImplementation "is.codion.jdk11:codion-framework-domain-test:${version}"
+    testRuntimeOnly "is.codion.jdk11:codion-framework-db-local:${version}"
+    testRuntimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
+    testRuntimeOnly "com.h2database:h2:1.4.200"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "codion.test.user", "scott:tiger"
+    systemProperty "codion.db.url", "jdbc:h2:mem:h2db"
+    systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
+}
