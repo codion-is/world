@@ -12,7 +12,8 @@ dependencies {
 
     implementation "org.json:json:${jsonVersion}"
     implementation "org.jfree:jfreechart:${jfreeChartVersion}"
-    implementation 'com.formdev:flatlaf:2.0.1'
+    implementation "com.formdev:flatlaf:${flatLafVersion}"
+    implementation "com.formdev:flatlaf-intellij-themes:${flatLafVersion}"
 
     implementation("org.jxmapviewer:jxmapviewer2:${jxmapviewer2Version}") {
         transitive = false

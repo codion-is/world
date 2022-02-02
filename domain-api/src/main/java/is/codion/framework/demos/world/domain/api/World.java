@@ -32,9 +32,7 @@ public interface World {
     Attribute<String> COUNTRY_CODE = TYPE.stringAttribute("countrycode");
     Attribute<String> DISTRICT = TYPE.stringAttribute("district");
     Attribute<Integer> POPULATION = TYPE.integerAttribute("population");
-    // tag::customType[]
     Attribute<Location> LOCATION = TYPE.attribute("location", Location.class);
-    // end::customType[]
 
     ForeignKey COUNTRY_FK = TYPE.foreignKey("country_fk", City.COUNTRY_CODE, Country.CODE);
 
@@ -54,7 +52,7 @@ public interface World {
 
     @Override
     public String toString() {
-      return "[lat: " + latitude + ", lon: " + longitude + "]";
+      return "[" + latitude + "," + longitude + "]";
     }
   }
 
@@ -82,9 +80,7 @@ public interface World {
     Attribute<Integer> NO_OF_LANGUAGES = TYPE.integerAttribute("no_of_languages");
     Attribute<byte[]> FLAG = TYPE.byteArrayAttribute("flag");
 
-    // tag::foreignKeyCapital[]
     ForeignKey CAPITAL_FK = TYPE.foreignKey("capital_fk", Country.CAPITAL, City.ID);
-    // end::foreignKeyCapital[]
 
     String name();
     String continent();
