@@ -9,7 +9,7 @@ dependencies {
 
     runtimeOnly "is.codion.jdk11:codion-plugin-hikari-pool:${version}"
     runtimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
-    runtimeOnly "com.h2database:h2:1.4.200"
+    runtimeOnly "com.h2database:h2:${h2Version}"
 
     //logging library, skipping the email stuff
     runtimeOnly ("is.codion.jdk11:codion-plugin-logback-proxy:${version}") {
