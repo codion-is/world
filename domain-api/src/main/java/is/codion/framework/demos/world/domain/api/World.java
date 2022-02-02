@@ -14,6 +14,7 @@ import is.codion.framework.domain.property.DerivedProperty;
 import org.jxmapviewer.viewer.GeoPosition;
 
 import java.awt.Color;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -148,6 +149,7 @@ public interface World {
 
   final class CityColorProvider implements ColorProvider {
 
+    @Serial
     private static final long serialVersionUID = 1;
 
     @Override
@@ -165,9 +167,9 @@ public interface World {
     }
   }
 
-  final class NoOfSpeakersProvider
-          implements DerivedProperty.Provider<Integer> {
+  final class NoOfSpeakersProvider implements DerivedProperty.Provider<Integer> {
 
+    @Serial
     private static final long serialVersionUID = 1;
 
     @Override
@@ -182,9 +184,9 @@ public interface World {
     }
   }
 
-  final class CityValidator
-          extends DefaultEntityValidator implements Serializable {
+  final class CityValidator extends DefaultEntityValidator implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1;
 
     @Override

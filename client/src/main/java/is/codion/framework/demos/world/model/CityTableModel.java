@@ -24,12 +24,16 @@ import org.jxmapviewer.viewer.GeoPosition;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonList;
@@ -58,11 +62,11 @@ public final class CityTableModel extends SwingEntityTableModel {
 
   public void fetchLocationForSelected(ProgressReporter<String> progressReporter,
                                        StateObserver cancelFetchLocationObserver)
-          throws IOException, DatabaseException, ValidationException {
+          throws IOException, DatabaseException, ValidationException, URISyntaxException, InterruptedException {
     List<Entity> updatedCities = new ArrayList<>();
     List<Entity> selectedCitiesWithoutLocation = getSelectionModel().getSelectedItems().stream()
             .filter(city -> city.isNull(City.LOCATION))
-            .collect(Collectors.toList());
+            .toList();
     for (Entity city : selectedCitiesWithoutLocation) {
       if (!cancelFetchLocationObserver.get()) {
         progressReporter.publish(city.toString());
@@ -74,23 +78,37 @@ public final class CityTableModel extends SwingEntityTableModel {
     displayLocationEvent.onEvent(getSelectionModel().getSelectedItems());
   }
 
-  private void fetchLocation(Entity city) throws IOException, DatabaseException, ValidationException {
-    JSONArray jsonArray = toJSONArray(new URL(OPENSTREETMAP_ORG_SEARCH +
-            URLEncoder.encode(city.get(City.NAME), UTF_8.name()) + "," +
-            URLEncoder.encode(city.getForeignKey(City.COUNTRY_FK).get(Country.NAME), UTF_8.name()) + "?format=json"));
-
+  private void fetchLocation(Entity city) throws IOException, DatabaseException, ValidationException,
+          URISyntaxException, InterruptedException {
+    JSONArray jsonArray = toJSONArray(createHttpRequest(city));
     if (jsonArray.length() > 0) {
-      fetchLocation(city, (JSONObject) jsonArray.get(0));
+      updateLocation(city, (JSONObject) jsonArray.get(0));
     }
   }
 
-  private void fetchLocation(Entity city, JSONObject cityInformation) throws DatabaseException, ValidationException {
+  private HttpRequest createHttpRequest(final Entity city) throws URISyntaxException, UnsupportedEncodingException {
+    return HttpRequest.newBuilder()
+            .uri(createURI(city))
+            .GET()
+            .build();
+  }
+
+  private URI createURI(final Entity city) throws URISyntaxException, UnsupportedEncodingException {
+    return new URI(OPENSTREETMAP_ORG_SEARCH +
+            URLEncoder.encode(city.get(City.NAME), UTF_8.name()) + "," +
+            URLEncoder.encode(city.getForeignKey(City.COUNTRY_FK).get(Country.NAME), UTF_8.name()) + "?format=json");
+  }
+
+  private void updateLocation(Entity city, JSONObject cityInformation) throws DatabaseException, ValidationException {
     city.put(City.LOCATION, new GeoPosition(cityInformation.getDouble("lat"), cityInformation.getDouble("lon")));
     getEditModel().update(singletonList(city));
   }
 
-  private static JSONArray toJSONArray(URL url) throws IOException {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), UTF_8))) {
+  private static JSONArray toJSONArray(HttpRequest request) throws IOException, InterruptedException {
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(HttpClient.newBuilder()
+            .build()
+            .send(request, HttpResponse.BodyHandlers.ofInputStream())
+            .body(), UTF_8))) {
       return new JSONArray(reader.lines().collect(joining()));
     }
   }
