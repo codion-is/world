@@ -5,7 +5,6 @@ include 'domain'
 include 'client'
 include 'client-local'
 include 'client-remote'
-//include 'load-test'
 include 'server'
 include 'server-monitor'
 

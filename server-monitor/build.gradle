@@ -10,8 +10,8 @@ dependencies {
 applicationDefaultJvmArgs = [
         "-Dcodion.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=${serverRegistryPort}",
-        "-Djavax.net.ssl.trustStore=truststore.jks",
-        "-Djavax.net.ssl.trustStorePassword=crappypass",
+        "-Dcodion.client.trustStore=truststore.jks",
+        "-Dcodion.client.trustStorePassword=crappypass",
         "-Dlogback.configurationFile=logback.xml",
         "-Dcodion.server.admin.user=scott:tiger"
 ]
