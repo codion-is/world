@@ -11,7 +11,6 @@ dependencies {
 applicationDefaultJvmArgs = [
         //add-reads for accessing default methods for Entity types
         "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
-        "--add-reads", "world.merged.module=org.slf4j",//for sslcontext-kickstart
         "-Dcodion.client.connectionType=remote",
         "-Dcodion.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=${serverRegistryPort}",
@@ -33,6 +32,7 @@ jlink {
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
+        jvmArgs += ["--add-reads", "world.merged.module=org.slf4j"]//for sslcontext-kickstart
     }
 
     jpackage {
