@@ -9,6 +9,9 @@ module is.codion.framework.demos.world.client {
   requires jxmapviewer2;
   requires org.json;
 
+  exports is.codion.framework.demos.world.ui
+          to is.codion.swing.framework.ui;
+
   //for loading reports from classpath
   opens is.codion.framework.demos.world.model;
 }
