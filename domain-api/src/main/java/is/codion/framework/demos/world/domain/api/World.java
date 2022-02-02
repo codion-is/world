@@ -11,8 +11,6 @@ import is.codion.framework.domain.entity.ForeignKey;
 import is.codion.framework.domain.entity.exception.ValidationException;
 import is.codion.framework.domain.property.DerivedProperty;
 
-import org.jxmapviewer.viewer.GeoPosition;
-
 import java.awt.Color;
 import java.io.Serial;
 import java.io.Serializable;
@@ -36,7 +34,7 @@ public interface World {
     Attribute<String> DISTRICT = TYPE.stringAttribute("district");
     Attribute<Integer> POPULATION = TYPE.integerAttribute("population");
     // tag::customType[]
-    Attribute<GeoPosition> LOCATION = TYPE.attribute("location", GeoPosition.class);
+    Attribute<Location> LOCATION = TYPE.attribute("location", Location.class);
     // end::customType[]
 
     ForeignKey COUNTRY_FK = TYPE.foreignKey("country_fk", City.COUNTRY_CODE, Country.CODE);
@@ -50,6 +48,14 @@ public interface World {
 
     default boolean isCapital() {
       return Objects.equals(get(City.ID), get(City.COUNTRY_FK).get(Country.CAPITAL));
+    }
+  }
+
+  record Location(double latitude, double longitude) implements Serializable {
+
+    @Override
+    public String toString() {
+      return "[lat: " + latitude + ", lon: " + longitude + "]";
     }
   }
 

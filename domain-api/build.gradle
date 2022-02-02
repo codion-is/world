@@ -4,8 +4,4 @@ plugins {
 
 dependencies {
     api "is.codion.jdk11:codion-framework-domain:${version}"
-
-    api("org.jxmapviewer:jxmapviewer2:${jxmapviewer2Version}") {
-        transitive = false
-    }
 }

@@ -14,6 +14,10 @@ dependencies {
     implementation "org.jfree:jfreechart:${jfreeChartVersion}"
     implementation 'com.formdev:flatlaf:2.0.1'
 
+    implementation("org.jxmapviewer:jxmapviewer2:${jxmapviewer2Version}") {
+        transitive = false
+    }
+
     implementation("net.sf.jasperreports:jasperreports:${jasperReportsVersion}") {
         transitive = false
     }
