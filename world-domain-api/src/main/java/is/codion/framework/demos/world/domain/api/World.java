@@ -50,14 +50,6 @@ public interface World {
     }
   }
 
-  record Location(double latitude, double longitude) implements Serializable {
-
-    @Override
-    public String toString() {
-      return "[" + latitude + "," + longitude + "]";
-    }
-  }
-
   interface Country extends Entity {
     EntityType TYPE = DOMAIN.entityType("world.country", Country.class);
 
@@ -148,6 +140,14 @@ public interface World {
     Attribute<String> CITY_NAME = TYPE.stringAttribute("city.name");
     Attribute<String> CITY_DISTRICT = TYPE.stringAttribute("city.district");
     Attribute<Integer> CITY_POPULATION = TYPE.integerAttribute("city.population");
+  }
+
+  record Location(double latitude, double longitude) implements Serializable {
+
+    @Override
+    public String toString() {
+      return "[" + latitude + "," + longitude + "]";
+    }
   }
 
   final class CityColorProvider implements ColorProvider {
