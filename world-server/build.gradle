@@ -5,7 +5,7 @@ plugins {
 dependencies {
     runtimeOnly "is.codion.jdk11:codion-framework-server:${version}"
 
-    runtimeOnly project(":domain")
+    runtimeOnly project(":world-domain")
 
     runtimeOnly "is.codion.jdk11:codion-plugin-hikari-pool:${version}"
     runtimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"

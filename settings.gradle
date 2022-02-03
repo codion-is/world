@@ -1,12 +1,12 @@
 rootProject.name = 'world'
 
-include 'domain-api'
-include 'domain'
-include 'client'
-include 'client-local'
-include 'client-remote'
-include 'server'
-include 'server-monitor'
+include 'world-domain-api'
+include 'world-domain'
+include 'world-client'
+include 'world-client-local'
+include 'world-client-remote'
+include 'world-server'
+include 'world-server-monitor'
 
 dependencyResolutionManagement {
     repositories {

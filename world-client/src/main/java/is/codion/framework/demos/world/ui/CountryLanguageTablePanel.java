@@ -1,7 +1,6 @@
 package is.codion.framework.demos.world.ui;
 
 import is.codion.framework.demos.world.model.CountryLanguageTableModel;
-import is.codion.swing.common.ui.layout.Layouts;
 import is.codion.swing.framework.model.SwingEntityTableModel;
 import is.codion.swing.framework.ui.EntityTablePanel;
 
