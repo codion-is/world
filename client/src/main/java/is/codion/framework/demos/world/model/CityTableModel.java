@@ -29,11 +29,13 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 public final class CityTableModel extends SwingEntityTableModel {
 
@@ -47,7 +49,7 @@ public final class CityTableModel extends SwingEntityTableModel {
     super(City.TYPE, connectionProvider, new CityTableSortModel(connectionProvider.getEntities()));
     getSelectionModel().addSelectedItemsListener(displayLocationEvent::onEvent);
     getSelectionModel().addSelectionChangedListener(this::updateCitiesWithoutLocationSelected);
-    addRefreshSuccessfulListener(this::refreshChartDataset);
+    addRefreshListener(this::refreshChartDataset);
   }
 
   public PieDataset<String> getChartDataset() {
@@ -65,32 +67,33 @@ public final class CityTableModel extends SwingEntityTableModel {
   public void fetchLocationForSelected(ProgressReporter<String> progressReporter,
                                        StateObserver cancelFetchLocationObserver)
           throws IOException, DatabaseException, ValidationException {
-    List<Entity> updatedCities = new ArrayList<>();
-    List<Entity> selectedCitiesWithoutLocation = getSelectionModel().getSelectedItems().stream()
-            .filter(city -> city.isNull(City.LOCATION)).toList();
-    for (Entity city : selectedCitiesWithoutLocation) {
-      if (!cancelFetchLocationObserver.get()) {
-        progressReporter.publish(city.toString());
-        fetchLocation(city);
-        updatedCities.add(city);
-        progressReporter.setProgress(100 * updatedCities.size() / selectedCitiesWithoutLocation.size());
-      }
+    Collection<Entity> updatedCities = new ArrayList<>();
+    Collection<City> selectedCitiesWithoutLocation = getSelectionModel().getSelectedItems().stream()
+            .filter(city -> city.isNull(City.LOCATION))
+            .map(city -> city.castTo(City.class)).toList();
+    Iterator<City> citiesWithoutLocation = selectedCitiesWithoutLocation.iterator();
+    while (citiesWithoutLocation.hasNext() && !cancelFetchLocationObserver.get()) {
+      City city = citiesWithoutLocation.next();
+      progressReporter.publish(city.country().name() + " - " + city.name());
+      fetchLocation(city);
+      updatedCities.add(city);
+      progressReporter.setProgress(100 * updatedCities.size() / selectedCitiesWithoutLocation.size());
     }
     displayLocationEvent.onEvent(getSelectionModel().getSelectedItems());
   }
 
-  private void fetchLocation(Entity city) throws IOException, DatabaseException, ValidationException {
+  private void fetchLocation(City city) throws IOException, DatabaseException, ValidationException {
     JSONArray jsonArray = toJSONArray(new URL(OPENSTREETMAP_ORG_SEARCH +
-            URLEncoder.encode(city.get(City.NAME), UTF_8.name()) + "," +
-            URLEncoder.encode(city.getForeignKey(City.COUNTRY_FK).get(Country.NAME), UTF_8.name()) + "?format=json"));
+            URLEncoder.encode(city.name(), UTF_8.name()) + "," +
+            URLEncoder.encode(city.country().name(), UTF_8.name()) + "?format=json"));
 
     if (jsonArray.length() > 0) {
       fetchLocation(city, (JSONObject) jsonArray.get(0));
     }
   }
 
-  private void fetchLocation(Entity city, JSONObject cityInformation) throws DatabaseException, ValidationException {
-    city.put(City.LOCATION, new Location(cityInformation.getDouble("lat"), cityInformation.getDouble("lon")));
+  private void fetchLocation(City city, JSONObject cityInformation) throws DatabaseException, ValidationException {
+    city.location(new Location(cityInformation.getDouble("lat"), cityInformation.getDouble("lon")));
     getEditModel().update(singletonList(city));
   }
 

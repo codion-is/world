@@ -38,6 +38,8 @@ public interface World {
 
     String name();
     int population();
+    Country country();
+    void location(Location location);
 
     default boolean isInCountry(Entity country) {
       return country != null && Objects.equals(get(COUNTRY_FK), country);

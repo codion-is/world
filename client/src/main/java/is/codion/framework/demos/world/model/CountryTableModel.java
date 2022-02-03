@@ -30,16 +30,10 @@ public final class CountryTableModel extends SwingEntityTableModel {
   }
 
   public JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) throws ReportException {
-    CountryReportDataSource dataSource = new CountryReportDataSource(getCountriesForReport(),
+    CountryReportDataSource dataSource = new CountryReportDataSource(getSelectionModel().getSelectedItems(),
             getConnectionProvider().getConnection(), progressReporter);
 
     return fillReport(classPathReport(CountryTableModel.class, COUNTRY_REPORT), dataSource, getReportParameters());
-  }
-
-  private List<Entity> getCountriesForReport() {
-    return getSelectionModel().getSelectedItems().stream()
-            .sorted(comparing(country -> country.get(World.Country.NAME)))
-            .collect(toList());
   }
 
   private static Map<String, Object> getReportParameters() throws ReportException {

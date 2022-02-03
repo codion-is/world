@@ -8,6 +8,7 @@ import is.codion.swing.common.model.worker.ProgressWorker.ProgressTask;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.common.ui.control.Controls;
 import is.codion.swing.common.ui.dialog.Dialogs;
+import is.codion.swing.common.ui.layout.Layouts;
 import is.codion.swing.framework.model.SwingEntityTableModel;
 import is.codion.swing.framework.ui.EntityTablePanel;
 
@@ -21,6 +22,7 @@ import javax.swing.UIManager;
 import java.awt.BorderLayout;
 import java.util.List;
 
+import static is.codion.swing.common.ui.layout.Layouts.borderLayout;
 import static org.jfree.chart.ChartFactory.createPieChart;
 
 final class CityTablePanel extends EntityTablePanel {
@@ -34,14 +36,14 @@ final class CityTablePanel extends EntityTablePanel {
 
   @Override
   protected void layoutPanel(JPanel tablePanel, JPanel southPanel) {
-    JPanel tableViewPanel = new JPanel(new BorderLayout());
+    JPanel tableViewPanel = new JPanel(borderLayout());
     tableViewPanel.add(tablePanel, BorderLayout.CENTER);
     tableViewPanel.add(southPanel, BorderLayout.SOUTH);
     ChartPanel cityChartPanel = createChartPanel("Cities", cityTableModel.getChartDataset());
     JTabbedPane tabbedPane = new JTabbedPane();
     tabbedPane.addTab("Table", tableViewPanel);
     tabbedPane.addTab("Chart", cityChartPanel);
-    setLayout(new BorderLayout());
+    setLayout(borderLayout());
     add(tabbedPane, BorderLayout.CENTER);
   }
 
