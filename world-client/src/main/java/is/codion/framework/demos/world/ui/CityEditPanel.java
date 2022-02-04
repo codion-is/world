@@ -79,6 +79,7 @@ public final class CityEditPanel extends EntityEditPanel {
     mapKit.setTileFactory(new DefaultTileFactory(new OSMTileFactoryInfo()));
     mapKit.setMiniMapVisible(false);
     mapKit.setZoomSliderVisible(false);
+    mapKit.setZoomButtonsVisible(false);
     mapKit.setBorder(createRaisedBevelBorder());
     mapKit.getMainMap().setZoom(MAX_ZOOM);
     mapKit.getMainMap().setOverlayPainter(new WaypointPainter<>());
