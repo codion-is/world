@@ -42,11 +42,11 @@ public interface World {
     void location(Location location);
 
     default boolean isInCountry(Entity country) {
-      return country != null && Objects.equals(get(COUNTRY_FK), country);
+      return country != null && Objects.equals(country(), country);
     }
 
     default boolean isCapital() {
-      return Objects.equals(get(City.ID), get(City.COUNTRY_FK).get(Country.CAPITAL));
+      return Objects.equals(get(City.ID), country().get(Country.CAPITAL));
     }
   }
 
