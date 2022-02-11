@@ -55,7 +55,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     return new WorldAppModel(connectionProvider);
   }
 
-  public static void main(final String[] args) throws CancelException {
+  public static void main(String[] args) throws CancelException {
     Locale.setDefault(new Locale("en", "EN"));
     Arrays.stream(FlatAllIJThemes.INFOS).forEach(themeInfo ->
             addLookAndFeelProvider(LookAndFeelProvider.create(themeInfo.getClassName())));
