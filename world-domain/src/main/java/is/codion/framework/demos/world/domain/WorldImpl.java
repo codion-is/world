@@ -83,7 +83,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .numberFormatGrouping(true)
                     .maximumFractionDigits(2),
             columnProperty(Country.INDEPYEAR, "Indep. year")
-                    .minimumValue(-2000).maximumValue(2500),
+                    .range(-2000, 2500),
             columnProperty(Country.INDEPYEAR_SEARCHABLE)
                     .columnExpression("to_char(indepyear)")
                     .searchProperty()
@@ -93,7 +93,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .numberFormatGrouping(true),
             columnProperty(Country.LIFE_EXPECTANCY, "Life expectancy")
                     .maximumFractionDigits(1)
-                    .minimumValue(0).maximumValue(99),
+                    .range(0, 99),
             columnProperty(Country.GNP, "GNP")
                     .numberFormatGrouping(true)
                     .maximumFractionDigits(2),
@@ -146,7 +146,7 @@ public final class WorldImpl extends DefaultDomain implements World {
             columnProperty(CountryLanguage.PERCENTAGE, "Percentage")
                     .nullable(false)
                     .maximumFractionDigits(1)
-                    .minimumValue(0).maximumValue(100))
+                    .range(0, 100))
             .orderBy(orderBy().ascending(CountryLanguage.LANGUAGE).descending(CountryLanguage.PERCENTAGE))
             .caption("Language");
   }
