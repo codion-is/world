@@ -20,7 +20,7 @@ abstract class ChartTablePanel extends EntityTablePanel {
   protected ChartTablePanel(SwingEntityTableModel tableModel, PieDataset<String> chartDataset,
                             String chartTitle) {
     super(tableModel);
-    chartPanel = createPieChartPanel(this, chartTitle, chartDataset);
+    chartPanel = createPieChartPanel(this, chartDataset, chartTitle);
   }
 
   @Override

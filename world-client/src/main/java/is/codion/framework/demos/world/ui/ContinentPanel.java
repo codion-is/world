@@ -31,10 +31,10 @@ final class ContinentPanel extends EntityPanel {
     tablePanel.initializePanel();
     setPreferredHeight(tablePanel, 200);
 
-    ChartPanel populationChartPanel = createPieChartPanel(this, "Population", model.getPopulationDataset());
-    ChartPanel surfaceAreaChartPanel = createPieChartPanel(this, "Surface area", model.getSurfaceAreaDataset());
-    ChartPanel gnpChartPanel = createPieChartPanel(this, "GNP", model.getGnpDataset());
-    ChartPanel lifeExpectancyChartPanel = createBarChartPanel(this, "Life expectancy", "Continent", "Years", model.getLifeExpectancyDataset());
+    ChartPanel populationChartPanel = createPieChartPanel(this, model.getPopulationDataset(), "Population");
+    ChartPanel surfaceAreaChartPanel = createPieChartPanel(this, model.getSurfaceAreaDataset(), "Surface area");
+    ChartPanel gnpChartPanel = createPieChartPanel(this, model.getGnpDataset(), "GNP");
+    ChartPanel lifeExpectancyChartPanel = createBarChartPanel(this, model.getLifeExpectancyDataset(), "Life expectancy", "Continent", "Years");
 
     Dimension pieChartSize = new Dimension(300, 300);
     populationChartPanel.setPreferredSize(pieChartSize);
