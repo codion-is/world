@@ -29,6 +29,7 @@ jlink {
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
+        jvmArgs += ["--add-reads", "world.merged.module=org.slf4j"]//for sslcontext-kickstart
     }
 
     jpackage {
