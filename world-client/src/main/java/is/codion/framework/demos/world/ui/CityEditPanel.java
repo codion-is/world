@@ -32,7 +32,7 @@ import static javax.swing.BorderFactory.createRaisedBevelBorder;
 
 public final class CityEditPanel extends EntityEditPanel {
 
-  private static final int MAX_ZOOM = 19;
+  private static final int MIN_ZOOM = 19;
 
   private final JXMapKit mapKit;
 
@@ -79,7 +79,7 @@ public final class CityEditPanel extends EntityEditPanel {
     mapKit.setZoomSliderVisible(false);
     mapKit.setZoomButtonsVisible(false);
     mapKit.setBorder(createRaisedBevelBorder());
-    mapKit.getMainMap().setZoom(MAX_ZOOM);
+    mapKit.getMainMap().setZoom(MIN_ZOOM);
     mapKit.getMainMap().setOverlayPainter(new WaypointPainter<>());
 
     tableModel.addDisplayLocationListener(new DisplayLocationListener(mapKit.getMainMap()));
@@ -117,18 +117,20 @@ public final class CityEditPanel extends EntityEditPanel {
       overlayPainter.setWaypoints(geoPositions.stream()
               .map(DefaultWaypoint::new)
               .collect(toSet()));
-      if (geoPositions.isEmpty()) {
-        mapViewer.setZoom(MAX_ZOOM);
-        mapViewer.repaint();
-      }
-      else if (geoPositions.size() == 1) {
-        mapViewer.setZoom(0);
-        mapViewer.setCenterPosition(geoPositions.iterator().next());
-        mapViewer.setZoom(SINGLE_WAYPOINT_ZOOM_LEVEL);
-      }
-      else {
-        mapViewer.setZoom(0);
-        mapViewer.zoomToBestFit(geoPositions, 1);
+      switch (geoPositions.size()) {
+        case 0 -> {
+          mapViewer.setZoom(MIN_ZOOM);
+          mapViewer.repaint();
+        }
+        case 1 -> {
+          mapViewer.setZoom(0);
+          mapViewer.setCenterPosition(geoPositions.iterator().next());
+          mapViewer.setZoom(SINGLE_WAYPOINT_ZOOM_LEVEL);
+        }
+        default -> {
+          mapViewer.setZoom(0);
+          mapViewer.zoomToBestFit(geoPositions, 1);
+        }
       }
     }
 
