@@ -17,18 +17,19 @@ class BuildReportsPlugin implements Plugin<Project> {
             doLast {
                 def javaPlugin = project.getExtensions().getByType(JavaPluginExtension.class);
                 def main = javaPlugin.getSourceSets().findByName("main");
+                ant.lifecycleLogLevel = "INFO"
                 ant.taskdef(name: 'jrc', classname: 'net.sf.jasperreports.ant.JRAntCompileTask',
                         classpath: main.getRuntimeClasspath().asPath)
                 config.targetDir.get().mkdirs()
                 ant.jrc(srcdir: config.sourceDir.get(), destdir: config.targetDir.get()) {
-                    classpath(path: main.output.getResourcesDir().toString())
+                    classpath(path: main.output.classesDirs.asPath)
                     include(name: '**/*.jrxml')
                 }
             }
         }
         project.configure(project) {
             project.afterEvaluate {
-                buildReports.mustRunAfter('classes')
+                buildReports.dependsOn('classes')
                 project.getTasks().findByName('jar').dependsOn(buildReports)
                 project.getTasks().findByName('compileTestJava').dependsOn(buildReports)
             }
