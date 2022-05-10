@@ -32,13 +32,6 @@ dependencies {
     runtimeOnly "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
     runtimeOnly "commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}"
     runtimeOnly "org.eclipse.jdt:ecj:${ecjVersion}"
-
-    testImplementation "is.codion.jdk11:codion-framework-db-local:${version}"
-    testImplementation "is.codion.jdk11:codion-dbms-h2database:${version}"
-    runtimeOnly "com.h2database:h2:${h2Version}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testRuntimeOnly project(':world-domain')
 }
 
 buildReports {
