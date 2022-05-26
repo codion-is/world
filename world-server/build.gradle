@@ -1,9 +1,10 @@
 plugins {
-    id 'world.application'
+    id 'world.server'
 }
 
 dependencies {
     runtimeOnly "is.codion.jdk11:codion-framework-server:${version}"
+    runtimeOnly "is.codion.jdk11:codion-framework-servlet:${version}"
 
     runtimeOnly project(":world-domain")
 
@@ -22,6 +23,7 @@ applicationDefaultJvmArgs = [
         "-Dlogback.configurationFile=logback.xml",
         //add-reads for accessing default methods for Entity types
         "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
+        "--add-reads", "world.merged.module=jetty.servlet.api",
         //RMI configuration
         "-Djava.rmi.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=1098",
@@ -34,6 +36,9 @@ applicationDefaultJvmArgs = [
         "-Djavax.net.ssl.keyStorePassword=crappypass",
         //The port used by clients
         "-Dcodion.server.port=2223",
+        //The servlet server
+        "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServletServerFactory",
+        '-Dcodion.server.http.secure=false',
         //The port for the admin interface, used by the server monitor
         "-Dcodion.server.admin.port=4445",
         //The admin user credentials, used by the server monitor application
@@ -57,7 +62,11 @@ jlink {
     moduleName = application.mainModule
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--add-modules',
                'is.codion.framework.db.local,is.codion.dbms.h2database,is.codion.plugin.hikari.pool,' +
-                       'is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain']
+                       'is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain,is.codion.framework.servlet']
+
+    mergedModule {
+        excludeRequires("jakarta.activation", "jetty.servlet.api", "com.fasterxml.jackson.annotation")
+    }
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs

@@ -1,0 +1,21 @@
+plugins {
+    id 'org.beryx.jlink'
+    id "de.jjohannes.extra-java-module-info"
+}
+
+extraJavaModuleInfo {
+    automaticModule("jersey-container-servlet-core-${jerseyVersion}.jar", "jersey.container.servlet.core")
+    automaticModule("jersey-hk2-${jerseyVersion}.jar", "jersey.hk2")
+    automaticModule("jersey-server-${jerseyVersion}.jar", "jersey.server")
+    automaticModule("jersey-client-${jerseyVersion}.jar", "jersey.client")
+    automaticModule("jersey-common-${jerseyVersion}.jar", "jersey.common")
+    automaticModule("javassist-3.25.0-GA.jar", "javassist")
+    automaticModule("osgi-resource-locator-1.0.3.jar", "osgi.resource.locator")
+
+    automaticModule("jasperreports-${jasperReportsVersion}.jar", "jasperreports")
+    automaticModule("commons-logging-${commonsLoggingVersion}.jar", "commons.logging")
+    automaticModule("commons-digester-${commonsDigesterVersion}.jar", "commons.digester")
+    automaticModule("commons-collections-${commonsCollectionsVersion}.jar", "commons.collections")
+    automaticModule("commons-beanutils-${commonsBeanUtilsVersion}.jar", "commons.beanutils")
+    automaticModule("ecj-${ecjVersion}.jar", "ecj")
+}
