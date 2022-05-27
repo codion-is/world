@@ -33,6 +33,8 @@ import static java.util.Arrays.asList;
 
 public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
+  private static final String DEFAULT_FLAT_LOOK_AND_FEEL = "com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerIJTheme";
+
   public WorldAppPanel() {
     super("World");
   }
@@ -55,6 +57,11 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
   @Override
   protected WorldAppModel initializeApplicationModel(EntityConnectionProvider connectionProvider) {
     return new WorldAppModel(connectionProvider);
+  }
+
+  @Override
+  protected String getDefaultSystemLookAndFeelName() {
+    return DEFAULT_FLAT_LOOK_AND_FEEL;
   }
 
   public static void main(String[] args) throws CancelException {
