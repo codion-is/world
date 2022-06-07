@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static is.codion.common.item.Item.item;
+import static is.codion.framework.domain.entity.EntityDefinition.definition;
 import static is.codion.framework.domain.entity.KeyGenerator.sequence;
 import static is.codion.framework.domain.entity.OrderBy.ascending;
 import static is.codion.framework.domain.property.Properties.*;
@@ -35,7 +36,7 @@ public final class WorldImpl extends DefaultDomain implements World {
   }
 
   void city() {
-    define(City.TYPE,
+    add(definition(
             primaryKeyProperty(City.ID),
             columnProperty(City.NAME, "Name")
                     .searchProperty(true)
@@ -58,11 +59,11 @@ public final class WorldImpl extends DefaultDomain implements World {
             .orderBy(ascending(City.NAME))
             .stringFactory(City.NAME)
             .foregroundColorProvider(new CityColorProvider())
-            .caption("City");
+            .caption("City"));
   }
 
   void country() {
-    define(Country.TYPE,
+    add(definition(
             primaryKeyProperty(Country.CODE, "Country code")
                     .updatable(true)
                     .maximumLength(3),
@@ -125,11 +126,11 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .maximumLength(2))
             .orderBy(ascending(Country.NAME))
             .stringFactory(Country.NAME)
-            .caption("Country");
+            .caption("Country"));
   }
 
   void countryLanguage() {
-    define(CountryLanguage.TYPE,
+    add(definition(
             columnProperty(CountryLanguage.COUNTRY_CODE)
                     .primaryKeyIndex(0)
                     .updatable(true),
@@ -151,11 +152,11 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .ascending(CountryLanguage.LANGUAGE)
                     .descending(CountryLanguage.PERCENTAGE)
                     .build())
-            .caption("Language");
+            .caption("Language"));
   }
 
   void lookup() {
-    define(Lookup.TYPE,
+    add(definition(
             columnProperty(Lookup.COUNTRY_CODE, "Country code")
                     .primaryKeyIndex(0),
             columnProperty(Lookup.COUNTRY_NAME, "Country name"),
@@ -190,11 +191,11 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .descending(Lookup.CITY_POPULATION)
                     .build())
             .readOnly(true)
-            .caption("Lookup");
+            .caption("Lookup"));
   }
 
   void continent() {
-    define(Continent.TYPE, "world.country",
+    add(definition(
             columnProperty(Continent.NAME, "Continent")
                     .groupingColumn(true)
                     .beanProperty("name"),
@@ -222,8 +223,9 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .columnExpression("sum(gnp)")
                     .aggregateColumn(true)
                     .numberFormatGrouping(true))
+            .tableName("world.country")
             .readOnly(true)
-            .caption("Continent");
+            .caption("Continent"));
   }
 
   private static final class LocationConverter implements ValueConverter<Location, String> {
