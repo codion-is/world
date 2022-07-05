@@ -120,7 +120,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     "select count(*) from world.countrylanguage " +
                             "where countrylanguage.countrycode = country.code"),
             blobProperty(Country.FLAG, "Flag")
-                    .eagerlyLoaded(),
+                    .eagerlyLoaded(true),
             columnProperty(Country.CODE_2, "Code2")
                     .nullable(false)
                     .maximumLength(2))
