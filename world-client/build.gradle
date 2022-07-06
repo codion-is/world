@@ -28,9 +28,13 @@ dependencies {
     }
 
     runtimeOnly "commons-logging:commons-logging:${commonsLoggingVersion}"
-    runtimeOnly "commons-digester:commons-digester:${commonsDigesterVersion}"
+    runtimeOnly ("commons-digester:commons-digester:${commonsDigesterVersion}") {
+        transitive = false
+    }
     runtimeOnly "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
-    runtimeOnly "commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}"
+    runtimeOnly ("commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}") {
+        transitive = false
+    }
     runtimeOnly "org.eclipse.jdt:ecj:${ecjVersion}"
 }
 

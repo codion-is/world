@@ -4,11 +4,11 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("jasperreports-${jasperReportsVersion}.jar", "jasperreports")
-    automaticModule("commons-logging-${commonsLoggingVersion}.jar", "commons.logging")
-    automaticModule("commons-digester-${commonsDigesterVersion}.jar", "commons.digester")
-    automaticModule("commons-collections-${commonsCollectionsVersion}.jar", "commons.collections")
-    automaticModule("commons-beanutils-${commonsBeanUtilsVersion}.jar", "commons.beanutils")
-    automaticModule("ecj-${ecjVersion}.jar", "ecj")
-    automaticModule("jxmapviewer2-2.6.jar", "jxmapviewer2")
+    automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
+    automaticModule("commons-logging:commons-logging", "commons.logging")
+    automaticModule("commons-digester:commons-digester", "commons.digester")
+    automaticModule("org.apache.commons:commons-collections4", "commons.collections")
+    automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
+    automaticModule("org.eclipse.jdt:ecj", "ecj")
+    automaticModule("org.jxmapviewer:jxmapviewer2", "jxmapviewer2")
 }

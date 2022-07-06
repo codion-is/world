@@ -4,18 +4,18 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("jersey-container-servlet-core-${jerseyVersion}.jar", "jersey.container.servlet.core")
-    automaticModule("jersey-hk2-${jerseyVersion}.jar", "jersey.hk2")
-    automaticModule("jersey-server-${jerseyVersion}.jar", "jersey.server")
-    automaticModule("jersey-client-${jerseyVersion}.jar", "jersey.client")
-    automaticModule("jersey-common-${jerseyVersion}.jar", "jersey.common")
-    automaticModule("javassist-3.25.0-GA.jar", "javassist")
-    automaticModule("osgi-resource-locator-1.0.3.jar", "osgi.resource.locator")
+    automaticModule("org.glassfish.jersey.containers:jersey-container-servlet-core", "jersey.container.servlet.core")
+    automaticModule("org.glassfish.jersey.inject:jersey-hk2", "jersey.hk2")
+    automaticModule("org.glassfish.jersey.core:jersey-server", "jersey.server")
+    automaticModule("org.glassfish.jersey.core:jersey-client", "jersey.client")
+    automaticModule("org.glassfish.jersey.core:jersey-common", "jersey.common")
+    automaticModule("org.glassfish.hk2:osgi-resource-locator", "osgi.resource.locator")
+    automaticModule("org.javassist:javassist", "javassist")
 
-    automaticModule("jasperreports-${jasperReportsVersion}.jar", "jasperreports")
-    automaticModule("commons-logging-${commonsLoggingVersion}.jar", "commons.logging")
-    automaticModule("commons-digester-${commonsDigesterVersion}.jar", "commons.digester")
-    automaticModule("commons-collections-${commonsCollectionsVersion}.jar", "commons.collections")
-    automaticModule("commons-beanutils-${commonsBeanUtilsVersion}.jar", "commons.beanutils")
-    automaticModule("ecj-${ecjVersion}.jar", "ecj")
+    automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
+    automaticModule("commons-logging:commons-logging", "commons.logging")
+    automaticModule("commons-digester:commons-digester", "commons.digester")
+    automaticModule("org.apache.commons:commons-collections4", "commons.collections")
+    automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
+    automaticModule("org.eclipse.jdt:ecj", "ecj")
 }
