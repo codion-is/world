@@ -38,7 +38,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
   }
 
   @Override
-  protected List<EntityPanel> initializeEntityPanels(WorldAppModel applicationModel) {
+  protected List<EntityPanel> createEntityPanels(WorldAppModel applicationModel) {
     CountryModel countryModel = applicationModel.getEntityModel(CountryModel.class);
     CountryPanel countryPanel = new CountryPanel(countryModel);
 
@@ -53,7 +53,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
   }
 
   @Override
-  protected WorldAppModel initializeApplicationModel(EntityConnectionProvider connectionProvider) {
+  protected WorldAppModel createApplicationModel(EntityConnectionProvider connectionProvider) {
     return new WorldAppModel(connectionProvider);
   }
 
