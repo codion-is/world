@@ -34,7 +34,7 @@ public final class CountryReportDataSource extends JasperReportsDataSource<Entit
   public JRDataSource getCityDataSource() {
     try {
       List<Entity> largestCities = connection.select(where(City.COUNTRY_FK)
-              .equalTo(getCurrentItem())
+              .equalTo(currentItem())
               .selectBuilder()
               .selectAttributes(City.NAME, City.POPULATION)
               .orderBy(descending(City.POPULATION))
