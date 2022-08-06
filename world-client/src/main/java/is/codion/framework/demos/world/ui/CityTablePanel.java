@@ -14,7 +14,7 @@ import java.util.List;
 final class CityTablePanel extends ChartTablePanel {
 
   CityTablePanel(CityTableModel tableModel) {
-    super(tableModel, tableModel.getChartDataset(), "Cities");
+    super(tableModel, tableModel.chartDataset(), "Cities");
   }
 
   @Override

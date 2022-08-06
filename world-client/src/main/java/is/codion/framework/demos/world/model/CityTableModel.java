@@ -46,7 +46,7 @@ public final class CityTableModel extends SwingEntityTableModel {
     addRefreshListener(this::refreshChartDataset);
   }
 
-  public PieDataset<String> getChartDataset() {
+  public PieDataset<String> chartDataset() {
     return chartDataset;
   }
 
