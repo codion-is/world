@@ -2,6 +2,7 @@ package is.codion.framework.demos.world.ui;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.title.LegendTitle;
@@ -49,6 +50,12 @@ final class ChartPanels {
     if (plot instanceof PiePlot<?> piePlot) {
       piePlot.setLabelBackgroundPaint(textFieldForeground);
       piePlot.setLabelPaint(backgroundColor);
+    }
+    if (plot instanceof CategoryPlot categoryPlot) {
+      categoryPlot.getDomainAxis().setLabelPaint(textFieldForeground);
+      categoryPlot.getRangeAxis().setLabelPaint(textFieldForeground);
+      categoryPlot.getDomainAxis().setTickLabelPaint(textFieldForeground);
+      categoryPlot.getRangeAxis().setTickLabelPaint(textFieldForeground);
     }
     LegendTitle legend = chart.getLegend();
     if (legend != null) {
