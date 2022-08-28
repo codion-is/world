@@ -27,7 +27,7 @@ final class CityTablePanel extends ChartTablePanel {
   private Control createFetchLocationControl() {
     return Control.builder(this::fetchLocation)
             .caption("Fetch location")
-            .enabledState(((CityTableModel) tableModel()).getCitiesWithoutLocationSelectedObserver())
+            .enabledState(((CityTableModel) tableModel()).citiesWithoutLocationSelectedObserver())
             .build();
   }
 

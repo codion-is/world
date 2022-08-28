@@ -54,7 +54,7 @@ public final class CityTableModel extends SwingEntityTableModel {
     displayLocationEvent.addDataListener(listener);
   }
 
-  public StateObserver getCitiesWithoutLocationSelectedObserver() {
+  public StateObserver citiesWithoutLocationSelectedObserver() {
     return citiesWithoutLocationSelectedState.observer();
   }
 
@@ -79,8 +79,8 @@ public final class CityTableModel extends SwingEntityTableModel {
 
   private void fetchLocation(City city) throws IOException, DatabaseException, ValidationException {
     JSONArray jsonArray = toJSONArray(new URL(OPENSTREETMAP_ORG_SEARCH +
-            URLEncoder.encode(city.name(), UTF_8.name()) + "," +
-            URLEncoder.encode(city.country().name(), UTF_8.name()) + "?format=json"));
+            URLEncoder.encode(city.name(), UTF_8) + "," +
+            URLEncoder.encode(city.country().name(), UTF_8) + "?format=json"));
 
     if (jsonArray.length() > 0) {
       fetchLocation(city, (JSONObject) jsonArray.get(0));
