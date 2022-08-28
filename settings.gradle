@@ -14,4 +14,54 @@ dependencyResolutionManagement {
         mavenLocal()
         mavenCentral()
     }
+    versionCatalogs {
+        libs {
+            version('codion', '0.17.16')
+            version('h2', '2.1.214')
+            version('json', '20220320')
+            version('jfreechart', '1.5.3')
+            version('jxmapviewer2', '2.6')
+            version('junit', '5.9.0')
+            version('flatlaf', '2.4')
+            version('jasperreports', '6.20.0')
+            version('commons.logging', '1.2')
+            version('commons.digester', '2.1')
+            version('commons.collections4', '4.4')
+            version('commons.beanutils', '1.9.4')
+            version('jdt.core.compiler', '3.29.0')
+
+            library('codion-dbms-h2database', 'is.codion.jdk11', 'codion-dbms-h2database').versionRef('codion')
+            library('codion.framework.domain', 'is.codion.jdk11', 'codion-framework-domain').versionRef('codion')
+            library('codion.framework.domain.test', 'is.codion.jdk11', 'codion-framework-domain-test').versionRef('codion')
+            library('codion-framework-db-rmi', 'is.codion.jdk11', 'codion-framework-db-rmi').versionRef('codion')
+            library('codion-framework-db-local', 'is.codion.jdk11', 'codion-framework-db-local').versionRef('codion')
+            library('codion-framework-db-http', 'is.codion.jdk11', 'codion-framework-db-http').versionRef('codion')
+            library('codion-swing-framework-ui', 'is.codion.jdk11', 'codion-swing-framework-ui').versionRef('codion')
+            library('codion-plugin-jasperreports', 'is.codion.jdk11', 'codion-plugin-jasperreports').versionRef('codion')
+            library('codion-plugin-logback-proxy', 'is.codion.jdk11', 'codion-plugin-logback-proxy').versionRef('codion')
+            library('codion-plugin-hikari-pool', 'is.codion.jdk11', 'codion-plugin-hikari-pool').versionRef('codion')
+            library('codion-framework-server', 'is.codion.jdk11', 'codion-framework-server').versionRef('codion')
+            library('codion-framework-servlet', 'is.codion.jdk11', 'codion-framework-servlet').versionRef('codion')
+            library('codion-swing-framework-server-monitor', 'is.codion.jdk11', 'codion-swing-framework-server-monitor').versionRef('codion')
+
+            library('jxmapviewer2', 'org.jxmapviewer', 'jxmapviewer2').versionRef('jxmapviewer2')
+
+            library('h2', 'com.h2database', 'h2').versionRef('h2')
+            library('json', 'org.json', 'json').versionRef('json')
+
+            library('jfreechart', 'org.jfree', 'jfreechart').versionRef('jfreechart')
+
+            library('junit-api', 'org.junit.jupiter', 'junit-jupiter-api').versionRef('junit')
+            library('junit-engine', 'org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit')
+
+            library('flatlaf', 'com.formdev', 'flatlaf').versionRef('flatlaf')
+            library('flatlaf-intellij-themes', 'com.formdev', 'flatlaf-intellij-themes').versionRef('flatlaf')
+            library('jasperreports', 'net.sf.jasperreports', 'jasperreports').versionRef('jasperreports')
+            library('commons-logging', 'commons-logging', 'commons-logging').versionRef('commons.logging')
+            library('commons-digester', 'commons-digester', 'commons-digester').versionRef('commons.digester')
+            library('commons-collections4', 'org.apache.commons', 'commons-collections4').versionRef('commons.collections4')
+            library('commons-beanutils', 'commons-beanutils', 'commons-beanutils').versionRef('commons.beanutils')
+            library('jdt-core-compiler', 'org.eclipse.jdt', 'ecj').versionRef('jdt.core.compiler')
+        }
+    }
 }

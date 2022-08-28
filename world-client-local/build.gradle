@@ -7,9 +7,9 @@ dependencies {
 
     runtimeOnly project(':world-domain')
 
-    runtimeOnly "is.codion.jdk11:codion-framework-db-local:${version}"
-    runtimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
-    runtimeOnly "com.h2database:h2:${h2Version}"
+    runtimeOnly (libs.codion.framework.db.local)
+    runtimeOnly (libs.codion.dbms.h2database)
+    runtimeOnly (libs.h2)
 }
 
 applicationDefaultJvmArgs = [

@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    api "is.codion.jdk11:codion-framework-domain:${version}"
+    api (libs.codion.framework.domain)
 }

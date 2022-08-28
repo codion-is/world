@@ -7,35 +7,35 @@ apply plugin: BuildReportsPlugin
 dependencies {
     implementation project(':world-domain-api')
 
-    implementation "is.codion.jdk11:codion-swing-framework-ui:${version}"
-    implementation "is.codion.jdk11:codion-plugin-jasperreports:${version}"
+    implementation (libs.codion.swing.framework.ui)
+    implementation (libs.codion.plugin.jasperreports)
 
-    implementation "org.json:json:${jsonVersion}"
-    implementation "org.jfree:jfreechart:${jfreeChartVersion}"
-    implementation "com.formdev:flatlaf:${flatLafVersion}"
-    implementation "com.formdev:flatlaf-intellij-themes:${flatLafVersion}"
+    implementation (libs.json)
+    implementation (libs.jfreechart)
+    implementation (libs.flatlaf)
+    implementation (libs.flatlaf.intellij.themes)
 
-    implementation("org.jxmapviewer:jxmapviewer2:${jxmapviewer2Version}") {
+    implementation (libs.jxmapviewer2) {
         transitive = false
     }
 
-    implementation("net.sf.jasperreports:jasperreports:${jasperReportsVersion}") {
+    implementation (libs.jasperreports) {
         transitive = false
     }
 
-    runtimeOnly ("is.codion.jdk11:codion-plugin-logback-proxy:${version}") {
+    runtimeOnly (libs.codion.plugin.logback.proxy) {
         exclude group: 'com.sun.mail', module: 'javax.mail'
     }
 
-    runtimeOnly "commons-logging:commons-logging:${commonsLoggingVersion}"
-    runtimeOnly ("commons-digester:commons-digester:${commonsDigesterVersion}") {
+    runtimeOnly (libs.commons.logging)
+    runtimeOnly (libs.commons.digester) {
         transitive = false
     }
-    runtimeOnly "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
-    runtimeOnly ("commons-beanutils:commons-beanutils:${commonsBeanUtilsVersion}") {
+    runtimeOnly (libs.commons.collections4)
+    runtimeOnly (libs.commons.beanutils) {
         transitive = false
     }
-    runtimeOnly "org.eclipse.jdt:ecj:${ecjVersion}"
+    runtimeOnly (libs.jdt.core.compiler)
 }
 
 buildReports {

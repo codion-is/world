@@ -3,17 +3,17 @@ plugins {
 }
 
 dependencies {
-    runtimeOnly "is.codion.jdk11:codion-framework-server:${version}"
-    runtimeOnly "is.codion.jdk11:codion-framework-servlet:${version}"
+    runtimeOnly (libs.codion.framework.server)
+    runtimeOnly (libs.codion.framework.servlet)
 
     runtimeOnly project(":world-domain")
 
-    runtimeOnly "is.codion.jdk11:codion-plugin-hikari-pool:${version}"
-    runtimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
-    runtimeOnly "com.h2database:h2:${h2Version}"
+    runtimeOnly (libs.codion.plugin.hikari.pool)
+    runtimeOnly (libs.codion.dbms.h2database)
+    runtimeOnly (libs.h2)
 
     //logging library, skipping the email stuff
-    runtimeOnly ("is.codion.jdk11:codion-plugin-logback-proxy:${version}") {
+    runtimeOnly (libs.codion.plugin.logback.proxy) {
         exclude group: 'com.sun.mail', module: 'javax.mail'
     }
 }

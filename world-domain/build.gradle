@@ -5,12 +5,12 @@ plugins {
 dependencies {
     api project(':world-domain-api')
 
-    testImplementation "is.codion.jdk11:codion-framework-domain-test:${version}"
-    testRuntimeOnly "is.codion.jdk11:codion-framework-db-local:${version}"
-    testRuntimeOnly "is.codion.jdk11:codion-dbms-h2database:${version}"
-    testImplementation "com.h2database:h2:${h2Version}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation (libs.codion.framework.domain.test)
+    testRuntimeOnly (libs.codion.framework.db.local)
+    testRuntimeOnly (libs.codion.dbms.h2database)
+    testRuntimeOnly (libs.h2)
+    testImplementation (libs.junit.api)
+    testRuntimeOnly (libs.junit.engine)
 }
 
 test {

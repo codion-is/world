@@ -5,7 +5,7 @@
 dependencies {
     implementation project(':world-client')
 
-    runtimeOnly "is.codion.jdk11:codion-framework-db-http:${version}"
+    runtimeOnly (libs.codion.framework.db.http)
 }
 
 applicationDefaultJvmArgs = [

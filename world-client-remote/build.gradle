@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation project(':world-client')
 
-    runtimeOnly "is.codion.jdk11:codion-framework-db-rmi:${version}"
+    runtimeOnly (libs.codion.framework.db.rmi)
 }
 
 applicationDefaultJvmArgs = [
