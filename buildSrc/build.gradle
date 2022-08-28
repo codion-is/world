@@ -7,6 +7,6 @@ repositories {
 }
 
 dependencies {
-    implementation "org.beryx:badass-jlink-plugin:${jlinkVersion}"
-    implementation "de.jjohannes.gradle:extra-java-module-info:${extraJavaModuleInfoVersion}"
+    implementation (libs.jlink)
+    implementation (libs.extra.module.info)
 }
