@@ -48,3 +48,19 @@ test {
     systemProperty "codion.db.url", "jdbc:h2:mem:h2db"
     systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
 }
+
+task writeVersion {
+    group 'build'
+    def versionFile = file(sourceSets.main.output.resourcesDir.getAbsolutePath() + "/version.properties")
+    inputs.property("version", project.version)
+    outputs.file(versionFile)
+    outputs.upToDateWhen { false }
+
+    doLast {
+        def versionProperties = new Properties()
+        versionProperties.put('version', project.version)
+        versionProperties.store(versionFile.newWriter(), null)
+    }
+}
+
+classes.dependsOn writeVersion
