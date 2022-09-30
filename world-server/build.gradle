@@ -47,7 +47,7 @@ applicationDefaultJvmArgs = [
         "-Dcodion.db.url=jdbc:h2:mem:h2db",
         "-Dcodion.db.initScripts=classpath:create_schema.sql",
         //A connection pool based on this user is created on startup
-        "-Dcodion.server.pooling.startupPoolUsers=scott:tiger",
+        "-Dcodion.server.connectionPoolUsers=scott:tiger",
         //Client logging disabled by default
         "-Dcodion.server.clientLoggingEnabled=false"
 ]
