@@ -42,7 +42,7 @@ public final class CityTableModel extends SwingEntityTableModel {
   CityTableModel(EntityConnectionProvider connectionProvider) {
     super(City.TYPE, connectionProvider);
     selectionModel().addSelectedItemsListener(displayLocationEvent::onEvent);
-    selectionModel().addSelectionChangedListener(this::updateCitiesWithoutLocationSelected);
+    selectionModel().addSelectionListener(this::updateCitiesWithoutLocationSelected);
     addRefreshListener(this::refreshChartDataset);
   }
 
