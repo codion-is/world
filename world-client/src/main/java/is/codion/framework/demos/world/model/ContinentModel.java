@@ -1,9 +1,10 @@
 package is.codion.framework.demos.world.model;
 
 import is.codion.common.model.table.ColumnConditionModel;
+import is.codion.common.model.table.ColumnConditionModel.AutomaticWildcard;
 import is.codion.framework.db.EntityConnectionProvider;
-import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.demos.world.domain.api.World.Continent;
+import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.domain.entity.Entity;
 import is.codion.swing.framework.model.SwingDetailModelHandler;
 import is.codion.swing.framework.model.SwingEntityModel;
@@ -63,11 +64,11 @@ public final class ContinentModel extends SwingEntityModel {
   private static final class CountryModel extends SwingEntityModel {
 
     private CountryModel(EntityConnectionProvider connectionProvider) {
-      super(World.Country.TYPE, connectionProvider);
+      super(Country.TYPE, connectionProvider);
       editModel().setReadOnly(true);
       ColumnConditionModel<?, ?> continentConditionModel =
-              tableModel().tableConditionModel().conditionModel(World.Country.CONTINENT);
-      continentConditionModel.automaticWildcardValue().set(ColumnConditionModel.AutomaticWildcard.NONE);
+              tableModel().tableConditionModel().conditionModel(Country.CONTINENT);
+      continentConditionModel.automaticWildcardValue().set(AutomaticWildcard.NONE);
       continentConditionModel.caseSensitiveState().set(true);
     }
   }
@@ -81,7 +82,7 @@ public final class ContinentModel extends SwingEntityModel {
     @Override
     public void onSelection(List<Entity> selectedEntities) {
       Collection<String> continentNames = Entity.get(Continent.NAME, selectedEntities);
-      if (detailModel().tableModel().tableConditionModel().setEqualConditionValues(World.Country.CONTINENT, continentNames)) {
+      if (detailModel().tableModel().tableConditionModel().setEqualConditionValues(Country.CONTINENT, continentNames)) {
         detailModel().tableModel().refresh();
       }
     }
