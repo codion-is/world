@@ -15,8 +15,8 @@ class BuildReportsPlugin implements Plugin<Project> {
             inputs.dir config.sourceDir
             outputs.dir config.targetDir
             doLast {
-                def javaPlugin = project.getExtensions().getByType(JavaPluginExtension.class);
-                def main = javaPlugin.getSourceSets().findByName("main");
+                def javaPlugin = project.getExtensions().getByType(JavaPluginExtension.class)
+                def main = javaPlugin.getSourceSets().findByName("main")
                 ant.lifecycleLogLevel = "INFO"
                 ant.taskdef(name: 'jrc', classname: 'net.sf.jasperreports.ant.JRAntCompileTask',
                         classpath: main.getRuntimeClasspath().asPath)

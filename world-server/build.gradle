@@ -23,7 +23,6 @@ applicationDefaultJvmArgs = [
         "-Dlogback.configurationFile=logback.xml",
         //add-reads for accessing default methods for Entity types
         "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
-        "--add-reads", "world.merged.module=jetty.servlet.api",
         //RMI configuration
         "-Djava.rmi.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=1098",
