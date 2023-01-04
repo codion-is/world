@@ -22,7 +22,7 @@ dependencyResolutionManagement {
             version('jfreechart', '1.5.3')
             version('jxmapviewer2', '2.6')
             version('junit', '5.9.1')
-            version('flatlaf', '2.6')
+            version('flatlaf', '3.0')
             version('jasperreports', '6.20.0')
             version('commons.logging', '1.2')
             version('commons.digester', '2.1')

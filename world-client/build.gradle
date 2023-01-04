@@ -49,7 +49,7 @@ test {
     systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
 }
 
-task writeVersion {
+tasks.register('writeVersion') {
     group 'build'
     def versionFile = file(sourceSets.main.output.resourcesDir.getAbsolutePath() + "/version.properties")
     inputs.property("version", project.version)
