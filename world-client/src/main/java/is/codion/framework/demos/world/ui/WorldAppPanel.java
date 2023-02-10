@@ -39,14 +39,14 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
   }
 
   @Override
-  protected List<EntityPanel> createEntityPanels(WorldAppModel applicationModel) {
-    CountryModel countryModel = applicationModel.entityModel(CountryModel.class);
+  protected List<EntityPanel> createEntityPanels() {
+    CountryModel countryModel = applicationModel().entityModel(CountryModel.class);
     CountryPanel countryPanel = new CountryPanel(countryModel);
 
-    SwingEntityModel continentModel = applicationModel.entityModel(Continent.TYPE);
+    SwingEntityModel continentModel = applicationModel().entityModel(Continent.TYPE);
     ContinentPanel continentPanel = new ContinentPanel(continentModel);
 
-    SwingEntityModel lookupModel = applicationModel.entityModel(Lookup.TYPE);
+    SwingEntityModel lookupModel = applicationModel().entityModel(Lookup.TYPE);
     EntityPanel lookupPanel = new EntityPanel(lookupModel,
             new LookupTablePanel(lookupModel.tableModel()));
 
@@ -67,7 +67,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     SwingUtilities.invokeLater(() -> entityApplicationBuilder(WorldAppModel.class, WorldAppPanel.class)
             .applicationName("World")
             .applicationVersion(WorldAppModel.VERSION)
-            .defaultLookAndFeelName(DEFAULT_FLAT_LOOK_AND_FEEL)
+            .defaultLookAndFeelClassName(DEFAULT_FLAT_LOOK_AND_FEEL)
             .frameSize(new Dimension(1280, 720))
             .defaultLoginUser(User.parse("scott:tiger"))
             .start());
