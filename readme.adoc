@@ -4,23 +4,35 @@ A demo application based on the Codion application framework.
 
 == Modules
 
-=== domain-api
+=== world-domain-api
 
-The domain API.
+The domain model API.
 
-=== domain
+=== world-domain
 
-The domain implementation.
+The domain model implementation.
 
-=== client
+=== world-client
 
 Swing client application.
 
-=== server
+=== world-client-http
+
+Swing client configured with a HTTP connection.
+
+=== world-client-local
+
+Swing client configured with a local JDBC connection.
+
+=== world-client-remote
+
+Swing client configured with a remote RMI connection.
+
+=== world-server
 
 A Codion server configured for the World application.
 
-=== server-monitor
+=== world-server-monitor
 
 A Codion server monitor configured to connect to the server.
 
@@ -28,7 +40,7 @@ A Codion server monitor configured to connect to the server.
 
 === JDBC
 
-To run the World client with a local JDBC connection.
+To run the client with a local JDBC connection.
 
 [source,shell]
 ----
@@ -37,14 +49,14 @@ gradlew client-local:run
 
 === RMI
 
-To run the World client with an RMI connection start by running the server.
+To run the client with an RMI connection start by running the server.
 
 [source,shell]
 ----
 gradlew server:run
 ----
 
-Then run the World remote client.
+Then run the remote client.
 
 [source,shell]
 ----
@@ -53,9 +65,52 @@ gradlew client-remote:run
 
 ==== Server Monitor
 
-To run the Codion server monitor.
+To run the server monitor.
 
 [source,shell]
 ----
 gradlew server-monitor:run
+----
+
+== Server configuration
+
+In order to run the server on a different host, you must change the *serverHost* property in *gradle.properties*.
+
+[source,shell]
+----
+serverHost=192.168.1.42
+----
+
+=== jlink
+
+The client, server and server-monitor modules have a jlink task.
+
+[source,shell]
+----
+gradlew chinook-client-remote:jlink
+----
+[source,shell]
+----
+gradlew chinook-server:jlink
+----
+[source,shell]
+----
+gradlew chinook-server-monitor:jlink
+----
+
+=== jpackage
+
+The client, server and server-monitor modules have a jpackage task configured for windows (msi) and linux (deb).
+
+[source,shell]
+----
+gradlew chinook-client-remote:jpackage
+----
+[source,shell]
+----
+gradlew chinook-server:jpackage
+----
+[source,shell]
+----
+gradlew chinook-server-monitor:jpackage
 ----
