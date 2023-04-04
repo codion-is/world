@@ -114,15 +114,9 @@ public final class CityEditPanel extends EntityEditPanel {
     return mapKit;
   }
 
-  private static final class DisplayLocationListener implements EventDataListener<Collection<Entity>> {
+  private record DisplayLocationListener(JXMapViewer mapViewer) implements EventDataListener<Collection<Entity>> {
 
     private static final int SINGLE_WAYPOINT_ZOOM_LEVEL = 15;
-
-    private final JXMapViewer mapViewer;
-
-    private DisplayLocationListener(JXMapViewer mapViewer) {
-      this.mapViewer = mapViewer;
-    }
 
     @Override
     public void onEvent(Collection<Entity> cities) {
@@ -151,7 +145,8 @@ public final class CityEditPanel extends EntityEditPanel {
         }
         case 1 -> {
           mapViewer.setZoom(0);
-          mapViewer.setCenterPosition(geoPositions.iterator().next());
+          mapViewer.setCenterPosition(geoPositions.iterator()
+                  .next());
           mapViewer.setZoom(SINGLE_WAYPOINT_ZOOM_LEVEL);
         }
         default -> {
