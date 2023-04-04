@@ -67,6 +67,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
     EntityConnectionProvider.CLIENT_DOMAIN_CLASS.set("is.codion.framework.demos.world.domain.WorldImpl");
     FrameworkIcons.instance().addIcon(Foundation.MAP);
+    FrameworkIcons.instance().addIcon(Foundation.PAGE_EXPORT_CSV);
     SwingUtilities.invokeLater(() -> entityApplicationBuilder(WorldAppModel.class, WorldAppPanel.class)
             .applicationName("World")
             .applicationVersion(WorldAppModel.VERSION)
