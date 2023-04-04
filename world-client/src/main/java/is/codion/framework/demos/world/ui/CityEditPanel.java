@@ -50,7 +50,7 @@ public final class CityEditPanel extends EntityEditPanel {
     this(editModel, null);
   }
 
-    CityEditPanel(SwingEntityEditModel editModel, CityTableModel tableModel) {
+  CityEditPanel(SwingEntityEditModel editModel, CityTableModel tableModel) {
     super(editModel);
     this.mapKit = tableModel == null ? null : createMapKit();
     this.displayLocationListener = new DisplayLocationListener(mapKit.getMainMap());
