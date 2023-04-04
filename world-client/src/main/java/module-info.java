@@ -3,6 +3,7 @@ module is.codion.framework.demos.world.client {
   requires is.codion.plugin.jasperreports;
   requires is.codion.framework.demos.world.domain.api;
   requires com.formdev.flatlaf.intellijthemes;
+  requires org.kordamp.ikonli.foundation;
   requires org.jfree.jfreechart;
   requires jasperreports;
   requires jxmapviewer2;

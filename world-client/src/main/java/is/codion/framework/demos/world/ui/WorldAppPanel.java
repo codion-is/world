@@ -15,8 +15,10 @@ import is.codion.swing.framework.ui.EntityApplicationPanel;
 import is.codion.swing.framework.ui.EntityPanel;
 import is.codion.swing.framework.ui.EntityTableCellRenderer;
 import is.codion.swing.framework.ui.ReferentialIntegrityErrorHandling;
+import is.codion.swing.framework.ui.icons.FrameworkIcons;
 
 import com.formdev.flatlaf.intellijthemes.FlatAllIJThemes;
+import org.kordamp.ikonli.foundation.Foundation;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -64,6 +66,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     EntityTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
     ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
     EntityConnectionProvider.CLIENT_DOMAIN_CLASS.set("is.codion.framework.demos.world.domain.WorldImpl");
+    FrameworkIcons.instance().addIcon(Foundation.MAP);
     SwingUtilities.invokeLater(() -> entityApplicationBuilder(WorldAppModel.class, WorldAppPanel.class)
             .applicationName("World")
             .applicationVersion(WorldAppModel.VERSION)
