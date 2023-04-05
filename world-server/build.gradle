@@ -69,6 +69,7 @@ jlink {
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
+        jvmArgs += ["--add-reads", "world.merged.module=jetty.servlet.api"]
     }
 
     jpackage {
