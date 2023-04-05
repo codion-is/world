@@ -2,6 +2,8 @@
 
 A demo application based on the Codion application framework.
 
+image::world-client/images/world-client.png[World client]
+
 == Modules
 
 === world-domain-api
