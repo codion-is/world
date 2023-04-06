@@ -6,6 +6,8 @@ image::world-client/images/world-client.png[World client]
 
 == Modules
 
+Many of the following modules are configuration-only, that is, contain no source-code, just Gradle build files configuring the application for running and packaging.
+
 === world-domain-api
 
 The domain model API.
@@ -20,23 +22,27 @@ Swing client application.
 
 === world-client-http
 
-Swing client configured with a HTTP connection.
+Configuration only. Swing client configured with a HTTP connection.
 
 === world-client-local
 
-Swing client configured with a local JDBC connection.
+Configuration only. Swing client configured with a local JDBC connection.
+
+NOTE: The client runs with an in-memory H2 database, created on startup, so changes to data do not persist.
 
 === world-client-remote
 
-Swing client configured with a remote RMI connection.
+Configuration only. Swing client configured with a RMI connection.
 
 === world-server
 
-A Codion server configured for the World application.
+Configuration only. A Codion server configured for the World application.
+
+NOTE: The server runs with an in-memory H2 database, created on startup, so changes to data do not persist.
 
 === world-server-monitor
 
-A Codion server monitor configured to connect to the server.
+Configuration only. A Codion server monitor configured for the server.
 
 == Running
 
