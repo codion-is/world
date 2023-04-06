@@ -17,13 +17,13 @@ applicationDefaultJvmArgs = [
 ]
 
 application {
-    mainModule = "is.codion.swing.framework.server.monitor"
-    getMainClass().set("is.codion.swing.framework.server.monitor.ui.EntityServerMonitorPanel")
+    mainModule.set("is.codion.swing.framework.server.monitor")
+    mainClass.set("is.codion.swing.framework.server.monitor.ui.EntityServerMonitorPanel")
 }
 
 jlink {
-    imageName = project.name
-    moduleName = application.mainModule
+    imageName.set(project.name)
+    moduleName.set(application.mainModule)
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--add-modules',
                'java.naming,is.codion.plugin.logback.proxy']
 
