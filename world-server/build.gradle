@@ -38,6 +38,7 @@ applicationDefaultJvmArgs = [
         //The servlet server
         "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServletServerFactory",
         '-Dcodion.server.http.secure=false',
+        '-Dcodion.server.http.port=8081',
         //The port for the admin interface, used by the server monitor
         "-Dcodion.server.admin.port=4445",
         //The admin user credentials, used by the server monitor application
