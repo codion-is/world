@@ -38,9 +38,6 @@ NOTE: The client runs with an in-memory H2 database, created on startup, so chan
 [source,shell]
 ----
 gradlew world-client-local:jlink
-----
-[source,shell]
-----
 gradlew world-client-local:jpackage
 ----
 
@@ -62,9 +59,6 @@ gradlew world-client-http:run
 [source,shell]
 ----
 gradlew world-client-http:jlink
-----
-[source,shell]
-----
 gradlew world-client-http:jpackage
 ----
 
@@ -86,9 +80,6 @@ gradlew world-client-remote:run
 [source,shell]
 ----
 gradlew world-client-remote:jlink
-----
-[source,shell]
-----
 gradlew world-client-remote:jpackage
 ----
 
@@ -123,9 +114,6 @@ gradlew world-server:run
 [source,shell]
 ----
 gradlew world-server:jlink
-----
-[source,shell]
-----
 gradlew world-server:jpackage
 ----
 
@@ -145,8 +133,5 @@ gradlew world-server-monitor:run
 [source,shell]
 ----
 gradlew world-server-monitor:jlink
-----
-[source,shell]
-----
 gradlew world-server-monitor:jpackage
 ----
