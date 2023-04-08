@@ -24,78 +24,40 @@ Swing client application.
 
 Configuration only. Swing client configured with a HTTP connection.
 
+==== Run
+
+NOTE: The server must be running
+
+[source,shell]
+----
+gradlew world-client-http:run
+----
+
+==== Package
+
+[source,shell]
+----
+gradlew world-client-http:jlink
+----
+[source,shell]
+----
+gradlew world-client-http:jpackage
+----
+
 === world-client-local
 
 Configuration only. Swing client configured with a local JDBC connection.
 
+==== Run
+
+[source,shell]
+----
+gradlew world-client-local:run
+----
+
 NOTE: The client runs with an in-memory H2 database, created on startup, so changes to data do not persist.
 
-=== world-client-remote
-
-Configuration only. Swing client configured with a RMI connection.
-
-=== world-server
-
-Configuration only. A Codion server configured for the World application.
-
-NOTE: The server runs with an in-memory H2 database, created on startup, so changes to data do not persist.
-
-=== world-server-monitor
-
-Configuration only. A Codion server monitor configured for the server.
-
-== Running
-
-=== JDBC
-
-To run the client with a local JDBC connection.
-
-[source,shell]
-----
-gradlew client-local:run
-----
-
-=== RMI
-
-To run the client with an RMI connection start by running the server.
-
-[source,shell]
-----
-gradlew server:run
-----
-
-Then run the remote client.
-
-[source,shell]
-----
-gradlew client-remote:run
-----
-
-==== Server Monitor
-
-To run the server monitor.
-
-[source,shell]
-----
-gradlew server-monitor:run
-----
-
-== Server configuration
-
-The server host name and ports are configured in *gradle.properties*.
-
-[source,shell]
-----
-serverHost=localhost
-serverPort=2223
-serverHttpPort=8081
-serverRegistryPort=1098
-serverAdminPort=4445
-----
-
-=== jlink
-
-The client, server and server-monitor modules have a jlink task.
+==== Package
 
 [source,shell]
 ----
@@ -103,40 +65,86 @@ gradlew world-client-local:jlink
 ----
 [source,shell]
 ----
+gradlew world-client-local:jpackage
+----
+
+=== world-client-remote
+
+Configuration only. Swing client configured with a RMI connection.
+
+==== Run
+
+NOTE: The server must be running
+
+[source,shell]
+----
+gradlew world-client-remote:run
+----
+
+==== Package
+
+[source,shell]
+----
 gradlew world-client-remote:jlink
 ----
 [source,shell]
 ----
-gradlew world-client-http:jlink
+gradlew world-client-remote:jpackage
 ----
+
+=== world-server
+
+Configuration only. A Codion server configured for the world application.
+
+NOTE: The server runs with an in-memory H2 database, created on startup, so changes to data do not persist.
+
+==== Configuration
+
+The server host name and ports are configured in *gradle.properties*.
+
+[source,shell]
+----
+serverHost=localhost
+serverPort=2223
+serverRegistryPort=1098
+serverHttpPort=8081
+serverAdminPort=4445
+----
+
+==== Run
+
+[source,shell]
+----
+gradlew world-server:run
+----
+
+==== Package
+
 [source,shell]
 ----
 gradlew world-server:jlink
 ----
 [source,shell]
 ----
-gradlew world-server-monitor:jlink
-----
-
-=== jpackage
-
-The client, server and server-monitor modules have a jpackage task configured for windows (msi) and linux (deb).
-
-[source,shell]
-----
-gradlew world-client-local:jpackage
-----
-[source,shell]
-----
-gradlew world-client-remote:jpackage
-----
-[source,shell]
-----
-gradlew world-client-http:jpackage
-----
-[source,shell]
-----
 gradlew world-server:jpackage
+----
+
+=== world-server-monitor
+
+Configuration only. A Codion server monitor configured for the server.
+
+==== Run
+
+[source,shell]
+----
+gradlew world-server-monitor:run
+----
+
+==== Package
+
+[source,shell]
+----
+gradlew world-server-monitor:jlink
 ----
 [source,shell]
 ----
