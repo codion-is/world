@@ -25,7 +25,7 @@ applicationDefaultJvmArgs = [
         "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
         //RMI configuration
         "-Djava.rmi.server.hostname=${serverHost}",
-        "-Dcodion.server.registryPort=1098",
+        "-Dcodion.server.registryPort=${serverRegistryPort}",
         "-Djava.rmi.server.randomIDs=true",
         "-Djava.rmi.server.useCodebaseOnly=true",
         //The serialization whitelist
@@ -34,13 +34,13 @@ applicationDefaultJvmArgs = [
         "-Dcodion.server.classpathKeyStore=keystore.jks",
         "-Djavax.net.ssl.keyStorePassword=crappypass",
         //The port used by clients
-        "-Dcodion.server.port=2223",
+        "-Dcodion.server.port=${serverPort}",
         //The servlet server
         "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServletServerFactory",
         '-Dcodion.server.http.secure=false',
-        '-Dcodion.server.http.port=8081',
+        "-Dcodion.server.http.port=${serverHttpPort}",
         //The port for the admin interface, used by the server monitor
-        "-Dcodion.server.admin.port=4445",
+        "-Dcodion.server.admin.port=${serverAdminPort}",
         //The admin user credentials, used by the server monitor application
         "-Dcodion.server.admin.user=scott:tiger",
         //Database configuration
