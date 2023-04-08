@@ -99,15 +99,23 @@ The client, server and server-monitor modules have a jlink task.
 
 [source,shell]
 ----
-gradlew chinook-client-remote:jlink
+gradlew world-client-local:jlink
 ----
 [source,shell]
 ----
-gradlew chinook-server:jlink
+gradlew world-client-remote:jlink
 ----
 [source,shell]
 ----
-gradlew chinook-server-monitor:jlink
+gradlew world-client-http:jlink
+----
+[source,shell]
+----
+gradlew world-server:jlink
+----
+[source,shell]
+----
+gradlew world-server-monitor:jlink
 ----
 
 === jpackage
@@ -116,13 +124,21 @@ The client, server and server-monitor modules have a jpackage task configured fo
 
 [source,shell]
 ----
-gradlew chinook-client-remote:jpackage
+gradlew world-client-local:jpackage
 ----
 [source,shell]
 ----
-gradlew chinook-server:jpackage
+gradlew world-client-remote:jpackage
 ----
 [source,shell]
 ----
-gradlew chinook-server-monitor:jpackage
+gradlew world-client-http:jpackage
+----
+[source,shell]
+----
+gradlew world-server:jpackage
+----
+[source,shell]
+----
+gradlew world-server-monitor:jpackage
 ----
