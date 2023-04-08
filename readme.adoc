@@ -82,11 +82,15 @@ gradlew server-monitor:run
 
 == Server configuration
 
-In order to run the server on a different host, you must change the *serverHost* property in *gradle.properties*.
+The server host name and ports are configured in *gradle.properties*.
 
 [source,shell]
 ----
-serverHost=192.168.1.42
+serverHost=localhost
+serverPort=2223
+serverHttpPort=8081
+serverRegistryPort=1098
+serverAdminPort=4445
 ----
 
 === jlink
