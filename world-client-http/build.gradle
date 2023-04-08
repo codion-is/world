@@ -24,7 +24,7 @@ application {
 }
 
 jlink {
-    imageName.set(project.name)
+    imageName.set(project.name + "-" + project.version)
     moduleName.set(application.mainModule)
     options = ["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages", "--add-modules",
                "jdk.crypto.ec,is.codion.framework.db.http,is.codion.plugin.logback.proxy"]
