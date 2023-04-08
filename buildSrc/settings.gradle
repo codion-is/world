@@ -1,11 +1,11 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('jlink', '2.26.0')
-            version('extra-module-info', '1.3')
+            version("jlink", "2.26.0")
+            version("extra-module-info", "1.3")
 
-            library('jlink', 'org.beryx', 'badass-jlink-plugin').versionRef('jlink')
-            library('extra-module-info', 'org.gradlex', 'extra-java-module-info').versionRef('extra-module-info')
+            library("jlink", "org.beryx", "badass-jlink-plugin").versionRef("jlink")
+            library("extra-module-info", "org.gradlex", "extra-java-module-info").versionRef("extra-module-info")
         }
     }
 }

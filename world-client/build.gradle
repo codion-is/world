@@ -1,11 +1,11 @@
 plugins {
-    id 'world.library'
+    id "world.library"
 }
 
 apply plugin: BuildReportsPlugin
 
 dependencies {
-    implementation project(':world-domain-api')
+    implementation project(":world-domain-api")
 
     implementation (libs.codion.swing.framework.ui)
     implementation (libs.codion.plugin.jasperreports)
@@ -25,7 +25,7 @@ dependencies {
     }
 
     runtimeOnly (libs.codion.plugin.logback.proxy) {
-        exclude group: 'com.sun.mail', module: 'javax.mail'
+        exclude group: "com.sun.mail", module: "javax.mail"
     }
 
     runtimeOnly (libs.commons.logging)
@@ -40,8 +40,8 @@ dependencies {
 }
 
 buildReports {
-    sourceDir = file('src/main/reports')
-    targetDir = file(sourceSets.main.output.resourcesDir.toString() + '/is/codion/framework/demos/world/model')
+    sourceDir = file("src/main/reports")
+    targetDir = file(sourceSets.main.output.resourcesDir.toString() + "/is/codion/framework/demos/world/model")
 }
 
 test {
@@ -50,8 +50,8 @@ test {
     systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
 }
 
-tasks.register('writeVersion') {
-    group 'build'
+tasks.register("writeVersion") {
+    group "build"
     def versionFile = file(sourceSets.main.output.resourcesDir.getAbsolutePath() + "/version.properties")
     inputs.property("version", project.version)
     outputs.file(versionFile)
@@ -59,7 +59,7 @@ tasks.register('writeVersion') {
 
     doLast {
         def versionProperties = new Properties()
-        versionProperties.put('version', project.version)
+        versionProperties.put("version", project.version)
         versionProperties.store(versionFile.newWriter(), null)
     }
 }

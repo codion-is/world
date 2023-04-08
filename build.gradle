@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id "java"
 }
 
 java {
@@ -9,6 +9,6 @@ java {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = "UTF-8"
     options.deprecation = true
 }

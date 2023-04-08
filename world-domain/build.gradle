@@ -1,9 +1,9 @@
 plugins {
-    id 'world.library'
+    id "world.library"
 }
 
 dependencies {
-    api project(':world-domain-api')
+    api project(":world-domain-api")
 
     testImplementation (libs.codion.framework.domain.test)
     testRuntimeOnly (libs.codion.framework.db.local)

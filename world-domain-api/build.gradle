@@ -1,5 +1,5 @@
 plugins {
-    id 'world.library'
+    id "world.library"
 }
 
 dependencies {
