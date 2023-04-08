@@ -20,30 +20,6 @@ The domain model implementation.
 
 Swing client application.
 
-=== world-client-http
-
-Configuration only. Swing client configured with a HTTP connection.
-
-==== Run
-
-NOTE: The server must be running
-
-[source,shell]
-----
-gradlew world-client-http:run
-----
-
-==== Package
-
-[source,shell]
-----
-gradlew world-client-http:jlink
-----
-[source,shell]
-----
-gradlew world-client-http:jpackage
-----
-
 === world-client-local
 
 Configuration only. Swing client configured with a local JDBC connection.
@@ -66,6 +42,30 @@ gradlew world-client-local:jlink
 [source,shell]
 ----
 gradlew world-client-local:jpackage
+----
+
+=== world-client-http
+
+Configuration only. Swing client configured with a HTTP connection.
+
+==== Run
+
+NOTE: The server must be running
+
+[source,shell]
+----
+gradlew world-client-http:run
+----
+
+==== Package
+
+[source,shell]
+----
+gradlew world-client-http:jlink
+----
+[source,shell]
+----
+gradlew world-client-http:jpackage
 ----
 
 === world-client-remote
