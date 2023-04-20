@@ -18,7 +18,7 @@ dependencyResolutionManagement {
         libs {
             version("codion", "0.17.16")
             version("h2", "2.1.214")
-            version("json", "20220924")
+            version("json", "20230227")
             version("jfreechart", "1.5.4")
             version("jxmapviewer2", "2.6")
             version("junit", "5.9.2")
