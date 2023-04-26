@@ -37,6 +37,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
   public WorldAppPanel(WorldAppModel appModel) {
     super(appModel);
+    FrameworkIcons.instance().addIcons(Foundation.MAP, Foundation.PAGE_EXPORT_CSV);
   }
 
   @Override
@@ -64,8 +65,6 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     EntityPanel.TOOLBAR_BUTTONS.set(true);
     EntityTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
     ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
-    FrameworkIcons.instance().addIcon(Foundation.MAP);
-    FrameworkIcons.instance().addIcon(Foundation.PAGE_EXPORT_CSV);
     SwingUtilities.invokeLater(() -> entityApplicationBuilder(WorldAppModel.class, WorldAppPanel.class)
             .applicationName("World")
             .domainClassName("is.codion.framework.demos.world.domain.WorldImpl")
