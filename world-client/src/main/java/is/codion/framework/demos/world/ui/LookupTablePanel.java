@@ -35,7 +35,7 @@ final class LookupTablePanel extends EntityTablePanel {
             .addSeparatorAt(2)
             .addAt(3, Control.builder(this::exportCSV)
                     .caption("Export CSV...")
-                    .smallIcon(FrameworkIcons.instance().getIcon(Foundation.PAGE_EXPORT_CSV))
+                    .smallIcon(FrameworkIcons.instance().icon(Foundation.PAGE_EXPORT_CSV))
                     .build());
   }
 
@@ -53,6 +53,6 @@ final class LookupTablePanel extends EntityTablePanel {
 
   private void clearTableAndConditions() {
     tableModel().clear();
-    tableModel().tableConditionModel().clearConditions();
+    tableModel().conditionModel().clear();
   }
 }
