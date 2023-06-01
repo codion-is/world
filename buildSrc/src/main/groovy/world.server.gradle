@@ -4,14 +4,8 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("org.glassfish.jersey.containers:jersey-container-servlet-core", "jersey.container.servlet.core")
-    automaticModule("org.glassfish.jersey.inject:jersey-hk2", "jersey.hk2")
-    automaticModule("org.glassfish.jersey.core:jersey-server", "jersey.server")
-    automaticModule("org.glassfish.jersey.core:jersey-client", "jersey.client")
-    automaticModule("org.glassfish.jersey.core:jersey-common", "jersey.common")
-    automaticModule("org.glassfish.hk2:osgi-resource-locator", "osgi.resource.locator")
-    automaticModule("org.javassist:javassist", "javassist")
-
+    automaticModule("org.jetbrains.kotlin:kotlin-stdlib-common", "kotlin.stdlib")
+    automaticModule("org.jetbrains:annotations", "jetbrains.annotations")
     automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
     automaticModule("commons-logging:commons-logging", "commons.logging")
     automaticModule("commons-digester:commons-digester", "commons.digester")

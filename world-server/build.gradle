@@ -35,7 +35,7 @@ applicationDefaultJvmArgs = [
         //The port used by clients
         "-Dcodion.server.port=${serverPort}",
         //The servlet server
-        "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServletServerFactory",
+        "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServiceFactory",
         "-Dcodion.server.http.secure=false",
         "-Dcodion.server.http.port=${serverHttpPort}",
         //The port for the admin interface, used by the server monitor
