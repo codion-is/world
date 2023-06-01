@@ -4,8 +4,6 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("org.jetbrains.kotlin:kotlin-stdlib-common", "kotlin.stdlib")
-    automaticModule("org.jetbrains:annotations", "jetbrains.annotations")
     automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
     automaticModule("commons-logging:commons-logging", "commons.logging")
     automaticModule("commons-digester:commons-digester", "commons.digester")
