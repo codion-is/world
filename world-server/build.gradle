@@ -67,12 +67,15 @@ jlink {
                        "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain,is.codion.framework.servlet"]
 
     mergedModule {
-        excludeRequires("jakarta.activation", "jetty.servlet.api", "com.fasterxml.jackson.annotation")
+        uses "org.slf4j.spi.SLF4JServiceProvider"
+        excludeRequires "com.fasterxml.jackson.annotation"
     }
+
+    jarExclude("javalin", "/org/eclipse/jetty/http/encoding.properties")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
-        jvmArgs += ["--add-reads", "world.merged.module=jetty.servlet.api"]
+        jvmArgs += ["--add-reads", "world.merged.module=kotlin.stdlib"]
     }
 
     jpackage {
