@@ -5,12 +5,12 @@ plugins {
 dependencies {
     api project(":world-domain-api")
 
-    testImplementation (libs.codion.framework.domain.test)
-    testRuntimeOnly (libs.codion.framework.db.local)
-    testRuntimeOnly (libs.codion.dbms.h2database)
-    testRuntimeOnly (libs.h2)
-    testImplementation (libs.junit.api)
-    testRuntimeOnly (libs.junit.engine)
+    testImplementation(libs.codion.framework.domain.test)
+    testRuntimeOnly(libs.codion.framework.db.local)
+    testRuntimeOnly(libs.codion.dbms.h2database)
+    testRuntimeOnly(libs.h2)
+    testImplementation(libs.junit.api)
+    testRuntimeOnly(libs.junit.engine)
 }
 
 test {

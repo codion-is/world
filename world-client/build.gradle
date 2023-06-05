@@ -7,36 +7,36 @@ apply plugin: BuildReportsPlugin
 dependencies {
     implementation project(":world-domain-api")
 
-    implementation (libs.codion.swing.framework.ui)
-    implementation (libs.codion.plugin.jasperreports)
+    implementation(libs.codion.swing.framework.ui)
+    implementation(libs.codion.plugin.jasperreports)
 
-    implementation (libs.json)
-    implementation (libs.jfreechart)
-    implementation (libs.flatlaf)
-    implementation (libs.flatlaf.intellij.themes)
-    implementation (libs.ikonli.foundation)
+    implementation(libs.json)
+    implementation(libs.jfreechart)
+    implementation(libs.flatlaf)
+    implementation(libs.flatlaf.intellij.themes)
+    implementation(libs.ikonli.foundation)
 
-    implementation (libs.jxmapviewer2) {
+    implementation(libs.jxmapviewer2) {
         transitive = false
     }
 
-    implementation (libs.jasperreports) {
+    implementation(libs.jasperreports) {
         transitive = false
     }
 
-    runtimeOnly (libs.codion.plugin.logback.proxy) {
+    runtimeOnly(libs.codion.plugin.logback.proxy) {
         exclude group: "com.sun.mail", module: "javax.mail"
     }
 
-    runtimeOnly (libs.commons.logging)
-    runtimeOnly (libs.commons.digester) {
+    runtimeOnly(libs.commons.logging)
+    runtimeOnly(libs.commons.digester) {
         transitive = false
     }
-    runtimeOnly (libs.commons.collections4)
-    runtimeOnly (libs.commons.beanutils) {
+    runtimeOnly(libs.commons.collections4)
+    runtimeOnly(libs.commons.beanutils) {
         transitive = false
     }
-    runtimeOnly (libs.jdt.core.compiler)
+    runtimeOnly(libs.jdt.core.compiler)
 }
 
 buildReports {

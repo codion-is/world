@@ -114,13 +114,13 @@ public final class WorldImpl extends DefaultDomain implements World {
                     Country.CAPITAL_FK, City.POPULATION)
                     .numberFormatGrouping(true),
             subqueryProperty(Country.NO_OF_CITIES, "No. of cities", """
-                     select count(*)
-                     from world.city
-                     where city.countrycode = country.code"""),
+                    select count(*)
+                    from world.city
+                    where city.countrycode = country.code"""),
             subqueryProperty(Country.NO_OF_LANGUAGES, "No. of languages", """
-                     select count(*)
-                     from world.countrylanguage
-                     where countrylanguage.countrycode = country.code"""),
+                    select count(*)
+                    from world.countrylanguage
+                    where countrylanguage.countrycode = country.code"""),
             blobProperty(Country.FLAG, "Flag")
                     .eagerlyLoaded(true),
             columnProperty(Country.CODE_2, "Code2")

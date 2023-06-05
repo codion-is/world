@@ -21,17 +21,17 @@
           <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
       </appender>
-<!--      <appender name="STDOUT-${logIdentifier}" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <encoder>-->
-<!--          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
-<!--        </encoder>-->
-<!--      </appender>-->
+      <!--      <appender name="STDOUT-${logIdentifier}" class="ch.qos.logback.core.ConsoleAppender">-->
+      <!--        <encoder>-->
+      <!--          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+      <!--        </encoder>-->
+      <!--      </appender>-->
     </sift>
   </appender>
 
   <logger name="org.eclipse.jetty" level="ERROR"/>
 
   <root level="DEBUG">
-    <appender-ref ref="SIFT" />
+    <appender-ref ref="SIFT"/>
   </root>
 </configuration>
