@@ -3,6 +3,7 @@ package is.codion.framework.demos.world.ui;
 import is.codion.common.model.CancelException;
 import is.codion.common.user.User;
 import is.codion.framework.demos.world.domain.api.World.Continent;
+import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.demos.world.domain.api.World.Lookup;
 import is.codion.framework.demos.world.model.CountryModel;
 import is.codion.framework.demos.world.model.WorldAppModel;
@@ -37,7 +38,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
   @Override
   protected List<EntityPanel> createEntityPanels() {
-    CountryModel countryModel = applicationModel().entityModel(CountryModel.class);
+    CountryModel countryModel = applicationModel().entityModel(Country.TYPE);
     CountryPanel countryPanel = new CountryPanel(countryModel);
 
     SwingEntityModel continentModel = applicationModel().entityModel(Continent.TYPE);
