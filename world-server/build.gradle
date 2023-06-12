@@ -4,10 +4,7 @@ plugins {
 
 dependencies {
     runtimeOnly(libs.codion.framework.server)
-    runtimeOnly(libs.codion.framework.servlet) {
-        exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-common"
-        exclude group: "org.jetbrains", module: "annotations"
-    }
+    runtimeOnly(libs.codion.framework.servlet)
     runtimeOnly(libs.codion.plugin.hikari.pool)
     runtimeOnly(libs.codion.dbms.h2database)
     runtimeOnly(libs.h2)

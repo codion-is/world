@@ -10,4 +10,6 @@ extraJavaModuleInfo {
     automaticModule("org.apache.commons:commons-collections4", "commons.collections")
     automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
     automaticModule("org.eclipse.jdt:ecj", "ecj")
+    automaticModule("org.jetbrains.kotlin:kotlin-stdlib-common", "kotlin.stdlib.common")
+    automaticModule("org.jetbrains:annotations", "jetbrains.annotations")
 }
