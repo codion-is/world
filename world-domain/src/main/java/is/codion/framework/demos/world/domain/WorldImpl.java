@@ -110,7 +110,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .maximumLength(60),
             columnProperty(Country.CAPITAL),
             foreignKeyProperty(Country.CAPITAL_FK, "Capital"),
-            denormalizedViewProperty(Country.CAPITAL_POPULATION, "Capital pop.",
+            denormalizedProperty(Country.CAPITAL_POPULATION, "Capital pop.",
                     Country.CAPITAL_FK, City.POPULATION)
                     .numberFormatGrouping(true),
             subqueryProperty(Country.NO_OF_CITIES, "No. of cities", """
