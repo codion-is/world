@@ -59,8 +59,7 @@ public final class CityTableModel extends SwingEntityTableModel {
     Iterator<City> citiesWithoutLocation = selectedCitiesWithoutLocation.iterator();
     while (citiesWithoutLocation.hasNext() && !cancelFetchLocationObserver.get()) {
       City city = citiesWithoutLocation.next();
-      progressReporter.publish(city.country()
-              .name() + " - " + city.name());
+      progressReporter.publish(city.country().name() + " - " + city.name());
       editModel.setLocation(city);
       updatedCities.add(city);
       progressReporter.setProgress(100 * updatedCities.size() / selectedCitiesWithoutLocation.size());
