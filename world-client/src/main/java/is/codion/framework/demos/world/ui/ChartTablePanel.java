@@ -28,9 +28,9 @@ abstract class ChartTablePanel extends EntityTablePanel {
 
   @Override
   protected final void layoutPanel(JPanel tablePanel, JPanel southPanel) {
-    JPanel tableViewPanel = Components.panel()
-            .add(tablePanel, BorderLayout.CENTER)
-            .add(southPanel, BorderLayout.SOUTH)
+    JPanel tableViewPanel = Components.borderLayoutPanel()
+            .centerComponent(tablePanel)
+            .southComponent(southPanel)
             .build();
     JTabbedPane tabbedPane = Components.tabbedPane()
             .tabBuilder("Table", tableViewPanel)
