@@ -38,6 +38,7 @@ dependencyResolutionManagement {
             library("codion-dbms-h2database", "is.codion", "codion-dbms-h2database").versionRef("codion")
             library("codion.framework.domain", "is.codion", "codion-framework-domain").versionRef("codion")
             library("codion.framework.domain.test", "is.codion", "codion-framework-domain-test").versionRef("codion")
+            library("codion.framework.json.domain", "is.codion", "codion-framework-json-domain").versionRef("codion")
             library("codion-framework-db-rmi", "is.codion", "codion-framework-db-rmi").versionRef("codion")
             library("codion-framework-db-local", "is.codion", "codion-framework-db-local").versionRef("codion")
             library("codion-framework-db-http", "is.codion", "codion-framework-db-http").versionRef("codion")

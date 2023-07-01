@@ -33,7 +33,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
   public WorldAppPanel(WorldAppModel appModel) {
     super(appModel);
-    FrameworkIcons.instance().add(Foundation.MAP, Foundation.PAGE_EXPORT_CSV, Foundation.CHECK);
+    FrameworkIcons.instance().add(Foundation.MAP, Foundation.PAGE_EXPORT, Foundation.PAGE_ADD, Foundation.CHECK);
   }
 
   @Override

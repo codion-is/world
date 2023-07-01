@@ -7,6 +7,7 @@ apply plugin: BuildReportsPlugin
 dependencies {
     implementation project(":world-domain-api")
 
+    implementation(libs.codion.framework.json.domain)
     implementation(libs.codion.swing.framework.ui)
     implementation(libs.codion.plugin.jasperreports)
 
