@@ -13,7 +13,7 @@ dependencies {
 }
 
 applicationDefaultJvmArgs = [
-        "-Xmx64m",
+        "-Xmx128m",
         //add-reads for accessing default methods for Entity types
         "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
         "-Dcodion.client.connectionType=local",
