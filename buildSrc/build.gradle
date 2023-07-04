@@ -9,4 +9,5 @@ repositories {
 dependencies {
     implementation(libs.jlink)
     implementation(libs.extra.module.info)
+    implementation(libs.spotless)
 }

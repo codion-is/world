@@ -3,9 +3,11 @@ dependencyResolutionManagement {
         libs {
             version("jlink", "2.26.0")
             version("extra-module-info", "1.4.1")
+            version("spotless", "6.19.0")
 
             library("jlink", "org.beryx", "badass-jlink-plugin").versionRef("jlink")
             library("extra-module-info", "org.gradlex", "extra-java-module-info").versionRef("extra-module-info")
+            library("spotless", "com.diffplug.spotless", "spotless-plugin-gradle").versionRef("spotless")
         }
     }
 }

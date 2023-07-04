@@ -1,3 +1,6 @@
+/**
+ * Domain API.
+ */
 module is.codion.framework.demos.world.domain.api {
   requires transitive is.codion.framework.domain;
 

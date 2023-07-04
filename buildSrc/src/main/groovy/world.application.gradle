@@ -1,6 +1,7 @@
 plugins {
     id "org.beryx.jlink"
     id "org.gradlex.extra-java-module-info"
+    id "com.diffplug.spotless"
 }
 
 extraJavaModuleInfo {
@@ -11,4 +12,14 @@ extraJavaModuleInfo {
     automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
     automaticModule("org.eclipse.jdt:ecj", "ecj")
     automaticModule("org.jxmapviewer:jxmapviewer2", "jxmapviewer2")
+}
+
+spotless {
+    java {
+        licenseHeaderFile("${rootDir}/license_header").yearSeparator(' - ')
+    }
+    format 'javaMisc', {
+        target 'src/**/package-info.java', 'src/**/module-info.java'
+        licenseHeaderFile("${rootDir}/license_header", '\\/\\*\\*').yearSeparator(' - ')
+    }
 }

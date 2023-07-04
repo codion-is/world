@@ -1,3 +1,6 @@
+/**
+ * Client.
+ */
 module is.codion.framework.demos.world.client {
   requires is.codion.swing.framework.ui;
   requires is.codion.plugin.jasperreports;
