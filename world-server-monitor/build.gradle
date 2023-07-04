@@ -8,6 +8,7 @@ dependencies {
 }
 
 applicationDefaultJvmArgs = [
+        "-Xmx512m",
         "-Dcodion.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=${serverRegistryPort}",
         "-Dcodion.client.trustStore=truststore.jks",
