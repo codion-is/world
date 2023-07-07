@@ -19,7 +19,7 @@
 package is.codion.framework.demos.world.ui;
 
 import is.codion.common.state.State;
-import is.codion.framework.demos.world.domain.api.World;
+import is.codion.framework.demos.world.domain.api.World.Lookup;
 import is.codion.framework.demos.world.model.LookupTableModel;
 import is.codion.framework.demos.world.model.LookupTableModel.ExportFormat;
 import is.codion.framework.domain.entity.Entity;
@@ -137,8 +137,8 @@ final class LookupTablePanel extends EntityTablePanel {
               tableModel().visibleItems() :
               tableModel().selectionModel().getSelectedItems();
       Maps.paintWaypoints(entities.stream()
-              .filter(entity -> entity.isNotNull(World.Lookup.CITY_LOCATION))
-              .map(entity -> entity.get(World.Lookup.CITY_LOCATION))
+              .filter(entity -> entity.isNotNull(Lookup.CITY_LOCATION))
+              .map(entity -> entity.get(Lookup.CITY_LOCATION))
               .collect(toSet()), mapKit.getMainMap());
     }
   }
