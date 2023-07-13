@@ -55,7 +55,7 @@ final class ContinentPanel extends EntityPanel {
     ContinentModel model = model();
 
     EntityTablePanel tablePanel = tablePanel();
-    tablePanel.initializePanel();
+    tablePanel.initialize();
     setPreferredHeight(tablePanel, 200);
 
     ChartPanel populationChartPanel = createPieChartPanel(this, model.populationDataset(), "Population");
@@ -80,7 +80,7 @@ final class ContinentPanel extends EntityPanel {
             .centerComponent(pieChartChartPanel)
             .build();
 
-    countryPanel.initializePanel();
+    countryPanel.initialize();
     countryPanel.setPreferredSize(new Dimension(countryPanel.getPreferredSize().width, 100));
 
     JTabbedPane tabbedPane = Components.tabbedPane()
