@@ -18,16 +18,19 @@
  */
 package is.codion.framework.demos.world.domain;
 
+import is.codion.common.db.exception.DatabaseException;
+import is.codion.common.db.operation.DatabaseFunction;
+import is.codion.framework.db.EntityConnection;
 import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.domain.DefaultDomain;
 import is.codion.framework.domain.entity.OrderBy;
 import is.codion.framework.domain.entity.query.SelectQuery;
 import is.codion.framework.domain.property.ColumnProperty.ValueConverter;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import static is.codion.common.item.Item.item;
+import static is.codion.framework.db.condition.Condition.where;
 import static is.codion.framework.domain.entity.EntityDefinition.definition;
 import static is.codion.framework.domain.entity.KeyGenerator.sequence;
 import static is.codion.framework.domain.entity.OrderBy.ascending;
@@ -147,6 +150,8 @@ public final class WorldImpl extends DefaultDomain implements World {
             .orderBy(ascending(Country.NAME))
             .stringFactory(Country.NAME)
             .caption("Country"));
+
+    add(Country.AVERAGE_CITY_POPULATION, new AverageCityPopulationFunction());
   }
 
   void countryLanguage() {
@@ -255,7 +260,7 @@ public final class WorldImpl extends DefaultDomain implements World {
 
     @Override
     public String toColumnValue(Location location,
-                                Statement statement) throws SQLException {
+                                Statement statement) {
       if (location == null) {
         return null;
       }
@@ -264,7 +269,7 @@ public final class WorldImpl extends DefaultDomain implements World {
     }
 
     @Override
-    public Location fromColumnValue(String columnValue) throws SQLException {
+    public Location fromColumnValue(String columnValue) {
       if (columnValue == null) {
         return null;
       }
@@ -275,6 +280,18 @@ public final class WorldImpl extends DefaultDomain implements World {
               .split(" ");
 
       return new Location(parseDouble(latLon[1]), parseDouble(latLon[0]));
+    }
+  }
+
+  private static final class AverageCityPopulationFunction implements DatabaseFunction<EntityConnection, String, Double> {
+
+    @Override
+    public Double execute(EntityConnection connection, String countryCode) throws DatabaseException {
+      return connection.select(where(City.COUNTRY_CODE).equalTo(countryCode)).stream()
+              .map(city -> city.castTo(City.class))
+              .mapToInt(City::population)
+              .average()
+              .orElse(0d);
     }
   }
 }

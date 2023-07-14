@@ -21,6 +21,7 @@
  */
 module is.codion.framework.demos.world.domain.api {
   requires transitive is.codion.framework.domain;
+  requires transitive is.codion.framework.db.core;
 
   exports is.codion.framework.demos.world.domain.api;
 

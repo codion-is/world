@@ -18,6 +18,8 @@
  */
 package is.codion.framework.demos.world.domain.api;
 
+import is.codion.common.db.operation.FunctionType;
+import is.codion.framework.db.EntityConnection;
 import is.codion.framework.domain.DomainType;
 import is.codion.framework.domain.entity.Attribute;
 import is.codion.framework.domain.entity.ColorProvider;
@@ -35,6 +37,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import static is.codion.common.NullOrEmpty.notNull;
+import static is.codion.common.db.operation.FunctionType.functionType;
 
 /**
  * World domain api.
@@ -94,6 +97,8 @@ public interface World {
     Attribute<byte[]> FLAG = TYPE.byteArrayAttribute("flag");
 
     ForeignKey CAPITAL_FK = TYPE.foreignKey("capital_fk", CAPITAL, City.ID);
+
+    FunctionType<EntityConnection, String, Double> AVERAGE_CITY_POPULATION = functionType("average_city_population");
 
     String name();
     String continent();
