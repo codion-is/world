@@ -18,7 +18,6 @@
  */
 package is.codion.framework.demos.world.ui;
 
-import is.codion.common.db.exception.DatabaseException;
 import is.codion.common.db.report.ReportException;
 import is.codion.framework.demos.world.model.CountryTableModel;
 import is.codion.swing.common.model.worker.ProgressWorker.ProgressReporter;
@@ -44,7 +43,7 @@ final class CountryTablePanel extends EntityTablePanel {
             .build());
   }
 
-  private void viewCountryReport() throws Exception {
+  private void viewCountryReport() {
     Dialogs.progressWorkerDialog(this::fillCountryReport)
             .owner(this)
             .indeterminate(false)
@@ -53,7 +52,7 @@ final class CountryTablePanel extends EntityTablePanel {
             .execute();
   }
 
-  private JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) throws DatabaseException, ReportException {
+  private JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) throws ReportException {
     CountryTableModel countryTableModel = tableModel();
 
     return countryTableModel.fillCountryReport(progressReporter);
