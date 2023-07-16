@@ -58,7 +58,7 @@ final class CountryEditPanel extends EntityEditPanel {
     createTextField(Country.LOCALNAME);
     createItemComboBox(Country.CONTINENT)
             .preferredWidth(120);
-    createAttributeComboBox(Country.REGION)
+    createComboBox(Country.REGION)
             .preferredWidth(120);
     createTextField(Country.SURFACEAREA)
             .columns(5);
@@ -72,7 +72,7 @@ final class CountryEditPanel extends EntityEditPanel {
             .columns(6);
     createTextField(Country.GNPOLD)
             .columns(6);
-    createAttributeComboBox(Country.GOVERNMENTFORM)
+    createComboBox(Country.GOVERNMENTFORM)
             .preferredWidth(120)
             .editable(true);
     createTextField(Country.HEADOFSTATE);
