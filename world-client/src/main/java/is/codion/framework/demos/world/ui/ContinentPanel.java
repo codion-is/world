@@ -18,7 +18,7 @@
  */
 package is.codion.framework.demos.world.ui;
 
-import is.codion.framework.demos.world.domain.api.World;
+import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.demos.world.model.ContinentModel;
 import is.codion.swing.common.ui.component.Components;
 import is.codion.swing.framework.model.SwingEntityModel;
@@ -47,7 +47,7 @@ final class ContinentPanel extends EntityPanel {
 
   ContinentPanel(SwingEntityModel continentModel) {
     super(continentModel, new ContinentTablePanel(continentModel.tableModel()));
-    countryPanel = new EntityPanel(continentModel.detailModel(World.Country.TYPE));
+    countryPanel = new EntityPanel(continentModel.detailModel(Country.TYPE));
     countryPanel.tablePanel().setIncludeConditionPanel(false);
   }
 

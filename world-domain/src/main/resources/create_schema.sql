@@ -2,7 +2,7 @@ create user if not exists scott password 'tiger';
 alter user scott admin true;
 
 create schema world;
-
+--tag::country[]
 create table world.country (
   code varchar(3) not null,
   name varchar(52) not null,
@@ -23,7 +23,8 @@ create table world.country (
   constraint country_pk primary key (code),
   constraint continent_chk check(continent in ('Asia','Europe','North America','Africa','Oceania','Antarctica','South America'))
 );
-
+--end::country[]
+--tag::city[]
 create table world.city (
   id int not null,
   name varchar(35) not null,
@@ -33,9 +34,9 @@ create table world.city (
   location geometry(point),
   constraint city_pk primary key (id)
 );
-
+--end::city[]
 create sequence world.city_seq start with 4080;
-
+--tag::country_language[]
 create table world.countrylanguage (
   countrycode varchar(3) not null,
   language varchar(30) not null,
@@ -44,7 +45,7 @@ create table world.countrylanguage (
   constraint countrylanguage_pk primary key (countrycode, language),
   constraint countrylanguage_country_fk foreign key (countrycode) references world.country(code)
 );
-
+--end::country_language[]
 create or replace view world.country_city_v as
 select country.code countrycode, country.name countryname, country.continent, country.region,
   country.surfacearea, country.indepyear, country.population countrypopulation, country.lifeexpectancy,

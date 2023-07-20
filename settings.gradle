@@ -12,6 +12,7 @@ include "world-client-local"
 include "world-client-remote"
 include "world-server"
 include "world-server-monitor"
+include "documentation"
 
 dependencyResolutionManagement {
     repositories {

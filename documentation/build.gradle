@@ -1,0 +1,19 @@
+plugins {
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+}
+
+asciidoctor {
+    inputs.dir("../world-domain-api/src/main/java")
+    inputs.dir("../world-domain/src/main/java")
+    inputs.dir("../world-client/src/main/java")
+    inputs.dir("../world-domain/src/main/resources")
+    inputs.dir("../world-domain/src/test/java")
+    inputs.dir("../world-client/src/test/java")
+
+    baseDirFollowsSourceFile()
+
+    asciidoctorj {
+        version = "2.5.10"
+        attributes "source-highlighter": "prettify"
+    }
+}

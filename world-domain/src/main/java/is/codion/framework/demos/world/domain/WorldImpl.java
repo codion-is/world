@@ -38,6 +38,7 @@ import static is.codion.framework.domain.property.Property.*;
 import static java.lang.Double.parseDouble;
 import static java.util.Arrays.asList;
 
+// tag::world[]
 public final class WorldImpl extends DefaultDomain implements World {
 
   public WorldImpl() {
@@ -55,7 +56,9 @@ public final class WorldImpl extends DefaultDomain implements World {
     lookup();
     continent();
   }
+  // end::world[]
 
+  // tag::city[]
   void city() {
     add(definition(
             primaryKeyProperty(City.ID),
@@ -82,7 +85,9 @@ public final class WorldImpl extends DefaultDomain implements World {
             .foregroundColorProvider(new CityColorProvider())
             .caption("City"));
   }
+  // end::city[]
 
+  // tag::country[]
   void country() {
     add(definition(
             primaryKeyProperty(Country.CODE, "Country code")
@@ -153,7 +158,9 @@ public final class WorldImpl extends DefaultDomain implements World {
 
     add(Country.AVERAGE_CITY_POPULATION, new AverageCityPopulationFunction());
   }
+  // end::country[]
 
+  // tag::country_language[]
   void countryLanguage() {
     add(definition(
             columnProperty(CountryLanguage.COUNTRY_CODE)
@@ -179,7 +186,9 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .build())
             .caption("Language"));
   }
+  // end::country_language[]
 
+  // tag::lookup[]
   void lookup() {
     add(definition(
             columnProperty(Lookup.COUNTRY_CODE, "Country code")
@@ -221,7 +230,9 @@ public final class WorldImpl extends DefaultDomain implements World {
             .readOnly(true)
             .caption("Lookup"));
   }
+  // end::lookup[]
 
+  // tag::continent[]
   void continent() {
     add(definition(
             columnProperty(Continent.NAME, "Continent")
@@ -255,7 +266,9 @@ public final class WorldImpl extends DefaultDomain implements World {
             .readOnly(true)
             .caption("Continent"));
   }
+  // end::continent[]
 
+  // tag::locationConverter[]
   private static final class LocationConverter implements ValueConverter<Location, String> {
 
     @Override
@@ -282,7 +295,9 @@ public final class WorldImpl extends DefaultDomain implements World {
       return new Location(parseDouble(latLon[1]), parseDouble(latLon[0]));
     }
   }
+  // end::locationConverter[]
 
+  // tag::averageCityPopulationFunction[]
   private static final class AverageCityPopulationFunction implements DatabaseFunction<EntityConnection, String, Double> {
 
     @Override
@@ -293,4 +308,5 @@ public final class WorldImpl extends DefaultDomain implements World {
               .orElse(0d);
     }
   }
+  // end::averageCityPopulationFunction[]
 }

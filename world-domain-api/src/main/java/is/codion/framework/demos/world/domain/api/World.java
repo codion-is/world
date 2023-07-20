@@ -42,10 +42,13 @@ import static is.codion.common.db.operation.FunctionType.functionType;
 /**
  * World domain api.
  */
+// tag::world[]
 public interface World {
 
   DomainType DOMAIN = DomainType.domainType("WorldImpl");
+  // end::world[]
 
+  // tag::city[]
   interface City extends Entity {
     EntityType TYPE = DOMAIN.entityType("world.city", City.class);
 
@@ -71,7 +74,9 @@ public interface World {
       return Objects.equals(get(City.ID), country().get(Country.CAPITAL));
     }
   }
+  // end::city[]
 
+  // tag::country[]
   interface Country extends Entity {
     EntityType TYPE = DOMAIN.entityType("world.country", Country.class);
 
@@ -106,7 +111,9 @@ public interface World {
     double surfacearea();
     int population();
   }
+  // end::country[]
 
+  // tag::country_language[]
   interface CountryLanguage extends Entity {
     EntityType TYPE = DOMAIN.entityType("world.countrylanguage", CountryLanguage.class);
 
@@ -121,7 +128,9 @@ public interface World {
     String language();
     int noOfSpeakers();
   }
+  // end::country_language[]
 
+  // tag::continent[]
   interface Continent extends Entity {
     EntityType TYPE = DOMAIN.entityType("continent", Continent.class);
 
@@ -141,7 +150,9 @@ public interface World {
     double maxLifeExpectancy();
     double gnp();
   }
+  // end::continent[]
 
+  // tag::lookup[]
   interface Lookup {
     EntityType TYPE = DOMAIN.entityType("world.country_city_lookup");
 
@@ -166,7 +177,9 @@ public interface World {
     Attribute<Integer> CITY_POPULATION = TYPE.integerAttribute("city.population");
     Attribute<Location> CITY_LOCATION = TYPE.attribute("city.location", Location.class);
   }
+  // end::lookup[]
 
+  // tag::location[]
   record Location(double latitude, double longitude) implements Serializable {
 
     @Override
@@ -174,7 +187,9 @@ public interface World {
       return "[" + latitude + "," + longitude + "]";
     }
   }
+  // end::location[]
 
+  // tag::cityColorProvider[]
   final class CityColorProvider implements ColorProvider {
 
     @Serial
@@ -197,7 +212,9 @@ public interface World {
       return null;
     }
   }
+  // end::cityColorProvider[]
 
+  // tag::noOfSpeakersProvider[]
   final class NoOfSpeakersProvider implements DerivedProperty.Provider<Integer> {
 
     @Serial
@@ -214,7 +231,9 @@ public interface World {
       return null;
     }
   }
+  // end::noOfSpeakersProvider[]
 
+  // tag::cityValidator[]
   final class CityValidator extends DefaultEntityValidator implements Serializable {
 
     @Serial
@@ -234,7 +253,9 @@ public interface World {
       }
     }
   }
+  // end::cityValidator[]
 
+  // tag::locationComparator[]
   final class LocationComparator implements Comparator<Location>, Serializable {
 
     @Override
@@ -247,4 +268,5 @@ public interface World {
       return result;
     }
   }
+  // end::locationComparator[]
 }
