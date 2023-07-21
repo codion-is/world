@@ -22,7 +22,6 @@ import is.codion.framework.demos.world.domain.api.World.City;
 import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.demos.world.model.CountryEditModel;
 import is.codion.framework.domain.entity.Entity;
-import is.codion.swing.common.ui.component.Components;
 import is.codion.swing.common.ui.component.text.NumberField;
 import is.codion.swing.framework.model.SwingEntityEditModel;
 import is.codion.swing.framework.ui.EntityComboBox;
@@ -33,8 +32,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import static is.codion.swing.common.ui.component.Components.label;
-import static is.codion.swing.common.ui.component.Components.panel;
+import static is.codion.swing.common.ui.component.Components.*;
 import static is.codion.swing.common.ui.component.button.ButtonPanelBuilder.createEastButtonPanel;
 import static is.codion.swing.common.ui.layout.Layouts.gridLayout;
 
@@ -86,7 +84,7 @@ final class CountryEditPanel extends EntityEditPanel {
             .createInsertControl(capitalComboBox));
     //add a field displaying the avarage city population for the selected country
     CountryEditModel editModel = editModel();
-    NumberField<Double> averageCityPopulationField = Components.doubleField()
+    NumberField<Double> averageCityPopulationField = doubleField()
             .linkedValueObserver(editModel.averageCityPopulationObserver())
             .maximumFractionDigits(2)
             .groupingUsed(true)
@@ -95,22 +93,22 @@ final class CountryEditPanel extends EntityEditPanel {
             .editable(false)
             .build();
 
-    JPanel codePanel = panel(gridLayout(1, 2))
+    JPanel codePanel = gridLayoutPanel(1, 2)
             .add(createInputPanel(Country.CODE))
             .add(createInputPanel(Country.CODE_2))
             .build();
 
-    JPanel gnpPanel = panel(gridLayout(1, 2))
+    JPanel gnpPanel = gridLayoutPanel(1, 2)
             .add(createInputPanel(Country.GNP))
             .add(createInputPanel(Country.GNPOLD))
             .build();
 
-    JPanel surfaceAreaIndYearPanel = panel(gridLayout(1, 2))
+    JPanel surfaceAreaIndYearPanel = gridLayoutPanel(1, 2)
             .add(createInputPanel(Country.SURFACEAREA))
             .add(createInputPanel(Country.INDEPYEAR))
             .build();
 
-    JPanel populationLifeExpectancyPanel = panel(gridLayout(1, 2))
+    JPanel populationLifeExpectancyPanel = gridLayoutPanel(1, 2)
             .add(createInputPanel(Country.POPULATION))
             .add(createInputPanel(Country.LIFE_EXPECTANCY))
             .build();

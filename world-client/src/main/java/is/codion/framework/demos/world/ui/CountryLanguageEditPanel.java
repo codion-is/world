@@ -24,7 +24,7 @@ import is.codion.swing.framework.ui.EntityEditPanel;
 
 import javax.swing.JPanel;
 
-import static is.codion.swing.common.ui.component.Components.panel;
+import static is.codion.swing.common.ui.component.Components.gridLayoutPanel;
 import static is.codion.swing.common.ui.layout.Layouts.gridLayout;
 
 final class CountryLanguageEditPanel extends EntityEditPanel {
@@ -44,7 +44,7 @@ final class CountryLanguageEditPanel extends EntityEditPanel {
     createTextField(CountryLanguage.PERCENTAGE)
             .columns(4);
 
-    JPanel percentageOfficialPanel = panel(gridLayout(1, 2))
+    JPanel percentageOfficialPanel = gridLayoutPanel(1, 2)
             .add(createInputPanel(CountryLanguage.PERCENTAGE))
             .add(createInputPanel(CountryLanguage.IS_OFFICIAL))
             .build();
