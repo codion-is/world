@@ -21,6 +21,7 @@ package is.codion.framework.demos.world.model;
 import is.codion.common.db.exception.DatabaseException;
 import is.codion.common.user.User;
 import is.codion.framework.db.EntityConnectionProvider;
+import is.codion.framework.db.local.LocalEntityConnectionProvider;
 import is.codion.framework.demos.world.domain.WorldImpl;
 import is.codion.framework.demos.world.domain.api.World.Country;
 
@@ -48,8 +49,8 @@ public class CountryEditModelTest {
   }
 
   private EntityConnectionProvider createConnectionProvider() {
-    return EntityConnectionProvider.builder()
-            .domainClassName(WorldImpl.class.getName())
+    return LocalEntityConnectionProvider.builder()
+            .domain(new WorldImpl())
             .user(UNIT_TEST_USER)
             .build();
   }

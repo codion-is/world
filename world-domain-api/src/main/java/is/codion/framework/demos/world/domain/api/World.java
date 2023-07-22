@@ -45,7 +45,7 @@ import static is.codion.common.db.operation.FunctionType.functionType;
 // tag::world[]
 public interface World {
 
-  DomainType DOMAIN = DomainType.domainType("WorldImpl");
+  DomainType DOMAIN = DomainType.domainType(World.class);
   // end::world[]
 
   // tag::city[]

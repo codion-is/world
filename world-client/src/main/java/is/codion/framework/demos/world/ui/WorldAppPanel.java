@@ -20,6 +20,7 @@ package is.codion.framework.demos.world.ui;
 
 import is.codion.common.model.CancelException;
 import is.codion.common.user.User;
+import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.demos.world.domain.api.World.Continent;
 import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.demos.world.domain.api.World.Lookup;
@@ -78,7 +79,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
     ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
     EntityApplicationPanel.builder(WorldAppModel.class, WorldAppPanel.class)
             .applicationName("World")
-            .domainClassName("is.codion.framework.demos.world.domain.WorldImpl")
+            .domainType(World.DOMAIN)
             .applicationVersion(WorldAppModel.VERSION)
             .defaultLookAndFeelClassName(DEFAULT_FLAT_LOOK_AND_FEEL)
             .frameSize(new Dimension(1280, 720))

@@ -35,7 +35,7 @@ import java.util.Map;
 public final class WorldImplTest extends EntityTestUnit {
 
   public WorldImplTest() {
-    super(WorldImpl.class.getName());
+    super(new WorldImpl());
   }
 
   @Test
