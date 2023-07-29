@@ -6,6 +6,22 @@ image::world-client/images/world-client.png[World client]
 
 NOTE: The Codion framework will be released in Q4 of 2023.
 
+== Documentation
+
+Build the tutorial by running this Gradle target:
+
+[source,shell]
+----
+gradlew documentation:asciidoctor
+----
+
+...and browse the tutorial here:
+
+[source]
+----
+documentation/build/docs/asciidoc/world.html
+----
+
 == Modules
 
 Many of the following modules are configuration-only, that is, contain no source-code, just Gradle build files configuring the application for running and packaging.

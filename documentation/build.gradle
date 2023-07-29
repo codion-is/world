@@ -17,3 +17,11 @@ asciidoctor {
         attributes "source-highlighter": "prettify"
     }
 }
+
+tasks.register("copyToGitHubPages", Sync) {
+    dependsOn asciidoctor
+    group "documentation"
+    def documentationDir = project.version.replace("-SNAPSHOT", "")
+    from "${buildDir}/docs/asciidoc"
+    into "../../codion-pages/doc/${documentationDir}/tutorials/world"
+}
