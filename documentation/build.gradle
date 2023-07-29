@@ -12,6 +12,7 @@ asciidoctor {
 
     baseDirFollowsSourceFile()
 
+    attributes "codion-version": project.version.replace("-SNAPSHOT", "")
     asciidoctorj {
         version = "2.5.10"
         attributes "source-highlighter": "prettify"
