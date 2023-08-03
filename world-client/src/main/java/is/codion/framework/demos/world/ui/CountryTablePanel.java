@@ -19,6 +19,7 @@
 package is.codion.framework.demos.world.ui;
 
 import is.codion.common.db.report.ReportException;
+import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.demos.world.model.CountryTableModel;
 import is.codion.swing.common.model.worker.ProgressWorker.ProgressReporter;
 import is.codion.swing.common.ui.control.Control;
@@ -36,9 +37,10 @@ final class CountryTablePanel extends EntityTablePanel {
 
   CountryTablePanel(SwingEntityTableModel tableModel) {
     super(tableModel);
+    excludeFromEditMenu(World.Country.CAPITAL_FK);
     setControl(ControlCode.PRINT, Control.builder(this::viewCountryReport)
             .name("Country report")
-            .enabledState(tableModel.selectionModel().selectionNotEmptyObserver())
+            .enabledObserver(tableModel.selectionModel().selectionNotEmptyObserver())
             .smallIcon(FrameworkIcons.instance().print())
             .build());
   }
