@@ -5,6 +5,7 @@
 :dir-source-domain-api: ../../../../world-domain-api/src/main/java
 :dir-source-domain: ../../../../world-domain/src/main/java
 :dir-source-client: ../../../../world-client/src/main/java
+:dir-source-reports: ../../../../world-client/src/main/reports
 :dir-source-sql: ../../../../world-domain/src/main/resources
 :dir-test-source-domain: ../../../../world-domain/src/test/java
 :dir-test-source-client: ../../../../world-client/src/test/java
@@ -86,6 +87,34 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/CountryEditMo
 [source,java,options="nowrap"]
 ----
 include::{dir-source-client}/is/codion/framework/demos/world/model/CountryTableModel.java[lines=19..-1]
+----
+
+.country_report.jrxml
+[%collapsible]
+====
+[source,xml,options="nowrap"]
+include::{dir-source-reports}/country_report.jrxml[]
+====
+
+.city_report.jrxml
+[%collapsible]
+====
+[source,xml,options="nowrap"]
+include::{dir-source-reports}/city_report.jrxml[]
+====
+
+===== CountryReportDataSource
+
+[source,java,options="nowrap"]
+----
+include::{dir-source-client}/is/codion/framework/demos/world/model/CountryReportDataSource.java[lines=19..-1]
+----
+
+===== CountryReportDataSourceTest
+
+[source,java,options="nowrap"]
+----
+include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryReportDataSourceTest.java[lines=19..-1]
 ----
 
 ==== UI

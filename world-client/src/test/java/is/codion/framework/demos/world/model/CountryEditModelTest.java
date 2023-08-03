@@ -48,7 +48,7 @@ public class CountryEditModelTest {
     }
   }
 
-  private EntityConnectionProvider createConnectionProvider() {
+  private static EntityConnectionProvider createConnectionProvider() {
     return LocalEntityConnectionProvider.builder()
             .domain(new WorldImpl())
             .user(UNIT_TEST_USER)
