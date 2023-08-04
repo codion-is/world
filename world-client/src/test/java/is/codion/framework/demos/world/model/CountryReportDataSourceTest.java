@@ -54,7 +54,7 @@ public final class CountryReportDataSourceTest {
     try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
       Value<Integer> progressCounter = Value.value();
       Value<String> publishedValue = Value.value();
-      ProgressReporter<String> progressReporter = new ProgressReporter<String>() {
+      ProgressReporter<String> progressReporter = new ProgressReporter<>() {
         @Override
         public void report(int progress) {
           progressCounter.set(progress);
@@ -67,7 +67,8 @@ public final class CountryReportDataSourceTest {
       };
 
       EntityConnection connection = connectionProvider.connection();
-      List<Entity> countries = connection.select(where(Country.NAME).equalTo("Denmark", "Iceland").selectBuilder()
+      List<Entity> countries = connection.select(where(Country.NAME).in("Denmark", "Iceland")
+              .selectBuilder()
               .orderBy(ascending(Country.NAME))
               .build());
       CountryReportDataSource countryReportDataSource = new CountryReportDataSource(countries, connection, progressReporter);
