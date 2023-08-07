@@ -30,6 +30,7 @@ import is.codion.framework.domain.property.ColumnProperty.ValueConverter;
 import java.sql.Statement;
 
 import static is.codion.common.item.Item.item;
+import static is.codion.framework.db.condition.Condition.attribute;
 import static is.codion.framework.db.condition.Condition.where;
 import static is.codion.framework.domain.entity.EntityDefinition.definition;
 import static is.codion.framework.domain.entity.KeyGenerator.sequence;
@@ -302,7 +303,9 @@ public final class WorldImpl extends DefaultDomain implements World {
 
     @Override
     public Double execute(EntityConnection connection, String countryCode) throws DatabaseException {
-      return connection.select(City.POPULATION, where(City.COUNTRY_CODE).equalTo(countryCode)).stream()
+      return connection.select(City.POPULATION,
+                      where(attribute(City.COUNTRY_CODE).equalTo(countryCode)))
+              .stream()
               .mapToInt(Integer::intValue)
               .average()
               .orElse(0d);

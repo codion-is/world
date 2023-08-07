@@ -39,6 +39,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static is.codion.framework.db.condition.Condition.attribute;
 import static is.codion.framework.db.condition.Condition.where;
 import static is.codion.framework.domain.entity.OrderBy.ascending;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,7 +68,9 @@ public final class CountryReportDataSourceTest {
       };
 
       EntityConnection connection = connectionProvider.connection();
-      List<Entity> countries = connection.select(where(Country.NAME).in("Denmark", "Iceland")
+      List<Entity> countries =
+              connection.select(where(attribute(Country.NAME)
+                      .in("Denmark", "Iceland"))
               .selectBuilder()
               .orderBy(ascending(Country.NAME))
               .build());

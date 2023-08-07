@@ -27,6 +27,7 @@ import is.codion.framework.demos.world.domain.api.World.Country;
 
 import org.junit.jupiter.api.Test;
 
+import static is.codion.framework.db.condition.Condition.attribute;
 import static is.codion.framework.db.condition.Condition.where;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -40,8 +41,8 @@ public class CountryEditModelTest {
   void averageCityPopulation() throws DatabaseException {
     try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
       CountryEditModel countryEditModel = new CountryEditModel(connectionProvider);
-      countryEditModel.setEntity(connectionProvider.connection()
-              .selectSingle(where(Country.NAME).equalTo("Afghanistan")));
+      countryEditModel.setEntity(connectionProvider.connection().selectSingle(
+              where(attribute(Country.NAME).equalTo("Afghanistan"))));
       assertEquals(583_025, countryEditModel.averageCityPopulationObserver().get());
       countryEditModel.setEntity(null);
       assertNull(countryEditModel.averageCityPopulationObserver().get());

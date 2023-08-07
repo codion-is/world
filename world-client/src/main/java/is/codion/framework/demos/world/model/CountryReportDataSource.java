@@ -35,6 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
+import static is.codion.framework.db.condition.Condition.foreignKey;
 import static is.codion.framework.db.condition.Condition.where;
 import static is.codion.framework.domain.entity.OrderBy.descending;
 
@@ -54,8 +55,7 @@ public final class CountryReportDataSource extends JasperReportsDataSource<Count
     Country country = currentItem();
     try {
       Collection<City> largestCities = Entity.castTo(City.class,
-              connection.select(where(City.COUNTRY_FK)
-                      .equalTo(country)
+              connection.select(where(foreignKey(City.COUNTRY_FK).equalTo(country))
                       .selectBuilder()
                       .selectAttributes(City.NAME, City.POPULATION)
                       .orderBy(descending(City.POPULATION))
