@@ -28,6 +28,7 @@ import is.codion.framework.domain.entity.query.SelectQuery;
 import is.codion.framework.domain.property.ColumnProperty.ValueConverter;
 
 import java.sql.Statement;
+import java.util.List;
 
 import static is.codion.common.item.Item.item;
 import static is.codion.framework.db.condition.Condition.where;
@@ -37,7 +38,6 @@ import static is.codion.framework.domain.entity.KeyGenerator.sequence;
 import static is.codion.framework.domain.entity.OrderBy.ascending;
 import static is.codion.framework.domain.property.Property.*;
 import static java.lang.Double.parseDouble;
-import static java.util.Arrays.asList;
 
 // tag::world[]
 public final class WorldImpl extends DefaultDomain implements World {
@@ -98,7 +98,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .searchProperty(true)
                     .nullable(false)
                     .maximumLength(52),
-            itemProperty(Country.CONTINENT, "Continent", asList(
+            itemProperty(Country.CONTINENT, "Continent", List.of(
                     item("Africa"), item("Antarctica"), item("Asia"),
                     item("Europe"), item("North America"), item("Oceania"),
                     item("South America")))
