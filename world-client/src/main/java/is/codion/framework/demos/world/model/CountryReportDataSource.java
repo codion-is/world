@@ -55,7 +55,7 @@ public final class CountryReportDataSource extends JasperReportsDataSource<Count
     Country country = currentItem();
     try {
       Collection<City> largestCities = Entity.castTo(City.class,
-              connection.select(SelectCondition.builder(foreignKey(City.COUNTRY_FK).equalTo(country))
+              connection.select(SelectCondition.where(foreignKey(City.COUNTRY_FK).equalTo(country))
                       .selectAttributes(City.NAME, City.POPULATION)
                       .orderBy(descending(City.POPULATION))
                       .limit(5)
