@@ -20,7 +20,7 @@ package is.codion.framework.demos.world.model;
 
 import is.codion.common.db.exception.DatabaseException;
 import is.codion.framework.db.EntityConnection;
-import is.codion.framework.db.Select;
+import is.codion.framework.db.EntityConnection.Select;
 import is.codion.framework.demos.world.domain.api.World.City;
 import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.domain.entity.Entity;
