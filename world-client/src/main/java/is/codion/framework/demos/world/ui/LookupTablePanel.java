@@ -212,9 +212,8 @@ final class LookupTablePanel extends EntityTablePanel {
             .mnemonic('C')
             .smallIcon(FrameworkIcons.instance().clear())
             .build());
-    //Get rid of the default column menu
+    //Get rid of the column selection menu
     setControl(ControlCode.SELECT_COLUMNS, null);
-    setControl(ControlCode.RESET_COLUMNS, null);
   }
 
   private void clearTableAndConditions() {

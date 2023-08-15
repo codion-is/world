@@ -342,11 +342,6 @@ include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/Worl
 include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=lookup]
 ----
 
-[source,java,options="nowrap"]
-----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=averageCityPopulationFunction]
-----
-
 ==== Model
 
 ===== LookupTableModel
