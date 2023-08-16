@@ -60,7 +60,7 @@ public final class WorldImpl extends DefaultDomain implements World {
   void city() {
     add(City.TYPE.define(
             City.ID
-                    .primaryKey(),
+                    .primaryKeyColumn(),
             City.NAME
                     .column()
                     .caption("Name")
@@ -101,7 +101,7 @@ public final class WorldImpl extends DefaultDomain implements World {
   void country() {
     add(Country.TYPE.define(
             Country.CODE
-                    .primaryKey()
+                    .primaryKeyColumn()
                     .caption("Country code")
                     .updatable(true)
                     .maximumLength(3),
@@ -112,7 +112,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .nullable(false)
                     .maximumLength(52),
             Country.CONTINENT
-                    .item(List.of(
+                    .itemColumn(List.of(
                             item("Africa"), item("Antarctica"), item("Asia"),
                             item("Europe"), item("North America"), item("Oceania"),
                             item("South America")))
@@ -177,23 +177,23 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .foreignKey()
                     .caption("Capital"),
             Country.CAPITAL_POPULATION
-                    .denormalized(Country.CAPITAL_FK, City.POPULATION)
+                    .denormalizedAttribute(Country.CAPITAL_FK, City.POPULATION)
                     .caption("Capital pop.")
                     .numberFormatGrouping(true),
             Country.NO_OF_CITIES
-                    .subquery("""
+                    .subqueryColumn("""
                             select count(*)
                             from world.city
                             where city.countrycode = country.code""")
                     .caption("No. of cities"),
             Country.NO_OF_LANGUAGES
-                    .subquery("""
+                    .subqueryColumn("""
                             select count(*)
                             from world.countrylanguage
                             where countrylanguage.countrycode = country.code""")
                     .caption("No. of languages"),
             Country.FLAG
-                    .blob()
+                    .blobColumn()
                     .caption("Flag")
                     .eagerlyLoaded(true),
             Country.CODE_2
@@ -230,7 +230,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .columnHasDefaultValue(true)
                     .nullable(false),
             CountryLanguage.NO_OF_SPEAKERS
-                    .derived(new NoOfSpeakersProvider(),
+                    .derivedAttribute(new NoOfSpeakersProvider(),
                             CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
                     .caption("No. of speakers")
                     .numberFormatGrouping(true),
@@ -295,7 +295,8 @@ public final class WorldImpl extends DefaultDomain implements World {
             Lookup.COUNTRY_HEADOFSTATE
                     .column()
                     .caption("Head of state"),
-            Lookup.COUNTRY_FLAG.blob()
+            Lookup.COUNTRY_FLAG
+                    .blobColumn()
                     .caption("Flag"),
             Lookup.COUNTRY_CODE2
                     .column()
