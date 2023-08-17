@@ -41,7 +41,7 @@ import static java.util.stream.Collectors.joining;
 
 public final class CityEditModel extends SwingEntityEditModel {
 
-  private static final String OPENSTREETMAP_ORG_SEARCH = "https://nominatim.openstreetmap.org/search/";
+  private static final String OPENSTREETMAP_ORG_SEARCH = "https://nominatim.openstreetmap.org/search?q=";
 
   public CityEditModel(EntityConnectionProvider connectionProvider) {
     super(City.TYPE, connectionProvider);
@@ -67,8 +67,8 @@ public final class CityEditModel extends SwingEntityEditModel {
   private Optional<Location> lookupLocation(City city) throws IOException {
     JSONArray jsonArray = toJSONArray(new URL(OPENSTREETMAP_ORG_SEARCH +
             URLEncoder.encode(city.name(), UTF_8) + "," +
-            URLEncoder.encode(city.country().name(), UTF_8) + "?format=json"));
-    if (jsonArray.length() > 0) {
+            URLEncoder.encode(city.country().name(), UTF_8) + "&format=json"));
+    if (!jsonArray.isEmpty()) {
       JSONObject cityInformation = (JSONObject) jsonArray.get(0);
 
       return Optional.of(new Location(cityInformation.getDouble("lat"), cityInformation.getDouble("lon")));
