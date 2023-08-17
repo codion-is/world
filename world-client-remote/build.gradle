@@ -36,6 +36,10 @@ jlink {
         jvmArgs += ["--add-reads", "world.merged.module=org.slf4j"]//for sslcontext-kickstart
     }
 
+    mergedModule {
+        excludeRequires("com.fasterxml.jackson.annotation")
+    }
+
     jpackage {
         imageName = "World-Remote"
         appVersion = project.version.replace("-SNAPSHOT", "")
