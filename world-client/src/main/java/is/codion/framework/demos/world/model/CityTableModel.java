@@ -61,7 +61,7 @@ public final class CityTableModel extends SwingEntityTableModel {
     displayLocationEvent.addDataListener(listener);
   }
 
-  public StateObserver citiesWithoutLocationSelectedObserver() {
+  public StateObserver citiesWithoutLocationSelected() {
     return citiesWithoutLocationSelectedState.observer();
   }
 
