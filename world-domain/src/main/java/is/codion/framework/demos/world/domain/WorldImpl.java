@@ -60,7 +60,7 @@ public final class WorldImpl extends DefaultDomain implements World {
   void city() {
     add(City.TYPE.define(
             City.ID
-                    .primaryKeyColumn(),
+                    .primaryKey(),
             City.NAME
                     .column()
                     .caption("Name")
@@ -101,7 +101,7 @@ public final class WorldImpl extends DefaultDomain implements World {
   void country() {
     add(Country.TYPE.define(
             Country.CODE
-                    .primaryKeyColumn()
+                    .primaryKey()
                     .caption("Country code")
                     .updatable(true)
                     .maximumLength(3),
@@ -112,7 +112,8 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .nullable(false)
                     .maximumLength(52),
             Country.CONTINENT
-                    .itemColumn(List.of(
+                    .column()
+                    .items(List.of(
                             item("Africa"), item("Antarctica"), item("Asia"),
                             item("Europe"), item("North America"), item("Oceania"),
                             item("South America")))
@@ -181,13 +182,13 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .caption("Capital pop.")
                     .numberFormatGrouping(true),
             Country.NO_OF_CITIES
-                    .subqueryColumn("""
+                    .subquery("""
                             select count(*)
                             from world.city
                             where city.countrycode = country.code""")
                     .caption("No. of cities"),
             Country.NO_OF_LANGUAGES
-                    .subqueryColumn("""
+                    .subquery("""
                             select count(*)
                             from world.countrylanguage
                             where countrylanguage.countrycode = country.code""")
