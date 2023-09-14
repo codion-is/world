@@ -20,6 +20,7 @@ package is.codion.framework.demos.world.domain;
 
 import is.codion.common.db.exception.DatabaseException;
 import is.codion.common.db.operation.DatabaseFunction;
+import is.codion.common.item.Item;
 import is.codion.framework.db.EntityConnection;
 import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.domain.DefaultDomain;
@@ -38,6 +39,11 @@ import static java.lang.Double.parseDouble;
 
 // tag::world[]
 public final class WorldImpl extends DefaultDomain implements World {
+
+  private static final List<Item<String>> CONTINENT_ITEMS = List.of(
+          item("Africa"), item("Antarctica"), item("Asia"),
+          item("Europe"), item("North America"), item("Oceania"),
+          item("South America"));
 
   public WorldImpl() {
     super(World.DOMAIN);
@@ -113,11 +119,8 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .maximumLength(52),
             Country.CONTINENT
                     .column()
-                    .items(List.of(
-                            item("Africa"), item("Antarctica"), item("Asia"),
-                            item("Europe"), item("North America"), item("Oceania"),
-                            item("South America")))
                     .caption("Continent")
+                    .items(CONTINENT_ITEMS)
                     .nullable(false),
             Country.REGION
                     .column()
@@ -261,7 +264,8 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .caption("Country name"),
             Lookup.COUNTRY_CONTINENT
                     .column()
-                    .caption("Continent"),
+                    .caption("Continent")
+                    .items(CONTINENT_ITEMS),
             Lookup.COUNTRY_REGION
                     .column()
                     .caption("Region"),
