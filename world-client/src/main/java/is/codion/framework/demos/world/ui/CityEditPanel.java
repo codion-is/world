@@ -103,8 +103,9 @@ public final class CityEditPanel extends EntityEditPanel {
   }
 
   private void setLocation() throws ValidationException, IOException, DatabaseException {
-    ((CityEditModel) editModel()).setLocation();
-    displayLocationListener.accept(singletonList(editModel().entity()));
+    CityEditModel editModel = editModel();
+    editModel.setLocation();
+    displayLocationListener.accept(singletonList(editModel.entity()));
   }
 
   private record DisplayLocationListener(JXMapViewer mapViewer) implements Consumer<Collection<Entity>> {

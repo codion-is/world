@@ -31,12 +31,12 @@ import is.codion.swing.framework.model.component.EntityComboBoxModel;
 
 public final class CountryEditModel extends SwingEntityEditModel {
 
-  private final Value<Double> averageCityPopulationValue = Value.value();
+  private final Value<Double> averageCityPopulation = Value.value();
 
   CountryEditModel(EntityConnectionProvider connectionProvider) {
     super(Country.TYPE, connectionProvider);
     initializeComboBoxModels(Country.CAPITAL_FK);
-    addEntityListener(country -> averageCityPopulationValue.set(averageCityPopulation(country)));
+    addEntityListener(country -> averageCityPopulation.set(averageCityPopulation(country)));
   }
 
   @Override
@@ -53,8 +53,8 @@ public final class CountryEditModel extends SwingEntityEditModel {
     return comboBoxModel;
   }
 
-  public ValueObserver<Double> averageCityPopulationObserver() {
-    return averageCityPopulationValue.observer();
+  public ValueObserver<Double> averageCityPopulation() {
+    return averageCityPopulation.observer();
   }
 
   private Double averageCityPopulation(Entity country) {
