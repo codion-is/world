@@ -180,7 +180,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .foreignKey()
                     .caption("Capital"),
             Country.CAPITAL_POPULATION.define()
-                    .denormalizedAttribute(Country.CAPITAL_FK, City.POPULATION)
+                    .denormalized(Country.CAPITAL_FK, City.POPULATION)
                     .caption("Capital pop.")
                     .numberFormatGrouping(true),
             Country.NO_OF_CITIES.define()
@@ -233,7 +233,7 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .columnHasDefaultValue(true)
                     .nullable(false),
             CountryLanguage.NO_OF_SPEAKERS.define()
-                    .derivedAttribute(new NoOfSpeakersProvider(),
+                    .derived(new NoOfSpeakersProvider(),
                             CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
                     .caption("No. of speakers")
                     .numberFormatGrouping(true),
