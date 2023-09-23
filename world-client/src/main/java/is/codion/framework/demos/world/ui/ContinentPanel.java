@@ -34,7 +34,7 @@ import java.awt.Dimension;
 import static is.codion.framework.demos.world.ui.ChartPanels.createBarChartPanel;
 import static is.codion.framework.demos.world.ui.ChartPanels.createPieChartPanel;
 import static is.codion.swing.common.ui.Sizes.setPreferredHeight;
-import static is.codion.swing.common.ui.border.Borders.createEmptyBorder;
+import static is.codion.swing.common.ui.border.Borders.emptyBorder;
 import static is.codion.swing.common.ui.component.Components.*;
 import static is.codion.swing.common.ui.layout.Layouts.borderLayout;
 import static java.awt.event.KeyEvent.VK_1;
@@ -55,7 +55,7 @@ final class ContinentPanel extends EntityPanel {
     ContinentModel model = model();
 
     EntityTablePanel tablePanel = tablePanel();
-    tablePanel.setBorder(createEmptyBorder());
+    tablePanel.setBorder(emptyBorder());
     tablePanel.initialize();
     setPreferredHeight(tablePanel, 200);
 
