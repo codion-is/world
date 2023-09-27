@@ -12,3 +12,7 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
     options.deprecation = true
 }
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
