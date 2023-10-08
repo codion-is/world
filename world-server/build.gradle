@@ -48,7 +48,7 @@ applicationDefaultJvmArgs = [
         //A connection pool based on this user is created on startup
         "-Dcodion.server.connectionPoolUsers=scott:tiger",
         //Client logging disabled by default
-        "-Dcodion.server.clientLoggingEnabled=false"
+        "-Dcodion.server.clientLogging=false"
 ]
 
 application {
