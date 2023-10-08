@@ -30,9 +30,7 @@ jlink {
     options = ["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages", "--add-modules",
                "jdk.crypto.ec,is.codion.framework.db.http,is.codion.plugin.logback.proxy"]
 
-    mergedModule {
-        excludeRequires("com.fasterxml.jackson.annotation")
-    }
+    addExtraDependencies("jackson-core", "jackson-databind", "jackson-annotation")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs

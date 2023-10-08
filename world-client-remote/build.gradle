@@ -31,6 +31,8 @@ jlink {
     options = ["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages", "--add-modules",
                "jdk.crypto.ec,is.codion.framework.db.rmi,is.codion.plugin.logback.proxy"]
 
+    addExtraDependencies("jackson-core", "jackson-databind", "jackson-annotation")
+
     launcher {
         jvmArgs = applicationDefaultJvmArgs
         jvmArgs += ["--add-reads", "world.merged.module=org.slf4j"]//for sslcontext-kickstart

@@ -34,9 +34,7 @@ jlink {
                "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2database," +
                        "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain"]
     
-    mergedModule {
-        excludeRequires("com.fasterxml.jackson.annotation")
-    }
+    addExtraDependencies("slf4j-api", "jackson-core", "jackson-databind", "jackson-annotation")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
