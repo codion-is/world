@@ -61,14 +61,14 @@ final class LookupTablePanel extends EntityTablePanel {
 
   private static final Dimension DEFAULT_MAP_SIZE = new Dimension(400, 400);
 
-  private final State columnSelectionPanelVisibleState = State.state(true);
-  private final State mapDialogVisibleState = State.state();
+  private final State columnSelectionPanelVisible = State.state(true);
+  private final State mapDialogVisible = State.state();
 
-  private final Control toggleMapControl = ToggleControl.builder(mapDialogVisibleState)
+  private final Control toggleMapControl = ToggleControl.builder(mapDialogVisible)
           .smallIcon(FrameworkIcons.instance().icon(Foundation.MAP))
           .name("Show map")
           .build();
-  private final JScrollPane columnSelectionPanel = scrollPane(createColumnSelectionToolBar())
+  private final JScrollPane columnSelectionScrollPane = scrollPane(createColumnSelectionToolBar())
           .verticalUnitIncrement(16)
           .build();
   private final JXMapKit mapKit = Maps.createMapKit();
@@ -77,7 +77,7 @@ final class LookupTablePanel extends EntityTablePanel {
 
   LookupTablePanel(SwingEntityTableModel lookupModel) {
     super(lookupModel);
-    columnSelectionPanelVisibleState.addDataListener(this::setColumnSelectionPanelVisible);
+    columnSelectionPanelVisible.addDataListener(this::setColumnSelectionPanelVisible);
     table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     conditionPanelVisible().set(true);
     showRefreshProgressBar().set(true);
@@ -118,11 +118,11 @@ final class LookupTablePanel extends EntityTablePanel {
   @Override
   protected void layoutPanel(JPanel tablePanel, JPanel southPanel) {
     super.layoutPanel(tablePanel, southPanel);
-    add(columnSelectionPanel, BorderLayout.EAST);
+    add(columnSelectionScrollPane, BorderLayout.EAST);
   }
 
   private void bindEvents() {
-    mapDialogVisibleState.addDataListener(this::setMapDialogVisible);
+    mapDialogVisible.addDataListener(this::setMapDialogVisible);
     tableModel().addDataChangedListener(this::displayCityLocations);
     tableModel().selectionModel().addSelectionListener(this::displayCityLocations);
   }
@@ -139,7 +139,7 @@ final class LookupTablePanel extends EntityTablePanel {
     }
   }
 
-  private void setMapDialogVisible(boolean mapDialogVisible) {
+  private void setMapDialogVisible(boolean visible) {
     if (mapKitDialog == null) {
       mapKitDialog = Dialogs.componentDialog(mapKit)
               .owner(this)
@@ -147,10 +147,10 @@ final class LookupTablePanel extends EntityTablePanel {
               .title("World Map")
               .size(DEFAULT_MAP_SIZE)
               .onShown(dialog -> displayCityLocations())
-              .onClosed(e -> mapDialogVisibleState.set(false))
+              .onClosed(e -> mapDialogVisible.set(false))
               .build();
     }
-    mapKitDialog.setVisible(mapDialogVisible);
+    mapKitDialog.setVisible(visible);
   }
 
   private void exportCSV() {
@@ -190,6 +190,7 @@ final class LookupTablePanel extends EntityTablePanel {
             .add(createSelectAllColumnsControl(toggleColumnsControls))
             .addSeparator()
             .addAll(toggleColumnsControls))
+            .floatable(false)
             .orientation(SwingConstants.VERTICAL)
             .toggleButtonType(ToggleButtonType.CHECKBOX)
             .buttonBuilder(ButtonBuilder.builder().includeText(true))
@@ -198,7 +199,7 @@ final class LookupTablePanel extends EntityTablePanel {
   }
 
   private void setColumnSelectionPanelVisible(boolean visible) {
-    columnSelectionPanel.setVisible(visible);
+    columnSelectionScrollPane.setVisible(visible);
     revalidate();
   }
 
@@ -208,7 +209,7 @@ final class LookupTablePanel extends EntityTablePanel {
             .mnemonic('C')
             .smallIcon(FrameworkIcons.instance().clear())
             .build());
-    setControl(ControlCode.SELECT_COLUMNS, ToggleControl.builder(columnSelectionPanelVisibleState)
+    setControl(ControlCode.SELECT_COLUMNS, ToggleControl.builder(columnSelectionPanelVisible)
             .name("Select")
             .build());
   }
