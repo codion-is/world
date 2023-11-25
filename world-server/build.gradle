@@ -69,7 +69,7 @@ jlink {
         excludeRequires "jetty.servlet.api"
     }
 
-    forceMerge 'kotlin'
+    forceMerge "kotlin"
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs

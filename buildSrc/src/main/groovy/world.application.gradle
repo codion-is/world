@@ -16,10 +16,10 @@ extraJavaModuleInfo {
 
 spotless {
     java {
-        licenseHeaderFile("${rootDir}/license_header").yearSeparator(' - ')
+        licenseHeaderFile("${rootDir}/license_header").yearSeparator(" - ")
     }
-    format 'javaMisc', {
-        target 'src/**/package-info.java', 'src/**/module-info.java'
-        licenseHeaderFile("${rootDir}/license_header", '\\/\\*\\*').yearSeparator(' - ')
+    format "javaMisc", {
+        target "src/**/package-info.java", "src/**/module-info.java"
+        licenseHeaderFile("${rootDir}/license_header", "\\/\\*\\*").yearSeparator(" - ")
     }
 }
