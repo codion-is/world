@@ -97,7 +97,7 @@ final class ContinentPanel extends EntityPanel {
 
       continentPanel.setLayout(borderLayout());
 
-      continentPanel.add(tablePanel, BorderLayout.CENTER);
+      continentPanel.add(continentPanel.editControlTablePanel(), BorderLayout.CENTER);
       continentPanel.add(tabbedPane, BorderLayout.SOUTH);
 
       continentPanel.setupKeyboardActions();
