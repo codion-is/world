@@ -114,7 +114,7 @@ The server host name and ports are configured in *gradle.properties*.
 serverHost=localhost
 serverPort=2223
 serverRegistryPort=1098
-serverHttpPort=8081
+serverHttpPort=8088
 serverAdminPort=4445
 ----
 
