@@ -196,9 +196,9 @@ public final class WorldImpl extends DefaultDomain implements World {
                             where countrylanguage.countrycode = country.code""")
                     .caption("No. of languages"),
             Country.FLAG.define()
-                    .blobColumn()
+                    .column()
                     .caption("Flag")
-                    .eagerlyLoaded(true),
+                    .lazy(true),
             Country.CODE_2.define()
                     .column()
                     .caption("Code2")
@@ -297,8 +297,9 @@ public final class WorldImpl extends DefaultDomain implements World {
                     .column()
                     .caption("Head of state"),
             Lookup.COUNTRY_FLAG.define()
-                    .blobColumn()
-                    .caption("Flag"),
+                    .column()
+                    .caption("Flag")
+                    .lazy(true),
             Lookup.COUNTRY_CODE2.define()
                     .column()
                     .caption("Code2"),
