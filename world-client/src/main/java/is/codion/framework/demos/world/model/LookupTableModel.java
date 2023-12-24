@@ -71,6 +71,13 @@ public final class LookupTableModel extends SwingEntityTableModel {
     }
   }
 
+  public void importJSON(File file) throws IOException {
+    List<Entity> entities = objectMapper.deserializeEntities(textFileContents(file, UTF_8));
+    clear();
+    conditionModel().clear();
+    addItemsAtSorted(0, entities);
+  }
+
   private void exportCSV(File file) throws IOException {
     Files.writeString(file.toPath(), rowsAsDelimitedString(','));
   }
@@ -78,12 +85,5 @@ public final class LookupTableModel extends SwingEntityTableModel {
   private void exportJSON(File file) throws IOException {
     Collection<Entity> entities = selectionModel().isSelectionEmpty() ? items() : selectionModel().getSelectedItems();
     Files.writeString(file.toPath(), objectMapper.serializeEntities(entities));
-  }
-
-  public void importJSON(File file) throws IOException {
-    List<Entity> entities = objectMapper.deserializeEntities(textFileContents(file, UTF_8));
-    clear();
-    conditionModel().clear();
-    addItemsAtSorted(0, entities);
   }
 }
