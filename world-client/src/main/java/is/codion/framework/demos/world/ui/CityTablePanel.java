@@ -37,7 +37,7 @@ final class CityTablePanel extends ChartTablePanel {
 
   CityTablePanel(CityTableModel tableModel) {
     super(tableModel, tableModel.chartDataset(), "Cities");
-    editableAttributes().remove(City.LOCATION);
+    configure().editableAttributes().remove(City.LOCATION);
   }
 
   @Override
@@ -90,7 +90,7 @@ final class CityTablePanel extends ChartTablePanel {
     }
 
     @Override
-    public Void perform(ProgressReporter<String> progressReporter) throws Exception {
+    public Void execute(ProgressReporter<String> progressReporter) throws Exception {
       tableModel.populateLocationForSelected(progressReporter, cancelled);
       return null;
     }
