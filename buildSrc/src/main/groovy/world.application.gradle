@@ -9,7 +9,6 @@ extraJavaModuleInfo {
     automaticModule("commons-logging:commons-logging", "commons.logging")
     automaticModule("commons-digester:commons-digester", "commons.digester")
     automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
-    automaticModule("org.jxmapviewer:jxmapviewer2", "jxmapviewer2")
 }
 
 spotless {

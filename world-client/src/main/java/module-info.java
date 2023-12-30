@@ -28,7 +28,7 @@ module is.codion.framework.demos.world.client {
   requires org.kordamp.ikonli.foundation;
   requires org.jfree.jfreechart;
   requires jasperreports;
-  requires jxmapviewer2;
+  requires org.jxmapviewer.jxmapviewer2;
   requires org.json;
 
   exports is.codion.framework.demos.world.ui

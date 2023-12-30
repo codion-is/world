@@ -25,7 +25,7 @@ dependencyResolutionManagement {
             version("h2", "2.2.224")
             version("json", "20231013")
             version("jfreechart", "1.5.4")
-            version("jxmapviewer2", "2.6")
+            version("jxmapviewer2", "2.8")
             version("junit", "5.10.1")
             version("flatlaf", "3.2.5")
             version("ikonli.foundation", "12.3.1")
