@@ -1,5 +1,5 @@
 plugins {
-    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id "org.asciidoctor.jvm.convert" version "4.0.0"
 }
 
 asciidoctor {
@@ -14,7 +14,7 @@ asciidoctor {
 
     attributes "codion-version": project.version.replace("-SNAPSHOT", "")
     asciidoctorj {
-        version = "2.5.10"
+        version = "2.5.11"
         attributes "source-highlighter": "prettify"
     }
 }
