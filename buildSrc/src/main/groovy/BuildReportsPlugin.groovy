@@ -9,29 +9,29 @@ class BuildReportsPlugin implements Plugin<Project> {
 
     @Override
     void apply(final Project project) {
-        def config = project.extensions.create('buildReports', BuildReportsExtension)
-        def buildReports = project.task('buildReports') {
-            group = 'build'
+        def config = project.extensions.create("buildReports", BuildReportsExtension)
+        def buildReports = project.tasks.register("buildReports") {
+            group = "build"
             inputs.dir config.sourceDir
             outputs.dir config.targetDir
             doLast {
-                def javaPlugin = project.getExtensions().getByType(JavaPluginExtension.class)
-                def main = javaPlugin.getSourceSets().findByName("main")
                 ant.lifecycleLogLevel = "INFO"
-                ant.taskdef(name: 'jrc', classname: 'net.sf.jasperreports.ant.JRAntCompileTask',
-                        classpath: main.getRuntimeClasspath().asPath)
+                ant.taskdef(name: "jrc", classname: "net.sf.jasperreports.ant.JRAntCompileTask",
+                        classpath: project.getExtensions()
+                                .getByType(JavaPluginExtension.class)
+                                .getSourceSets().named("main").get()
+                                .getRuntimeClasspath().asPath)
                 config.targetDir.get().mkdirs()
                 ant.jrc(srcdir: config.sourceDir.get(), destdir: config.targetDir.get()) {
-                    classpath(path: main.output.classesDirs.asPath)
-                    include(name: '**/*.jrxml')
+                    include(name: "**/*.jrxml")
                 }
             }
         }
         project.configure(project) {
             project.afterEvaluate {
-                buildReports.dependsOn('classes')
-                project.getTasks().findByName('jar').dependsOn(buildReports)
-                project.getTasks().findByName('compileTestJava').dependsOn(buildReports)
+                tasks.named("buildReports").get().dependsOn("classes")
+                project.getTasks().named("jar").get().dependsOn(buildReports)
+                project.getTasks().named("compileTestJava").get().dependsOn(buildReports)
             }
         }
     }

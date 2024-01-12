@@ -13,6 +13,6 @@ tasks.withType(JavaCompile).configureEach {
     options.deprecation = true
 }
 
-configurations.all {
+configurations.configureEach {
     resolutionStrategy.cacheChangingModulesFor 0, "seconds"
 }
