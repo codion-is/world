@@ -28,14 +28,13 @@ application {
 jlink {
     imageName.set(project.name)
     moduleName.set(application.mainModule)
-    options = ["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages", "--add-modules",
+    options = ["--strip-debug", "--no-header-files", "--no-man-pages", "--add-modules",
                "jdk.crypto.ec,is.codion.framework.db.rmi,is.codion.plugin.logback.proxy"]
 
     addExtraDependencies("jackson-core", "jackson-databind", "jackson-annotation")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
-        jvmArgs += ["--add-reads", "world.merged.module=org.slf4j"]//for sslcontext-kickstart
     }
 
     mergedModule {
@@ -44,7 +43,7 @@ jlink {
 
     jpackage {
         imageName = "World-Remote"
-        appVersion = project.version.replace("-SNAPSHOT", "")
+        appVersion = project.version
         if (org.gradle.internal.os.OperatingSystem.current().linux) {
             installerType = "deb"
             icon = "../world.png"
