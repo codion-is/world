@@ -1,5 +1,5 @@
 plugins {
-    id "org.asciidoctor.jvm.convert" version "4.0.0"
+    id "org.asciidoctor.jvm.convert" version "4.0.1"
 }
 
 asciidoctor {
@@ -12,7 +12,7 @@ asciidoctor {
 
     baseDirFollowsSourceFile()
 
-    attributes "codion-version": project.version.replace("-SNAPSHOT", "")
+    attributes "codion-version": project.version
     asciidoctorj {
         version = "2.5.11"
         attributes "source-highlighter": "prettify"
@@ -22,7 +22,7 @@ asciidoctor {
 tasks.register("copyToGitHubPages", Sync) {
     dependsOn asciidoctor
     group "documentation"
-    def documentationDir = project.version.replace("-SNAPSHOT", "")
+    def documentationDir = project.version
     from project.layout.buildDirectory.dir("docs/asciidoc")
     into "../../codion-pages/doc/${documentationDir}/tutorials/world"
 }

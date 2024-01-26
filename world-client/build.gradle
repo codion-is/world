@@ -25,9 +25,7 @@ dependencies {
         transitive = false
     }
 
-    runtimeOnly(libs.codion.plugin.logback.proxy) {
-        exclude group: "com.sun.mail", module: "javax.mail"
-    }
+    runtimeOnly(libs.codion.plugin.logback.proxy)
 
     runtimeOnly(libs.commons.logging)
     runtimeOnly(libs.commons.digester) {
