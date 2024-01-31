@@ -2,7 +2,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version("jlink", "3.0.1")
-            version("extra-module-info", "1.7")
+            version("extra-module-info", "1.8")
             version("spotless", "6.25.0")
 
             library("jlink", "org.beryx", "badass-jlink-plugin").versionRef("jlink")
