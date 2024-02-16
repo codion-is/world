@@ -21,9 +21,9 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.17.27")
+            version("codion", "0.17.28")
             version("h2", "2.2.224")
-            version("json", "20231013")
+            version("json", "20240205")
             version("jfreechart", "1.5.4")
             version("jxmapviewer2", "2.8")
             version("junit", "5.10.2")
@@ -36,7 +36,7 @@ dependencyResolutionManagement {
             version("commons.beanutils", "1.9.4")
             version("jdt.core.compiler", "3.35.0")
 
-            library("codion-dbms-h2database", "is.codion", "codion-dbms-h2database").versionRef("codion")
+            library("codion-dbms-h2", "is.codion", "codion-dbms-h2").versionRef("codion")
             library("codion.framework.domain", "is.codion", "codion-framework-domain").versionRef("codion")
             library("codion.framework.domain.test", "is.codion", "codion-framework-domain-test").versionRef("codion")
             library("codion.framework.json.domain", "is.codion", "codion-framework-json-domain").versionRef("codion")

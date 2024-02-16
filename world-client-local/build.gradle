@@ -8,7 +8,7 @@ dependencies {
     runtimeOnly project(":world-domain")
 
     runtimeOnly(libs.codion.framework.db.local)
-    runtimeOnly(libs.codion.dbms.h2database)
+    runtimeOnly(libs.codion.dbms.h2)
     runtimeOnly(libs.h2)
 }
 
