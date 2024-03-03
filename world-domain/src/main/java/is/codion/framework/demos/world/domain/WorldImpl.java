@@ -22,7 +22,6 @@ import is.codion.common.db.exception.DatabaseException;
 import is.codion.common.db.operation.DatabaseFunction;
 import is.codion.common.item.Item;
 import is.codion.framework.db.EntityConnection;
-import is.codion.framework.demos.world.domain.api.World;
 import is.codion.framework.domain.DefaultDomain;
 import is.codion.framework.domain.entity.OrderBy;
 import is.codion.framework.domain.entity.attribute.Column.Converter;
@@ -32,12 +31,13 @@ import java.sql.Statement;
 import java.util.List;
 
 import static is.codion.common.item.Item.item;
+import static is.codion.framework.demos.world.domain.api.World.*;
 import static is.codion.framework.domain.entity.KeyGenerator.sequence;
 import static is.codion.framework.domain.entity.OrderBy.ascending;
 import static java.lang.Double.parseDouble;
 
 // tag::world[]
-public final class WorldImpl extends DefaultDomain implements World {
+public final class WorldImpl extends DefaultDomain {
 
   private static final List<Item<String>> CONTINENT_ITEMS = List.of(
           item("Africa"), item("Antarctica"), item("Asia"),
@@ -45,7 +45,7 @@ public final class WorldImpl extends DefaultDomain implements World {
           item("South America"));
 
   public WorldImpl() {
-    super(World.DOMAIN);
+    super(DOMAIN);
     //By default, you can't define a foreign key referencing an entity which
     //has not been defined, to prevent mistakes. But sometimes we have to
     //deal with cyclical dependencies, such as here, where city references
