@@ -70,7 +70,6 @@ final class ContinentPanel extends EntityPanel {
             .centerComponent(pieChartChartPanel)
             .build();
 
-
     EntityTablePanel countryTablePanel =
             new EntityTablePanel(model.detailModel(Country.TYPE).tableModel(),
                     config -> config.includeConditionPanel(false));
