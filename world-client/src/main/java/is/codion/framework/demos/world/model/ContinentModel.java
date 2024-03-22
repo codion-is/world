@@ -45,7 +45,7 @@ public final class ContinentModel extends SwingEntityModel {
     super(Continent.TYPE, connectionProvider);
     tableModel().refresher().addRefreshListener(this::refreshChartDatasets);
     CountryModel countryModel = new CountryModel(connectionProvider);
-    addDetailModel(new CountryModelHandler(countryModel)).active().set(true);
+    addDetailModel(new CountryModelLink(countryModel)).active().set(true);
   }
 
   public PieDataset<String> populationDataset() {
@@ -91,9 +91,9 @@ public final class ContinentModel extends SwingEntityModel {
     }
   }
 
-  private static final class CountryModelHandler extends SwingDetailModelLink {
+  private static final class CountryModelLink extends SwingDetailModelLink {
 
-    private CountryModelHandler(SwingEntityModel detailModel) {
+    private CountryModelLink(SwingEntityModel detailModel) {
       super(detailModel);
     }
 
