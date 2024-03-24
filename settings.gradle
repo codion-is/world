@@ -37,9 +37,9 @@ dependencyResolutionManagement {
             version("jdt.core.compiler", "3.35.0")
 
             library("codion-dbms-h2", "is.codion", "codion-dbms-h2").versionRef("codion")
-            library("codion.framework.domain", "is.codion", "codion-framework-domain").versionRef("codion")
-            library("codion.framework.domain.test", "is.codion", "codion-framework-domain-test").versionRef("codion")
-            library("codion.framework.json.domain", "is.codion", "codion-framework-json-domain").versionRef("codion")
+            library("codion-framework-domain", "is.codion", "codion-framework-domain").versionRef("codion")
+            library("codion-framework-domain-test", "is.codion", "codion-framework-domain-test").versionRef("codion")
+            library("codion-framework-json-domain", "is.codion", "codion-framework-json-domain").versionRef("codion")
             library("codion-framework-db-core", "is.codion", "codion-framework-db-core").versionRef("codion")
             library("codion-framework-db-rmi", "is.codion", "codion-framework-db-rmi").versionRef("codion")
             library("codion-framework-db-local", "is.codion", "codion-framework-db-local").versionRef("codion")
