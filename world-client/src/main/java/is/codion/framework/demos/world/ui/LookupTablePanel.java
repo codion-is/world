@@ -139,8 +139,8 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private void bindEvents() {
 		mapDialogVisible.addDataListener(this::setMapDialogVisible);
-		tableModel().addDataChangedListener(this::displayCityLocations);
-		tableModel().selectionModel().addSelectionListener(this::displayCityLocations);
+		tableModel().dataChangedEvent().addListener(this::displayCityLocations);
+		tableModel().selectionModel().selectionEvent().addListener(this::displayCityLocations);
 	}
 
 	private void displayCityLocations() {
