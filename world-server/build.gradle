@@ -20,8 +20,6 @@ dependencies {
 applicationDefaultJvmArgs = [
         "-Xmx256m",
         "-Dlogback.configurationFile=logback.xml",
-        //add-reads for accessing default methods for Entity types
-        "--add-reads", "is.codion.framework.domain=is.codion.framework.demos.world.domain.api",
         //RMI configuration
         "-Djava.rmi.server.hostname=${serverHost}",
         "-Dcodion.server.registryPort=${serverRegistryPort}",
