@@ -58,7 +58,7 @@ jlink {
     imageName.set(project.name)
     moduleName.set(application.mainModule)
     options = ["--strip-debug", "--no-header-files", "--no-man-pages", "--ignore-signing-information",
-               "--add-modules", "is.codion.framework.db.local,is.codion.dbms.h2database,is.codion.plugin.hikari.pool," +
+               "--add-modules", "is.codion.framework.db.local,is.codion.dbms.h2,is.codion.plugin.hikari.pool," +
                        "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain,is.codion.framework.servlet"]
 
     addExtraDependencies("slf4j-api", "jackson-core", "jackson-databind", "jackson-annotation")
