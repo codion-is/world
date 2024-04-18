@@ -47,7 +47,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 
 	CityTableModel(EntityConnectionProvider connectionProvider) {
 		super(new CityEditModel(connectionProvider));
-		selectionModel().selectedItemsEvent().addDataListener(displayLocationEvent);
+		selectionModel().selectedItemsEvent().addConsumer(displayLocationEvent);
 		selectionModel().selectionEvent().addListener(this::updateCitiesWithoutLocationSelected);
 		refresher().refreshEvent().addListener(this::refreshChartDataset);
 	}
@@ -60,8 +60,8 @@ public final class CityTableModel extends SwingEntityTableModel {
 		return new PopulateLocationTask();
 	}
 
-	public void addDisplayLocationListener(Consumer<Collection<Entity>> listener) {
-		displayLocationEvent.addDataListener(listener);
+	public void addDisplayLocationConsumer(Consumer<Collection<Entity>> consumer) {
+		displayLocationEvent.addConsumer(consumer);
 	}
 
 	public StateObserver citiesWithoutLocationSelected() {
