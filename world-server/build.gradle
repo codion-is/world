@@ -26,6 +26,7 @@ applicationDefaultJvmArgs = [
         "-Djava.rmi.server.randomIDs=true",
         "-Djava.rmi.server.useCodebaseOnly=true",
         //The serialization whitelist
+        "-Dcodion.server.objectInputFilterFactoryClassName=is.codion.common.rmi.server.WhitelistObjectInputFilterFactory",
         "-Dcodion.server.serializationFilterWhitelist=classpath:serialization-whitelist.txt",
         //SSL configuration
         "-Dcodion.server.classpathKeyStore=keystore.jks",
