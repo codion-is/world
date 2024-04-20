@@ -23,6 +23,7 @@ import is.codion.common.db.operation.DatabaseFunction;
 import is.codion.common.item.Item;
 import is.codion.framework.db.EntityConnection;
 import is.codion.framework.domain.DefaultDomain;
+import is.codion.framework.domain.entity.EntityDefinition;
 import is.codion.framework.domain.entity.OrderBy;
 import is.codion.framework.domain.entity.attribute.Column.Converter;
 import is.codion.framework.domain.entity.query.SelectQuery;
@@ -54,17 +55,18 @@ public final class WorldImpl extends DefaultDomain {
 		//disable strict foreign keys.
 		setStrictForeignKeys(false);
 
-		city();
-		country();
-		countryLanguage();
-		lookup();
-		continent();
+		add(city());
+		add(country());
+		add(Country.AVERAGE_CITY_POPULATION, new AverageCityPopulationFunction());
+		add(countryLanguage());
+		add(lookup());
+		add(continent());
 	}
 	// end::world[]
 
 	// tag::city[]
-	void city() {
-		add(City.TYPE.define(
+	EntityDefinition.Builder city() {
+		return City.TYPE.define(
 										City.ID.define()
 														.primaryKey(),
 										City.NAME.define()
@@ -99,13 +101,13 @@ public final class WorldImpl extends DefaultDomain {
 						.orderBy(ascending(City.NAME))
 						.stringFactory(City.NAME)
 						.foregroundColorProvider(new CityColorProvider())
-						.caption("City"));
+						.caption("City");
 	}
 	// end::city[]
 
 	// tag::country[]
-	void country() {
-		add(Country.TYPE.define(
+	EntityDefinition.Builder country() {
+		return Country.TYPE.define(
 										Country.CODE.define()
 														.primaryKey()
 														.caption("Country code")
@@ -207,15 +209,13 @@ public final class WorldImpl extends DefaultDomain {
 														.maximumLength(2))
 						.orderBy(ascending(Country.NAME))
 						.stringFactory(Country.NAME)
-						.caption("Country"));
-
-		add(Country.AVERAGE_CITY_POPULATION, new AverageCityPopulationFunction());
+						.caption("Country");
 	}
 	// end::country[]
 
 	// tag::country_language[]
-	void countryLanguage() {
-		add(CountryLanguage.TYPE.define(
+	EntityDefinition.Builder countryLanguage() {
+		return CountryLanguage.TYPE.define(
 										CountryLanguage.COUNTRY_CODE.define()
 														.primaryKey(0)
 														.updatable(true),
@@ -246,13 +246,13 @@ public final class WorldImpl extends DefaultDomain {
 										.ascending(CountryLanguage.LANGUAGE)
 										.descending(CountryLanguage.PERCENTAGE)
 										.build())
-						.caption("Language"));
+						.caption("Language");
 	}
 	// end::country_language[]
 
 	// tag::lookup[]
-	void lookup() {
-		add(Lookup.TYPE.define(
+	EntityDefinition.Builder lookup() {
+		return Lookup.TYPE.define(
 										Lookup.COUNTRY_CODE.define()
 														.primaryKey(0)
 														.caption("Country code"),
@@ -329,13 +329,13 @@ public final class WorldImpl extends DefaultDomain {
 										.descending(Lookup.CITY_POPULATION)
 										.build())
 						.readOnly(true)
-						.caption("Lookup"));
+						.caption("Lookup");
 	}
 	// end::lookup[]
 
 	// tag::continent[]
-	void continent() {
-		add(Continent.TYPE.define(
+	EntityDefinition.Builder continent() {
+		return Continent.TYPE.define(
 										Continent.NAME.define()
 														.column()
 														.caption("Continent")
@@ -380,7 +380,7 @@ public final class WorldImpl extends DefaultDomain {
 														.numberFormatGrouping(true))
 						.tableName("world.country")
 						.readOnly(true)
-						.caption("Continent"));
+						.caption("Continent");
 	}
 	// end::continent[]
 
