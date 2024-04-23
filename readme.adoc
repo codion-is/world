@@ -14,7 +14,6 @@ gradlew documentation:asciidoctor
 ----
 
 ...and browse the tutorial here:
-
 [source]
 ----
 documentation/build/docs/asciidoc/world.html
@@ -38,7 +37,8 @@ Swing client application.
 
 === world-client-local
 
-Configuration only. Swing client configured with a local JDBC connection.
+Configuration only.
+Swing client configured with a local JDBC connection.
 
 ==== Run
 
@@ -59,7 +59,8 @@ gradlew world-client-local:jpackage
 
 === world-client-http
 
-Configuration only. Swing client configured with a HTTP connection.
+Configuration only.
+Swing client configured with a HTTP connection.
 
 ==== Run
 
@@ -80,7 +81,8 @@ gradlew world-client-http:jpackage
 
 === world-client-remote
 
-Configuration only. Swing client configured with a RMI connection.
+Configuration only.
+Swing client configured with a RMI connection.
 
 ==== Run
 
@@ -101,7 +103,8 @@ gradlew world-client-remote:jpackage
 
 === world-server
 
-Configuration only. A Codion server configured for the world application.
+Configuration only.
+A Codion server configured for the world application.
 
 NOTE: The server runs with an in-memory H2 database, created on startup, so changes to data do not persist.
 
@@ -135,7 +138,8 @@ gradlew world-server:jpackage
 
 === world-server-monitor
 
-Configuration only. A Codion server monitor configured for the server.
+Configuration only.
+A Codion server monitor configured for the server.
 
 ==== Run
 
