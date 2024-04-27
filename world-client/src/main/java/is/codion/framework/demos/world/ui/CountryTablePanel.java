@@ -36,13 +36,12 @@ import java.awt.Dimension;
 final class CountryTablePanel extends EntityTablePanel {
 
 	CountryTablePanel(SwingEntityTableModel tableModel) {
-		super(tableModel, config ->
-						config.editable(attributes ->
-										attributes.remove(World.Country.CAPITAL_FK)));
+		super(tableModel, config -> config
+						.editable(attributes -> attributes.remove(World.Country.CAPITAL_FK)));
 	}
 
 	@Override
-	protected void setupControls() {
+	protected void configureControls() {
 		control(TableControl.PRINT).set(Control.builder(this::viewCountryReport)
 						.name("Country report")
 						.enabled(tableModel().selectionModel().selectionNotEmpty())

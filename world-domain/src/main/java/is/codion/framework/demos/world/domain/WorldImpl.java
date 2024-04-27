@@ -55,17 +55,13 @@ public final class WorldImpl extends DefaultDomain {
 		//disable strict foreign keys.
 		setStrictForeignKeys(false);
 
-		add(city());
-		add(country());
+		add(city(), country(), countryLanguage(), lookup(), continent());
 		add(Country.AVERAGE_CITY_POPULATION, new AverageCityPopulationFunction());
-		add(countryLanguage());
-		add(lookup());
-		add(continent());
 	}
 	// end::world[]
 
 	// tag::city[]
-	EntityDefinition.Builder city() {
+	EntityDefinition city() {
 		return City.TYPE.define(
 										City.ID.define()
 														.primaryKey(),
@@ -101,12 +97,13 @@ public final class WorldImpl extends DefaultDomain {
 						.orderBy(ascending(City.NAME))
 						.stringFactory(City.NAME)
 						.foregroundColorProvider(new CityColorProvider())
-						.caption("City");
+						.caption("City")
+						.build();
 	}
 	// end::city[]
 
 	// tag::country[]
-	EntityDefinition.Builder country() {
+	EntityDefinition country() {
 		return Country.TYPE.define(
 										Country.CODE.define()
 														.primaryKey()
@@ -188,15 +185,15 @@ public final class WorldImpl extends DefaultDomain {
 														.numberFormatGrouping(true),
 										Country.NO_OF_CITIES.define()
 														.subquery("""
-																		select count(*)
-																		from world.city
-																		where city.countrycode = country.code""")
+																		SELECT COUNT(*)
+																		FROM world.city
+																		WHERE city.countrycode = country.code""")
 														.caption("No. of cities"),
 										Country.NO_OF_LANGUAGES.define()
 														.subquery("""
-																		select count(*)
-																		from world.countrylanguage
-																		where countrylanguage.countrycode = country.code""")
+																		SELECT COUNT(*)
+																		FROM world.countrylanguage
+																		WHERE countrylanguage.countrycode = country.code""")
 														.caption("No. of languages"),
 										Country.FLAG.define()
 														.column()
@@ -209,12 +206,13 @@ public final class WorldImpl extends DefaultDomain {
 														.maximumLength(2))
 						.orderBy(ascending(Country.NAME))
 						.stringFactory(Country.NAME)
-						.caption("Country");
+						.caption("Country")
+						.build();
 	}
 	// end::country[]
 
 	// tag::country_language[]
-	EntityDefinition.Builder countryLanguage() {
+	EntityDefinition countryLanguage() {
 		return CountryLanguage.TYPE.define(
 										CountryLanguage.COUNTRY_CODE.define()
 														.primaryKey(0)
@@ -246,12 +244,13 @@ public final class WorldImpl extends DefaultDomain {
 										.ascending(CountryLanguage.LANGUAGE)
 										.descending(CountryLanguage.PERCENTAGE)
 										.build())
-						.caption("Language");
+						.caption("Language")
+						.build();
 	}
 	// end::country_language[]
 
 	// tag::lookup[]
-	EntityDefinition.Builder lookup() {
+	EntityDefinition lookup() {
 		return Lookup.TYPE.define(
 										Lookup.COUNTRY_CODE.define()
 														.primaryKey(0)
@@ -322,19 +321,20 @@ public final class WorldImpl extends DefaultDomain {
 														.columnClass(String.class, new LocationConverter())
 														.comparator(new LocationComparator()))
 						.selectQuery(SelectQuery.builder()
-										.from("world.country left outer join world.city on city.countrycode = country.code")
+										.from("world.country LEFT OUTER JOIN world.city ON city.countrycode = country.code")
 										.build())
 						.orderBy(OrderBy.builder()
 										.ascending(Lookup.COUNTRY_NAME)
 										.descending(Lookup.CITY_POPULATION)
 										.build())
 						.readOnly(true)
-						.caption("Lookup");
+						.caption("Lookup")
+						.build();
 	}
 	// end::lookup[]
 
 	// tag::continent[]
-	EntityDefinition.Builder continent() {
+	EntityDefinition continent() {
 		return Continent.TYPE.define(
 										Continent.NAME.define()
 														.column()
@@ -380,7 +380,8 @@ public final class WorldImpl extends DefaultDomain {
 														.numberFormatGrouping(true))
 						.tableName("world.country")
 						.readOnly(true)
-						.caption("Continent");
+						.caption("Continent")
+						.build();
 	}
 	// end::continent[]
 

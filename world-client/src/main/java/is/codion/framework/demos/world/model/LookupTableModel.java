@@ -30,9 +30,8 @@ import java.nio.file.Files;
 import java.util.Collection;
 import java.util.List;
 
-import static is.codion.common.Text.textFileContents;
 import static is.codion.framework.json.domain.EntityObjectMapper.entityObjectMapper;
-import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.singletonList;
 import static java.util.Objects.requireNonNull;
 
 public final class LookupTableModel extends SwingEntityTableModel {
@@ -72,14 +71,18 @@ public final class LookupTableModel extends SwingEntityTableModel {
 	}
 
 	public void importJSON(File file) throws IOException {
-		List<Entity> entities = objectMapper.deserializeEntities(textFileContents(file, UTF_8));
+		List<Entity> entities = objectMapper.deserializeEntities(
+						String.join("\n", Files.readAllLines(file.toPath())));
 		clear();
 		conditionModel().clear();
 		addItemsAtSorted(0, entities);
 	}
 
 	private void exportCSV(File file) throws IOException {
-		Files.writeString(file.toPath(), rowsAsDelimitedString(','));
+		Files.write(file.toPath(), singletonList(export()
+						.delimiter(',')
+						.selected(true)
+						.get()));
 	}
 
 	private void exportJSON(File file) throws IOException {

@@ -48,7 +48,6 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 import static is.codion.framework.demos.world.model.LookupTableModel.ExportFormat.CSV;
 import static is.codion.framework.demos.world.model.LookupTableModel.ExportFormat.JSON;
@@ -59,6 +58,7 @@ import static java.util.stream.Collectors.toSet;
 final class LookupTablePanel extends EntityTablePanel {
 
 	private static final Dimension DEFAULT_MAP_SIZE = new Dimension(400, 400);
+	private static final FrameworkIcons ICONS = FrameworkIcons.instance();
 
 	private final State columnSelectionPanelVisible = State.state(true);
 	private final State mapDialogVisible = State.state();
@@ -79,6 +79,7 @@ final class LookupTablePanel extends EntityTablePanel {
 		columnSelectionPanelVisible.addConsumer(this::setColumnSelectionPanelVisible);
 		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		conditionPanelVisible().set(true);
+		configurePopupMenuAndToolBar();
 		bindEvents();
 	}
 
@@ -89,7 +90,7 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	@Override
-	protected void setupControls() {
+	protected void configureControls() {
 		control(TableControl.CLEAR).set(Control.builder(this::clearTableAndConditions)
 						.name("Clear")
 						.mnemonic('C')
@@ -101,39 +102,38 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	@Override
-	protected Controls createPopupMenuControls(List<Controls> additionalPopupMenuControls) {
-		FrameworkIcons icons = FrameworkIcons.instance();
+	protected void layoutPanel(JComponent tableComponent, JPanel southPanel) {
+		super.layoutPanel(tableComponent, southPanel);
+		add(columnSelectionScrollPane, BorderLayout.EAST);
+	}
 
-		return super.createPopupMenuControls(additionalPopupMenuControls)
-						.addSeparatorAt(2)
-						.addAt(3, Controls.builder()
+	private void configurePopupMenuAndToolBar() {
+		configurePopupMenu(config -> config.clear()
+						.defaults(TableControl.COLUMN_CONTROLS)
+						.separator()
+						.control(Controls.builder()
 										.name("Export")
-										.smallIcon(icons.icon(Foundation.PAGE_EXPORT))
+										.smallIcon(ICONS.icon(Foundation.PAGE_EXPORT))
 										.control(Control.builder(this::exportCSV)
 														.name("CSV..."))
 										.control(Control.builder(this::exportJSON)
 														.name("JSON..."))
 										.build())
-						.addAt(4, Controls.builder()
+						.control(Controls.builder()
 										.name("Import")
-										.smallIcon(icons.icon(Foundation.PAGE_ADD))
+										.smallIcon(ICONS.icon(Foundation.PAGE_ADD))
 										.control(Control.builder(this::importJSON)
 														.name("JSON..."))
 										.build())
-						.addSeparatorAt(5)
-						.addAt(6, toggleMapControl);
-	}
+						.separator()
+						.control(toggleMapControl)
+						.separator()
+						.defaults());
 
-	@Override
-	protected Controls createToolBarControls(List<Controls> additionalToolBarControls) {
-		return super.createToolBarControls(additionalToolBarControls)
-						.addAt(0, toggleMapControl);
-	}
-
-	@Override
-	protected void layoutPanel(JComponent tableComponent, JPanel southPanel) {
-		super.layoutPanel(tableComponent, southPanel);
-		add(columnSelectionScrollPane, BorderLayout.EAST);
+		configureToolBar(config -> config.clear()
+						.control(toggleMapControl)
+						.separator()
+						.defaults());
 	}
 
 	private void bindEvents() {

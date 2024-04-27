@@ -28,21 +28,15 @@ import is.codion.swing.framework.ui.icon.FrameworkIcons;
 
 import org.kordamp.ikonli.foundation.Foundation;
 
-import java.util.List;
-
 final class CityTablePanel extends ChartTablePanel {
 
 	CityTablePanel(CityTableModel tableModel) {
-		super(tableModel, tableModel.chartDataset(), "Cities", config ->
-						config.editable(attributes ->
-										attributes.remove(City.LOCATION)));
-	}
-
-	@Override
-	protected Controls createPopupMenuControls(List<Controls> additionalPopupMenuControls) {
-		return super.createPopupMenuControls(additionalPopupMenuControls)
-						.addAt(0, createPopulateLocationControl())
-						.addSeparatorAt(1);
+		super(tableModel, tableModel.chartDataset(), "Cities",
+						config -> config.editable(attributes -> attributes.remove(City.LOCATION)));
+		configurePopupMenu(config -> config.clear()
+						.control(createPopulateLocationControl())
+						.separator()
+						.defaults());
 	}
 
 	private Control createPopulateLocationControl() {
@@ -67,7 +61,7 @@ final class CityTablePanel extends ChartTablePanel {
 						.controls(Controls.builder()
 										.control(Control.builder(task::cancel)
 														.name("Cancel")
-														.enabled(task.notCancelled()))
+														.enabled(task.cancelled().not()))
 										.build())
 						.onException(this::displayPopulateException)
 						.execute();
