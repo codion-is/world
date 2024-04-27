@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Optional;
 
 import static is.codion.swing.common.ui.component.Components.gridLayoutPanel;
 import static is.codion.swing.common.ui.layout.Layouts.borderLayout;
@@ -105,8 +106,8 @@ public final class CityEditPanel extends EntityEditPanel {
 
 	private void displayLocation(Collection<Entity> cities) {
 		Maps.paintWaypoints(cities.stream()
-						.filter(city -> city.isNotNull(City.LOCATION))
-						.map(city -> city.get(City.LOCATION))
+						.map(city -> city.optional(City.LOCATION))
+						.flatMap(Optional::stream)
 						.collect(toSet()), mapKit.getMainMap());
 	}
 }
