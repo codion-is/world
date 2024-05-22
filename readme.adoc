@@ -2,7 +2,7 @@
 
 A demo application based on the https://codion.is[Codion application framework].
 
-image::world-client/images/world-client.png[World client]
+image::documentation/src/docs/asciidoc/images/world-client.png[World client]
 
 == Documentation
 

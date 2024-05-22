@@ -279,6 +279,8 @@ include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryLanguageT
 
 == Continents
 
+image::continents.png[]
+
 === Continent
 
 ==== Domain
@@ -323,6 +325,8 @@ include::{dir-source-client}/is/codion/framework/demos/world/ui/ContinentTablePa
 ----
 
 == Lookup
+
+image::lookup.png[]
 
 === Lookup
 
