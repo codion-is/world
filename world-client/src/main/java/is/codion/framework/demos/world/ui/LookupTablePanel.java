@@ -20,15 +20,16 @@ package is.codion.framework.demos.world.ui;
 
 import is.codion.common.state.State;
 import is.codion.framework.demos.world.domain.api.World.Lookup;
-import is.codion.framework.demos.world.model.LookupTableModel;
-import is.codion.framework.demos.world.model.LookupTableModel.ExportFormat;
 import is.codion.framework.domain.entity.Entity;
+import is.codion.framework.json.domain.EntityObjectMapper;
 import is.codion.swing.common.ui.Utilities;
 import is.codion.swing.common.ui.component.button.ToggleButtonType;
+import is.codion.swing.common.ui.component.table.ColumnConditionPanel.ConditionState;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.common.ui.control.Controls;
 import is.codion.swing.common.ui.control.ToggleControl;
 import is.codion.swing.common.ui.dialog.Dialogs;
+import is.codion.swing.framework.model.SwingEntityTableModel;
 import is.codion.swing.framework.ui.EntityTablePanel;
 import is.codion.swing.framework.ui.icon.FrameworkIcons;
 
@@ -47,13 +48,20 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
-import static is.codion.framework.demos.world.model.LookupTableModel.ExportFormat.CSV;
-import static is.codion.framework.demos.world.model.LookupTableModel.ExportFormat.JSON;
+import static is.codion.framework.demos.world.ui.LookupTablePanel.ExportFormat.CSV;
+import static is.codion.framework.demos.world.ui.LookupTablePanel.ExportFormat.JSON;
+import static is.codion.framework.json.domain.EntityObjectMapper.entityObjectMapper;
 import static is.codion.swing.common.ui.component.Components.scrollPane;
 import static is.codion.swing.common.ui.component.Components.toolBar;
+import static is.codion.swing.framework.ui.EntityTablePanel.EntityTablePanelControl.*;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.singletonList;
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toSet;
 
 final class LookupTablePanel extends EntityTablePanel {
@@ -61,11 +69,32 @@ final class LookupTablePanel extends EntityTablePanel {
 	private static final Dimension DEFAULT_MAP_SIZE = new Dimension(400, 400);
 	private static final FrameworkIcons ICONS = FrameworkIcons.instance();
 
+	enum ExportFormat {
+		CSV {
+			@Override
+			public String defaultFileName() {
+				return "export.csv";
+			}
+		},
+		JSON {
+			@Override
+			public String defaultFileName() {
+				return "export.json";
+			}
+		};
+
+		public abstract String defaultFileName();
+	}
+
+	private final EntityObjectMapper objectMapper = entityObjectMapper(tableModel().entities());
+
 	private final State columnSelectionPanelVisible = State.state(true);
-	private final State mapDialogVisible = State.state();
+	private final State mapDialogVisible = State.builder()
+					.consumer(this::setMapDialogVisible)
+					.build();
 
 	private final Control toggleMapControl = ToggleControl.builder(mapDialogVisible)
-					.smallIcon(FrameworkIcons.instance().icon(Foundation.MAP))
+					.smallIcon(ICONS.icon(Foundation.MAP))
 					.name("Show map")
 					.build();
 	private final JScrollPane columnSelectionScrollPane = scrollPane(createColumnSelectionToolBar())
@@ -75,11 +104,11 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private JDialog mapKitDialog;
 
-	LookupTablePanel(LookupTableModel lookupModel) {
+	LookupTablePanel(SwingEntityTableModel lookupModel) {
 		super(lookupModel, config -> config.showRefreshProgressBar(true));
 		columnSelectionPanelVisible.addConsumer(this::setColumnSelectionPanelVisible);
 		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		conditionPanelVisible().set(true);
+		conditionPanel().state().set(ConditionState.SIMPLE);
 		configurePopupMenuAndToolBar();
 		bindEvents();
 	}
@@ -91,13 +120,13 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	@Override
-	protected void configureControls() {
-		control(TableControl.CLEAR).set(Control.builder(this::clearTableAndConditions)
+	protected void setupControls() {
+		control(CLEAR).set(Control.builder(this::clearTableAndConditions)
 						.name("Clear")
 						.mnemonic('C')
-						.smallIcon(FrameworkIcons.instance().clear())
+						.smallIcon(ICONS.clear())
 						.build());
-		control(TableControl.SELECT_COLUMNS).set(ToggleControl.builder(columnSelectionPanelVisible)
+		control(SELECT_COLUMNS).set(ToggleControl.builder(columnSelectionPanelVisible)
 						.name("Select")
 						.build());
 	}
@@ -110,7 +139,8 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private void configurePopupMenuAndToolBar() {
 		configurePopupMenu(config -> config.clear()
-						.defaults(TableControl.COLUMN_CONTROLS)
+						.standard(REFRESH)
+						.standard(CLEAR)
 						.separator()
 						.control(Controls.builder()
 										.name("Export")
@@ -118,14 +148,12 @@ final class LookupTablePanel extends EntityTablePanel {
 										.control(Control.builder(this::exportCSV)
 														.name("CSV..."))
 										.control(Control.builder(this::exportJSON)
-														.name("JSON..."))
-										.build())
+														.name("JSON...")))
 						.control(Controls.builder()
 										.name("Import")
 										.smallIcon(ICONS.icon(Foundation.PAGE_ADD))
 										.control(Control.builder(this::importJSON)
-														.name("JSON..."))
-										.build())
+														.name("JSON...")))
 						.separator()
 						.control(toggleMapControl)
 						.separator()
@@ -138,7 +166,6 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void bindEvents() {
-		mapDialogVisible.addConsumer(this::setMapDialogVisible);
 		tableModel().dataChangedEvent().addListener(this::displayCityLocations);
 		tableModel().selectionModel().selectionEvent().addListener(this::displayCityLocations);
 	}
@@ -181,8 +208,7 @@ final class LookupTablePanel extends EntityTablePanel {
 		File fileToSave = Dialogs.fileSelectionDialog()
 						.owner(this)
 						.selectFileToSave(format.defaultFileName());
-		LookupTableModel lookupTableModel = tableModel();
-		Dialogs.progressWorkerDialog(() -> lookupTableModel.export(fileToSave, format))
+		Dialogs.progressWorkerDialog(() -> export(fileToSave, format))
 						.owner(this)
 						.title("Exporting data")
 						.onResult("Export successful")
@@ -190,13 +216,47 @@ final class LookupTablePanel extends EntityTablePanel {
 						.execute();
 	}
 
+	private void export(File file, ExportFormat format) throws IOException {
+		requireNonNull(file);
+		requireNonNull(format);
+		switch (format) {
+			case CSV:
+				exportCSV(file);
+				break;
+			case JSON:
+				exportJSON(file);
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown export format: " + format);
+		}
+	}
+
+	private void exportCSV(File file) throws IOException {
+		Files.write(file.toPath(), singletonList(table().export()
+						.delimiter(',')
+						.selected(true)
+						.get()));
+	}
+
+	private void exportJSON(File file) throws IOException {
+		Collection<Entity> entities = tableModel().selectionModel().isSelectionEmpty() ?
+						tableModel().items() :
+						tableModel().selectionModel().getSelectedItems();
+		Files.write(file.toPath(), objectMapper.writeValueAsString(entities).getBytes(UTF_8));
+	}
+
 	private void importJSON() throws IOException {
-		File file = Dialogs.fileSelectionDialog()
+		importJSON(Dialogs.fileSelectionDialog()
 						.owner(this)
 						.fileFilter(new FileNameExtensionFilter("JSON", "json"))
-						.selectFile();
-		LookupTableModel tableModel = tableModel();
-		tableModel.importJSON(file);
+						.selectFile());
+	}
+
+	public void importJSON(File file) throws IOException {
+		List<Entity> entities = objectMapper.deserializeEntities(
+						String.join("\n", Files.readAllLines(file.toPath())));
+		clearTableAndConditions();
+		tableModel().addItemsAtSorted(0, entities);
 	}
 
 	private JToolBar createColumnSelectionToolBar() {
@@ -228,7 +288,7 @@ final class LookupTablePanel extends EntityTablePanel {
 										.map(ToggleControl.class::cast)
 										.forEach(toggleControl -> toggleControl.value().set(true)))
 						.name("Select all")
-						.smallIcon(FrameworkIcons.instance().icon(Foundation.CHECK))
+						.smallIcon(ICONS.icon(Foundation.CHECK))
 						.build();
 	}
 }

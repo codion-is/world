@@ -27,7 +27,7 @@ import is.codion.framework.demos.world.domain.api.World.Lookup;
 import is.codion.framework.demos.world.model.ContinentModel;
 import is.codion.framework.demos.world.model.CountryModel;
 import is.codion.framework.demos.world.model.WorldAppModel;
-import is.codion.swing.common.ui.component.table.FilteredTableCellRenderer;
+import is.codion.swing.common.ui.component.table.FilterTableCellRenderer;
 import is.codion.swing.common.ui.laf.LookAndFeelProvider;
 import is.codion.swing.framework.model.SwingEntityModel;
 import is.codion.swing.framework.ui.EntityApplicationPanel;
@@ -69,9 +69,9 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
 	public static void main(String[] args) throws CancelException {
 		Locale.setDefault(new Locale("en", "EN"));
-		Arrays.stream(FlatAllIJThemes.INFOS).forEach(LookAndFeelProvider::addLookAndFeelProvider);
+		Arrays.stream(FlatAllIJThemes.INFOS).forEach(LookAndFeelProvider::addLookAndFeel);
 		EntityPanel.Config.TOOLBAR_CONTROLS.set(true);
-		FilteredTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
+		FilterTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
 		ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
 		EntityApplicationPanel.builder(WorldAppModel.class, WorldAppPanel.class)
 						.applicationName("World")

@@ -346,15 +346,6 @@ include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/Worl
 include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=lookup]
 ----
 
-==== Model
-
-===== LookupTableModel
-
-[source,java,options="nowrap"]
-----
-include::{dir-source-client}/is/codion/framework/demos/world/model/LookupTableModel.java[lines=19..-1]
-----
-
 ==== UI
 
 ===== LookupTablePanel
