@@ -33,7 +33,7 @@ import net.sf.jasperreports.swing.JRViewer;
 
 import java.awt.Dimension;
 
-import static is.codion.swing.framework.ui.EntityTablePanel.EntityTablePanelControl.PRINT;
+import static is.codion.swing.framework.ui.EntityTablePanel.ControlIds.PRINT;
 
 final class CountryTablePanel extends EntityTablePanel {
 
@@ -44,7 +44,8 @@ final class CountryTablePanel extends EntityTablePanel {
 
 	@Override
 	protected void setupControls() {
-		control(PRINT).set(Control.builder(this::viewCountryReport)
+		control(PRINT).set(Control.builder()
+						.command(this::viewCountryReport)
 						.name("Country report")
 						.enabled(tableModel().selectionModel().selectionNotEmpty())
 						.smallIcon(FrameworkIcons.instance().print())

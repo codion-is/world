@@ -30,8 +30,8 @@ import org.kordamp.ikonli.foundation.Foundation;
 final class CityTablePanel extends ChartTablePanel {
 
 	CityTablePanel(CityTableModel tableModel) {
-		super(tableModel, tableModel.chartDataset(), "Cities",
-						config -> config.editable(attributes -> attributes.remove(City.LOCATION)));
+		super(tableModel, tableModel.chartDataset(), "Cities", config ->
+						config.editable(attributes -> attributes.remove(City.LOCATION)));
 		configurePopupMenu(config -> config.clear()
 						.control(createPopulateLocationControl())
 						.separator()
@@ -41,7 +41,8 @@ final class CityTablePanel extends ChartTablePanel {
 	private Control createPopulateLocationControl() {
 		CityTableModel cityTableModel = tableModel();
 
-		return Control.builder(this::populateLocation)
+		return Control.builder()
+						.command(this::populateLocation)
 						.name("Populate location")
 						.enabled(cityTableModel.citiesWithoutLocationSelected())
 						.smallIcon(FrameworkIcons.instance().icon(Foundation.MAP))
@@ -57,7 +58,8 @@ final class CityTablePanel extends ChartTablePanel {
 						.title("Populating locations")
 						.maximumProgress(task.maximumProgress())
 						.stringPainted(true)
-						.control(Control.builder(task::cancel)
+						.control(Control.builder()
+										.command(task::cancel)
 										.name("Cancel")
 										.enabled(task.cancelled().not()))
 						.onException(this::displayPopulateException)

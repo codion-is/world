@@ -58,7 +58,7 @@ import static is.codion.framework.demos.world.ui.LookupTablePanel.ExportFormat.J
 import static is.codion.framework.json.domain.EntityObjectMapper.entityObjectMapper;
 import static is.codion.swing.common.ui.component.Components.scrollPane;
 import static is.codion.swing.common.ui.component.Components.toolBar;
-import static is.codion.swing.framework.ui.EntityTablePanel.EntityTablePanelControl.*;
+import static is.codion.swing.framework.ui.EntityTablePanel.ControlIds.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.singletonList;
 import static java.util.Objects.requireNonNull;
@@ -93,7 +93,8 @@ final class LookupTablePanel extends EntityTablePanel {
 					.consumer(this::setMapDialogVisible)
 					.build();
 
-	private final Control toggleMapControl = ToggleControl.builder(mapDialogVisible)
+	private final Control toggleMapControl = Control.builder()
+					.toggle(mapDialogVisible)
 					.smallIcon(ICONS.icon(Foundation.MAP))
 					.name("Show map")
 					.build();
@@ -121,13 +122,11 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	@Override
 	protected void setupControls() {
-		control(CLEAR).set(Control.builder(this::clearTableAndConditions)
+		control(CLEAR).set(Control.builder()
+						.command(this::clearTableAndConditions)
 						.name("Clear")
 						.mnemonic('C')
 						.smallIcon(ICONS.clear())
-						.build());
-		control(SELECT_COLUMNS).set(ToggleControl.builder(columnSelectionPanelVisible)
-						.name("Select")
 						.build());
 	}
 
@@ -145,19 +144,33 @@ final class LookupTablePanel extends EntityTablePanel {
 						.control(Controls.builder()
 										.name("Export")
 										.smallIcon(ICONS.icon(Foundation.PAGE_EXPORT))
-										.control(Control.builder(this::exportCSV)
+										.control(Control.builder()
+														.command(this::exportCSV)
 														.name("CSV..."))
-										.control(Control.builder(this::exportJSON)
+										.control(Control.builder()
+														.command(this::exportJSON)
 														.name("JSON...")))
 						.control(Controls.builder()
 										.name("Import")
 										.smallIcon(ICONS.icon(Foundation.PAGE_ADD))
-										.control(Control.builder(this::importJSON)
+										.control(Control.builder()
+														.command(this::importJSON)
 														.name("JSON...")))
 						.separator()
 						.control(toggleMapControl)
 						.separator()
-						.defaults());
+						.control(Controls.builder()
+										.name("Columns")
+										.smallIcon(FrameworkIcons.instance().columns())
+										.control(Control.builder()
+														.toggle(columnSelectionPanelVisible)
+														.name("Select")
+														.build())
+										.control(control(RESET_COLUMNS).get())
+										.control(control(COLUMN_AUTO_RESIZE_MODE).get()))
+						.separator()
+						.standard(CONDITION_CONTROLS)
+						.standard(COPY_CONTROLS));
 
 		configureToolBar(config -> config.clear()
 						.control(toggleMapControl)
@@ -262,10 +275,10 @@ final class LookupTablePanel extends EntityTablePanel {
 	private JToolBar createColumnSelectionToolBar() {
 		Controls toggleColumnsControls = table().createToggleColumnsControls();
 
-		return toolBar(Controls.controls()
-						.add(createSelectAllColumnsControl(toggleColumnsControls))
-						.addSeparator()
-						.addAll(toggleColumnsControls))
+		return toolBar(Controls.builder()
+						.control(createSelectAllColumnsControl(toggleColumnsControls))
+						.separator()
+						.actions(toggleColumnsControls.actions()))
 						.floatable(false)
 						.orientation(SwingConstants.VERTICAL)
 						.toggleButtonType(ToggleButtonType.CHECKBOX)
@@ -284,7 +297,8 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private static Control createSelectAllColumnsControl(Controls toggleColumnsControls) {
-		return Control.builder(() -> toggleColumnsControls.actions().stream()
+		return Control.builder()
+						.command(() -> toggleColumnsControls.actions().stream()
 										.map(ToggleControl.class::cast)
 										.forEach(toggleControl -> toggleControl.value().set(true)))
 						.name("Select all")
