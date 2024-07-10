@@ -26,14 +26,14 @@ import is.codion.framework.demos.world.domain.api.World.Lookup;
 import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.domain.entity.EntityType;
 import is.codion.framework.domain.entity.attribute.ForeignKey;
-import is.codion.framework.domain.entity.test.DefaultEntityFactory;
-import is.codion.framework.domain.entity.test.EntityTestUnit;
+import is.codion.framework.domain.test.DefaultEntityFactory;
+import is.codion.framework.domain.test.DomainTest;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.Optional;
 
-public final class WorldImplTest extends EntityTestUnit {
+public final class WorldImplTest extends DomainTest {
 
 	private static final WorldImpl DOMAIN = new WorldImpl();
 
@@ -68,9 +68,8 @@ public final class WorldImplTest extends EntityTestUnit {
 		}
 
 		@Override
-		public Entity entity(EntityType entityType,
-												 Map<ForeignKey, Entity> foreignKeyEntities) {
-			Entity entity = super.entity(entityType, foreignKeyEntities);
+		public Entity entity(EntityType entityType) {
+			Entity entity = super.entity(entityType);
 			if (entityType.equals(Country.TYPE)) {
 				entity.put(Country.CODE, "XYZ");
 				entity.put(Country.CONTINENT, "Asia");
@@ -83,8 +82,8 @@ public final class WorldImplTest extends EntityTestUnit {
 		}
 
 		@Override
-		public void modify(Entity entity, Map<ForeignKey, Entity> foreignKeyEntities) {
-			super.modify(entity, foreignKeyEntities);
+		public void modify(Entity entity) {
+			super.modify(entity);
 			if (entity.entityType().equals(Country.TYPE)) {
 				entity.put(Country.CONTINENT, "Europe");
 			}
@@ -94,20 +93,19 @@ public final class WorldImplTest extends EntityTestUnit {
 		}
 
 		@Override
-		public Entity foreignKeyEntity(ForeignKey foreignKey,
-																	 Map<ForeignKey, Entity> foreignKeyEntities) {
+		public Optional<Entity> entity(ForeignKey foreignKey) {
 			if (foreignKey.referencedType().equals(Country.TYPE)) {
-				return entities().builder(Country.TYPE)
+				return Optional.of(entities().builder(Country.TYPE)
 								.with(Country.CODE, "ISL")
-								.build();
+								.build());
 			}
 			if (foreignKey.referencedType().equals(City.TYPE)) {
-				return entities().builder(City.TYPE)
+				return Optional.of(entities().builder(City.TYPE)
 								.with(City.ID, 1449)
-								.build();
+								.build());
 			}
 
-			return super.foreignKeyEntity(foreignKey, foreignKeyEntities);
+			return super.entity(foreignKey);
 		}
 	}
 }

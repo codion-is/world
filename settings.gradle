@@ -21,7 +21,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.4")
+            version("codion", "0.18.5")
             version("h2", "2.2.224")
             version("json", "20240205")
             version("jfreechart", "1.5.4")
@@ -50,7 +50,7 @@ dependencyResolutionManagement {
             library("codion-plugin-hikari-pool", "is.codion", "codion-plugin-hikari-pool").versionRef("codion")
             library("codion-framework-server", "is.codion", "codion-framework-server").versionRef("codion")
             library("codion-framework-servlet", "is.codion", "codion-framework-servlet").versionRef("codion")
-            library("codion-tools-server-monitor", "is.codion", "codion-tools-server-monitor").versionRef("codion")
+            library("codion-tools-monitor-ui", "is.codion", "codion-tools-monitor-ui").versionRef("codion")
 
             library("jxmapviewer2", "org.jxmapviewer", "jxmapviewer2").versionRef("jxmapviewer2")
 

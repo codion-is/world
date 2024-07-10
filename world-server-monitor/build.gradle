@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    runtimeOnly(libs.codion.tools.server.monitor)
+    runtimeOnly(libs.codion.tools.monitor.ui)
     runtimeOnly(libs.codion.plugin.logback.proxy)
 }
 
@@ -18,8 +18,8 @@ applicationDefaultJvmArgs = [
 ]
 
 application {
-    mainModule.set("is.codion.tools.server.monitor")
-    mainClass.set("is.codion.tools.server.monitor.ui.EntityServerMonitorPanel")
+    mainModule.set("is.codion.tools.monitor.ui")
+    mainClass.set("is.codion.tools.monitor.ui.EntityServerMonitorPanel")
 }
 
 jlink {
