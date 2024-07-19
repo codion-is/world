@@ -21,7 +21,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.5")
+            version("codion", "0.18.6")
             version("h2", "2.2.224")
             version("json", "20240205")
             version("jfreechart", "1.5.4")
@@ -29,12 +29,7 @@ dependencyResolutionManagement {
             version("junit", "5.10.2")
             version("flatlaf", "3.4.1")
             version("ikonli.foundation", "12.3.1")
-            version("jasperreports", "6.21.0")
-            version("commons.logging", "1.2")
-            version("commons.digester", "2.1")
-            version("commons.collections4", "4.4")
-            version("commons.beanutils", "1.9.4")
-            version("jdt.core.compiler", "3.35.0")
+            version("jasperreports", "7.0.0")
 
             library("codion-dbms-h2", "is.codion", "codion-dbms-h2").versionRef("codion")
             library("codion-framework-domain", "is.codion", "codion-framework-domain").versionRef("codion")
@@ -66,11 +61,7 @@ dependencyResolutionManagement {
             library("flatlaf", "com.formdev", "flatlaf").versionRef("flatlaf")
             library("flatlaf-intellij-themes", "com.formdev", "flatlaf-intellij-themes").versionRef("flatlaf")
             library("jasperreports", "net.sf.jasperreports", "jasperreports").versionRef("jasperreports")
-            library("commons-logging", "commons-logging", "commons-logging").versionRef("commons.logging")
-            library("commons-digester", "commons-digester", "commons-digester").versionRef("commons.digester")
-            library("commons-collections4", "org.apache.commons", "commons-collections4").versionRef("commons.collections4")
-            library("commons-beanutils", "commons-beanutils", "commons-beanutils").versionRef("commons.beanutils")
-            library("jdt-core-compiler", "org.eclipse.jdt", "ecj").versionRef("jdt.core.compiler")
+            library("jasperreports-jdt", "net.sf.jasperreports", "jasperreports-jdt").versionRef("jasperreports")
         }
     }
 }

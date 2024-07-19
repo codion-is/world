@@ -89,18 +89,23 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/CountryEditMo
 include::{dir-source-client}/is/codion/framework/demos/world/model/CountryTableModel.java[lines=19..-1]
 ----
 
+[source,java]
+----
+include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryTableModelTest.java[tag=**]
+----
+
 .country_report.jrxml
 [%collapsible]
 ====
 [source,xml,options="nowrap"]
-include::{dir-source-reports}/country_report.jrxml[]
+include::{dir-source-reports}/is/codion/framework/demos/world/model/country_report.jrxml[]
 ====
 
 .city_report.jrxml
 [%collapsible]
 ====
 [source,xml,options="nowrap"]
-include::{dir-source-reports}/city_report.jrxml[]
+include::{dir-source-reports}/is/codion/framework/demos/world/model/city_report.jrxml[]
 ====
 
 ===== CountryReportDataSource

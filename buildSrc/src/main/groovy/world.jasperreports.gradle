@@ -1,0 +1,9 @@
+plugins {
+    id "org.gradlex.extra-java-module-info"
+}
+
+extraJavaModuleInfo {
+    automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
+    automaticModule("commons-collections:commons-collections", "commons.collections")
+    automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
+}

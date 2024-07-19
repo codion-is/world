@@ -1,8 +1,9 @@
 plugins {
-    id "world.library"
+    id "java-library"
+    id "world.jasperreports"
+    id "world.spotless"
+    id "io.github.f-cramer.jasperreports" version "0.0.1"
 }
-
-apply plugin: BuildReportsPlugin
 
 dependencies {
     implementation project(":world-domain-api")
@@ -22,20 +23,15 @@ dependencies {
     }
 
     implementation(libs.jasperreports) {
-        transitive = false
+        exclude group: "org.apache.xmlgraphics"
+        exclude group: "xml-apis"
+    }
+    compileOnly(libs.jasperreports.jdt) {
+        exclude group: "org.apache.xmlgraphics"
+        exclude group: "xml-apis"
     }
 
     runtimeOnly(libs.codion.plugin.logback.proxy)
-
-    runtimeOnly(libs.commons.logging)
-    runtimeOnly(libs.commons.digester) {
-        transitive = false
-    }
-    runtimeOnly(libs.commons.collections4)
-    runtimeOnly(libs.commons.beanutils) {
-        transitive = false
-    }
-    runtimeOnly(libs.jdt.core.compiler)
 
     testImplementation project(":world-domain")
     testImplementation(libs.codion.framework.db.local)
@@ -45,10 +41,19 @@ dependencies {
     testRuntimeOnly(libs.junit.engine)
 }
 
-buildReports {
-    sourceDir = file("src/main/reports")
-    targetDir = file(sourceSets.main.output.resourcesDir.toString() + "/is/codion/framework/demos/world/model")
+extraJavaModuleInfo {
+    automaticModule("net.sf.jasperreports:jasperreports-jdt", "jasperreports.jdt")
+    automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
 }
+
+jasperreports {
+    classpath.from(
+        project.sourceSets.main.java.classesDirectory,
+        configurations.named(project.sourceSets.main.compileClasspathConfigurationName)
+    )
+}
+
+sourceSets.main.resources.srcDir(compileAllReports)
 
 test {
     useJUnitPlatform()

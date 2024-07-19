@@ -1,5 +1,6 @@
 plugins {
-    id "world.library"
+    id "java-library"
+    id "world.spotless"
 }
 
 dependencies {
