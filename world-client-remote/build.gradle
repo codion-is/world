@@ -39,6 +39,17 @@ jlink {
         excludeRequires("com.fasterxml.jackson.annotation")
     }
 
+    prepareMergedJarsDir {
+        doLast {
+            copy {
+                from "src/main/resources"
+                into "$jlinkBasePath/mergedjars"
+            }
+            //https://github.com/TIBCOSoftware/jasperreports/issues/463
+            project.delete(files("${mergedJarsDir}/net/sf/jasperreports/fonts"))
+        }
+    }
+
     jpackage {
         imageName = "World-Remote"
         if (org.gradle.internal.os.OperatingSystem.current().linux) {
@@ -57,12 +68,5 @@ jlink {
                     "--win-shortcut"
             ]
         }
-    }
-}
-
-prepareMergedJarsDir.doLast {
-    copy {
-        from "src/main/resources"
-        into "$jlinkBasePath/mergedjars"
     }
 }

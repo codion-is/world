@@ -29,6 +29,7 @@ module is.codion.framework.demos.world.client {
 	requires org.jfree.jfreechart;
 	requires jasperreports;
 	requires jasperreports.pdf;
+	requires jasperreports.fonts;
 	requires org.apache.commons.logging;
 	requires com.github.librepdf.openpdf;
 	requires org.jxmapviewer.jxmapviewer2;

@@ -11,6 +11,11 @@ extraJavaModuleInfo {
     knownModule("commons-logging:commons-logging", "org.apache.commons.logging")
     knownModule("com.github.librepdf:openpdf", "com.github.librepdf.openpdf")
 
+    module("net.sf.jasperreports:jasperreports-fonts", "jasperreports.fonts") {
+        exportAllPackages()
+        requireAllDefinedDependencies()
+    }
+
     automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
     automaticModule("com.adobe.xmp:xmpcore", "xmpcore")
 }
