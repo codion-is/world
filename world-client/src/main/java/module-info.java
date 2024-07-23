@@ -28,7 +28,9 @@ module is.codion.framework.demos.world.client {
 	requires org.kordamp.ikonli.foundation;
 	requires org.jfree.jfreechart;
 	requires jasperreports;
+	requires jasperreports.pdf;
 	requires org.apache.commons.logging;
+	requires com.github.librepdf.openpdf;
 	requires org.jxmapviewer.jxmapviewer2;
 	requires org.json;
 

@@ -1,6 +1,6 @@
 plugins {
     id "org.beryx.jlink"
-    id "world.jasperreports"
+    id "world.jasperreports.pdf"
     id "world.spotless"
 }
 
@@ -34,7 +34,7 @@ jlink {
                "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2," +
                        "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain"]
 
-    addExtraDependencies("slf4j-api", "jackson-core", "jackson-databind", "jackson-annotation")
+    addExtraDependencies("slf4j-api")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs

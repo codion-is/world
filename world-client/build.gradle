@@ -1,6 +1,6 @@
 plugins {
     id "java-library"
-    id "world.jasperreports"
+    id "world.jasperreports.pdf"
     id "world.spotless"
     id "io.github.f-cramer.jasperreports" version "0.0.1"
 }
@@ -22,11 +22,10 @@ dependencies {
         transitive = false
     }
 
-    implementation(libs.jasperreports) {
-        exclude group: "org.apache.xmlgraphics"
-        exclude group: "xml-apis"
-    }
     compileOnly(libs.jasperreports.jdt) {
+        exclude group: "net.sf.jasperreports"
+    }
+    implementation(libs.jasperreports.pdf) {
         exclude group: "net.sf.jasperreports"
     }
 

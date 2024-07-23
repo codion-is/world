@@ -60,8 +60,8 @@ dependencyResolutionManagement {
 
             library("flatlaf", "com.formdev", "flatlaf").versionRef("flatlaf")
             library("flatlaf-intellij-themes", "com.formdev", "flatlaf-intellij-themes").versionRef("flatlaf")
-            library("jasperreports", "net.sf.jasperreports", "jasperreports").versionRef("jasperreports")
             library("jasperreports-jdt", "net.sf.jasperreports", "jasperreports-jdt").versionRef("jasperreports")
+            library("jasperreports-pdf", "net.sf.jasperreports", "jasperreports-pdf").versionRef("jasperreports")
         }
     }
 }

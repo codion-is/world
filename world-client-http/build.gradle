@@ -1,6 +1,6 @@
 plugins {
     id "org.beryx.jlink"
-    id "world.jasperreports"
+    id "world.jasperreports.pdf"
     id "world.spotless"
 }
 
@@ -29,8 +29,6 @@ jlink {
     moduleName.set(application.mainModule)
     options = ["--strip-debug", "--no-header-files", "--no-man-pages", "--add-modules",
                "jdk.crypto.ec,is.codion.framework.db.http,is.codion.plugin.logback.proxy"]
-
-    addExtraDependencies("jackson-core", "jackson-databind", "jackson-annotation")
 
     launcher {
         jvmArgs = applicationDefaultJvmArgs
