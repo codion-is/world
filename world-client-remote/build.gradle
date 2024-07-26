@@ -1,7 +1,7 @@
 plugins {
     id "org.beryx.jlink"
-    id "world.jasperreports.pdf"
-    id "world.spotless"
+    id "world.jasperreports.modules"
+    id "world.spotless.plugin"
 }
 
 dependencies {

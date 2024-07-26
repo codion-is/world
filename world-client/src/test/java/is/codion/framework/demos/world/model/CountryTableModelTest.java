@@ -26,6 +26,10 @@ import is.codion.framework.demos.world.domain.WorldImpl;
 import is.codion.framework.demos.world.domain.api.World;
 import is.codion.swing.common.model.worker.ProgressWorker.ProgressReporter;
 
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.junit.jupiter.api.Test;
 
 public final class CountryTableModelTest {
@@ -34,18 +38,19 @@ public final class CountryTableModelTest {
 					User.parse(System.getProperty("codion.test.user", "scott:tiger"));
 
 	@Test
-	void fillCountryReport() throws ReportException {
+	void fillCountryReport() throws ReportException, JRException {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
 			tableModel.conditionModel().conditionModel(World.Country.CODE).setEqualValue("ISL");
 			tableModel.refresh();
 			tableModel.selectionModel().setSelectedIndex(0);
-			tableModel.fillCountryReport(new ProgressReporter<String>() {
+			JasperPrint jasperPrint = tableModel.fillCountryReport(new ProgressReporter<String>() {
 				@Override
 				public void report(int progress) {}
 				@Override
-				public void publish(String... chunks) {				}
+				public void publish(String... chunks) {}
 			});
+			JasperExportManager.getInstance(DefaultJasperReportsContext.getInstance()).exportToPdf(jasperPrint);
 		}
 	}
 
