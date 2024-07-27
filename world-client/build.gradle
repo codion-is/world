@@ -61,18 +61,12 @@ test {
     systemProperty "codion.db.initScripts", "classpath:create_schema.sql"
 }
 
-tasks.register("writeVersion") {
-    group "build"
-    def versionFile = file(sourceSets.main.output.resourcesDir.getAbsolutePath() + "/version.properties")
-    inputs.property("version", project.version)
-    outputs.file(versionFile)
-    outputs.upToDateWhen { false }
+tasks.register("writeVersion", WriteProperties) {
+    destinationFile = file(temporaryDir.getAbsolutePath() + "/version.properties")
 
-    doLast {
-        def versionProperties = new Properties()
-        versionProperties.put("version", project.version)
-        versionProperties.store(versionFile.newWriter(), null)
-    }
+    property "version", libs.versions.codion.get().replace("-SNAPSHOT", "")
 }
 
-classes.dependsOn writeVersion
+processResources {
+    from(writeVersion)
+}
