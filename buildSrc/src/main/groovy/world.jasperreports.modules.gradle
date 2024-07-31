@@ -3,11 +3,11 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("net.sf.jasperreports:jasperreports", "jasperreports")
+    automaticModule("net.sf.jasperreports:jasperreports", "net.sf.jasperreports.core")
 
-    module("net.sf.jasperreports:jasperreports-pdf", "jasperreports.pdf") {
+    module("net.sf.jasperreports:jasperreports-pdf", "net.sf.jasperreports.pdf") {
         exportAllPackages()
-        requires("jasperreports")
+        requires("net.sf.jasperreports.core")
         requires("java.desktop")
         requires("org.apache.commons.logging")
         requires("com.github.librepdf.openpdf")
@@ -16,7 +16,7 @@ extraJavaModuleInfo {
     knownModule("commons-logging:commons-logging", "org.apache.commons.logging")
     knownModule("com.github.librepdf:openpdf", "com.github.librepdf.openpdf")
 
-    module("net.sf.jasperreports:jasperreports-fonts", "jasperreports.fonts") {
+    module("net.sf.jasperreports:jasperreports-fonts", "net.sf.jasperreports.fonts") {
         exportAllPackages()
     }
 

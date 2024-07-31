@@ -41,7 +41,7 @@ dependencies {
 }
 
 extraJavaModuleInfo {
-    automaticModule("net.sf.jasperreports:jasperreports-jdt", "jasperreports.jdt")
+    automaticModule("net.sf.jasperreports:jasperreports-jdt", "net.sf.jasperreports.jdt")
     automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
 }
 
