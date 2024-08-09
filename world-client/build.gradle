@@ -10,7 +10,9 @@ dependencies {
 
     implementation(libs.codion.framework.json.domain)
     implementation(libs.codion.swing.framework.ui)
-    implementation(libs.codion.plugin.jasperreports)
+    implementation(libs.codion.plugin.jasperreports) {
+        exclude group: "org.apache.xmlgraphics"
+    }
 
     implementation(libs.json)
     implementation(libs.jfreechart)

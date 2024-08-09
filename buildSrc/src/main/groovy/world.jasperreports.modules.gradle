@@ -21,7 +21,7 @@ extraJavaModuleInfo {
     }
 
     automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
-    automaticModule("com.adobe.xmp:xmpcore", "xmpcore")
+    automaticModule("com.adobe.xmp:xmpcore", "com.adobe.xmp.xmpcore")
     automaticModule("commons-collections:commons-collections", "commons.collections")
     automaticModule("commons-beanutils:commons-beanutils", "commons.beanutils")
 }
