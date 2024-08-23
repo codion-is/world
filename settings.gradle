@@ -21,7 +21,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.9")
+            version("codion", "0.18.10")
             version("h2", "2.3.232")
             version("json", "20240205")
             version("jfreechart", "1.5.4")
