@@ -2,6 +2,8 @@ plugins {
     id "org.asciidoctor.jvm.convert" version "4.0.3"
 }
 
+version = libs.versions.codion.get().replace("-SNAPSHOT", "")
+
 asciidoctor {
     inputs.dir("../world-domain-api/src/main/java")
     inputs.dir("../world-domain/src/main/java")
