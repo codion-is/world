@@ -23,7 +23,7 @@ import is.codion.common.user.User;
 import is.codion.framework.db.EntityConnectionProvider;
 import is.codion.framework.db.local.LocalEntityConnectionProvider;
 import is.codion.framework.demos.world.domain.WorldImpl;
-import is.codion.framework.demos.world.domain.api.World;
+import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.swing.common.model.worker.ProgressWorker.ProgressReporter;
 
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
@@ -41,7 +41,7 @@ public final class CountryTableModelTest {
 	void fillCountryReport() throws ReportException, JRException {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
-			tableModel.conditionModel().conditionModel(World.Country.CODE).setEqualValue("ISL");
+			tableModel.conditionModel().conditionModel(Country.CODE).operands().equal().set("ISL");
 			tableModel.refresh();
 			tableModel.selectionModel().setSelectedIndex(0);
 			JasperPrint jasperPrint = tableModel.fillCountryReport(new ProgressReporter<String>() {
