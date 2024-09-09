@@ -179,15 +179,15 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void bindEvents() {
-		tableModel().dataChangedEvent().addListener(this::displayCityLocations);
-		tableModel().selectionModel().selectionEvent().addListener(this::displayCityLocations);
+		tableModel().dataChanged().addListener(this::displayCityLocations);
+		tableModel().selectionModel().selectedIndexes().addListener(this::displayCityLocations);
 	}
 
 	private void displayCityLocations() {
 		if (mapKit.isShowing()) {
 			Collection<Entity> entities = tableModel().selectionModel().isSelectionEmpty() ?
 							tableModel().visibleItems() :
-							tableModel().selectionModel().selectedItems();
+							tableModel().selectionModel().selectedItems().get();
 			Maps.paintWaypoints(entities.stream()
 							.map(entity -> entity.optional(Lookup.CITY_LOCATION))
 							.flatMap(Optional::stream)
@@ -254,7 +254,7 @@ final class LookupTablePanel extends EntityTablePanel {
 	private void exportJSON(File file) throws IOException {
 		Collection<Entity> entities = tableModel().selectionModel().isSelectionEmpty() ?
 						tableModel().items() :
-						tableModel().selectionModel().selectedItems();
+						tableModel().selectionModel().selectedItems().get();
 		Files.write(file.toPath(), objectMapper.writeValueAsString(entities).getBytes(UTF_8));
 	}
 

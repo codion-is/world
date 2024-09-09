@@ -43,7 +43,7 @@ public final class CountryTableModelTest {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
 			tableModel.conditionModel().conditionModel(Country.CODE).operands().equal().set("ISL");
 			tableModel.refresh();
-			tableModel.selectionModel().setSelectedIndex(0);
+			tableModel.selectionModel().selectedIndex().set(0);
 			JasperPrint jasperPrint = tableModel.fillCountryReport(new ProgressReporter<String>() {
 				@Override
 				public void report(int progress) {}

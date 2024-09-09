@@ -47,9 +47,9 @@ public final class CityTableModel extends SwingEntityTableModel {
 
 	CityTableModel(EntityConnectionProvider connectionProvider) {
 		super(new CityEditModel(connectionProvider));
-		selectionModel().selectedItemsEvent().addConsumer(displayLocationEvent);
-		selectionModel().selectionEvent().addListener(this::updateCitiesWithoutLocationSelected);
-		refresher().refreshEvent().addListener(this::refreshChartDataset);
+		selectionModel().selectedItems().addConsumer(displayLocationEvent);
+		selectionModel().selectedIndexes().addListener(this::updateCitiesWithoutLocationSelected);
+		refresher().success().addListener(this::refreshChartDataset);
 	}
 
 	public PieDataset<String> chartDataset() {
@@ -75,7 +75,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 	}
 
 	private void updateCitiesWithoutLocationSelected() {
-		citiesWithoutLocationSelected.set(selectionModel().selectedItems().stream()
+		citiesWithoutLocationSelected.set(selectionModel().selectedItems().get().stream()
 						.anyMatch(city -> city.isNull(City.LOCATION)));
 	}
 
@@ -85,7 +85,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 		private final Collection<Entity> cities;
 
 		private PopulateLocationTask() {
-			cities = selectionModel().selectedItems().stream()
+			cities = selectionModel().selectedItems().get().stream()
 							.filter(city -> city.isNull(City.LOCATION))
 							.toList();
 		}
@@ -115,7 +115,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 				progressReporter.report(updatedCities.size());
 				displayLocationEvent.accept(singletonList(city));
 			}
-			displayLocationEvent.accept(selectionModel().selectedItems());
+			displayLocationEvent.accept(selectionModel().selectedItems().get());
 
 			return null;
 		}
