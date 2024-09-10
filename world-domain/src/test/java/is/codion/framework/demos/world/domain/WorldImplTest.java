@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2004 - 2022, Björn Darri Sigurðsson.
+ * Copyright (c) 2004 - 2024, Björn Darri Sigurðsson.
  */
 package is.codion.framework.demos.world.domain;
 
