@@ -52,7 +52,7 @@ public final class CountryTableModel extends SwingEntityTableModel {
 
 	public JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) throws ReportException {
 		CountryReportDataSource dataSource =
-						new CountryReportDataSource(selectionModel().selectedItems().get().iterator(),
+						new CountryReportDataSource(selection().items().get().iterator(),
 										connection(), progressReporter);
 
 		return fillReport(classPathReport(CountryTableModel.class, COUNTRY_REPORT), dataSource, reportParameters());
@@ -65,8 +65,8 @@ public final class CountryTableModel extends SwingEntityTableModel {
 
 	private void configureCapitalConditionModel() {
 		ForeignKeyConditionModel capitalConditionModel =
-						(ForeignKeyConditionModel) conditionModel()
-										.attributeModel(Country.CAPITAL_FK);
+						(ForeignKeyConditionModel) queryModel().conditions()
+										.attribute(Country.CAPITAL_FK);
 		CapitalConditionSupplier capitalCondition = new CapitalConditionSupplier();
 		capitalConditionModel.equalSearchModel().condition().set(capitalCondition);
 		capitalConditionModel.inSearchModel().condition().set(capitalCondition);

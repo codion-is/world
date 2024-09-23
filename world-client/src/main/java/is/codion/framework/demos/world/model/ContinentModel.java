@@ -18,8 +18,8 @@
  */
 package is.codion.framework.demos.world.model;
 
-import is.codion.common.model.table.ColumnConditionModel;
-import is.codion.common.model.table.ColumnConditionModel.AutomaticWildcard;
+import is.codion.common.model.condition.ConditionModel;
+import is.codion.common.model.condition.ConditionModel.AutomaticWildcard;
 import is.codion.framework.db.EntityConnectionProvider;
 import is.codion.framework.demos.world.domain.api.World.Continent;
 import is.codion.framework.demos.world.domain.api.World.Country;
@@ -43,7 +43,7 @@ public final class ContinentModel extends SwingEntityModel {
 
 	ContinentModel(EntityConnectionProvider connectionProvider) {
 		super(Continent.TYPE, connectionProvider);
-		tableModel().refresher().success().addListener(this::refreshChartDatasets);
+		tableModel().refresher().success().addConsumer(this::refreshChartDatasets);
 		CountryModel countryModel = new CountryModel(connectionProvider);
 		addDetailModel(new CountryModelLink(countryModel)).active().set(true);
 	}
@@ -64,12 +64,12 @@ public final class ContinentModel extends SwingEntityModel {
 		return lifeExpectancyDataset;
 	}
 
-	private void refreshChartDatasets() {
+	private void refreshChartDatasets(Collection<Entity> continents) {
 		populationDataset.clear();
 		surfaceAreaDataset.clear();
 		gnpDataset.clear();
 		lifeExpectancyDataset.clear();
-		tableModel().items().forEach(continent -> {
+		continents.forEach(continent -> {
 			String contientName = continent.get(Continent.NAME);
 			populationDataset.setValue(contientName, continent.get(Continent.POPULATION));
 			surfaceAreaDataset.setValue(contientName, continent.get(Continent.SURFACE_AREA));
@@ -84,8 +84,8 @@ public final class ContinentModel extends SwingEntityModel {
 		private CountryModel(EntityConnectionProvider connectionProvider) {
 			super(Country.TYPE, connectionProvider);
 			editModel().readOnly().set(true);
-			ColumnConditionModel<?, ?> continentConditionModel =
-							tableModel().conditionModel().conditionModel(Country.CONTINENT);
+			ConditionModel<?, ?> continentConditionModel =
+							tableModel().queryModel().conditions().get(Country.CONTINENT);
 			continentConditionModel.automaticWildcard().set(AutomaticWildcard.NONE);
 			continentConditionModel.caseSensitive().set(true);
 		}
@@ -100,7 +100,7 @@ public final class ContinentModel extends SwingEntityModel {
 		@Override
 		public void onSelection(Collection<Entity> selectedEntities) {
 			Collection<String> continentNames = Entity.values(Continent.NAME, selectedEntities);
-			if (detailModel().tableModel().conditionModel().setInOperands(Country.CONTINENT, continentNames)) {
+			if (detailModel().tableModel().queryModel().conditions().setInOperands(Country.CONTINENT, continentNames)) {
 				detailModel().tableModel().refresh();
 			}
 		}

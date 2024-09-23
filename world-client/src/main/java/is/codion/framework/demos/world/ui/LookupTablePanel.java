@@ -179,15 +179,15 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void bindEvents() {
-		tableModel().dataChanged().addListener(this::displayCityLocations);
-		tableModel().selectionModel().selectedIndexes().addListener(this::displayCityLocations);
+		tableModel().items().visible().addListener(this::displayCityLocations);
+		tableModel().selection().indexes().addListener(this::displayCityLocations);
 	}
 
 	private void displayCityLocations() {
 		if (mapKit.isShowing()) {
-			Collection<Entity> entities = tableModel().selectionModel().isSelectionEmpty() ?
-							tableModel().visibleItems() :
-							tableModel().selectionModel().selectedItems().get();
+			Collection<Entity> entities = tableModel().selection().empty().get() ?
+							tableModel().items().visible().get() :
+							tableModel().selection().items().get();
 			Maps.paintWaypoints(entities.stream()
 							.map(entity -> entity.optional(Lookup.CITY_LOCATION))
 							.flatMap(Optional::stream)
@@ -252,9 +252,9 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void exportJSON(File file) throws IOException {
-		Collection<Entity> entities = tableModel().selectionModel().isSelectionEmpty() ?
-						tableModel().items() :
-						tableModel().selectionModel().selectedItems().get();
+		Collection<Entity> entities = tableModel().selection().empty().get() ?
+						tableModel().items().get() :
+						tableModel().selection().items().get();
 		Files.write(file.toPath(), objectMapper.writeValueAsString(entities).getBytes(UTF_8));
 	}
 
@@ -293,7 +293,7 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private void clearTableAndConditions() {
 		tableModel().clear();
-		tableModel().conditionModel().clear();
+		tableModel().queryModel().conditions().clear();
 	}
 
 	private static Control createSelectAllColumnsControl(Controls toggleColumnsControls) {
