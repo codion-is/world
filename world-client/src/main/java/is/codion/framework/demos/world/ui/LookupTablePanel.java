@@ -60,7 +60,6 @@ import static is.codion.swing.common.ui.component.Components.scrollPane;
 import static is.codion.swing.common.ui.component.Components.toolBar;
 import static is.codion.swing.framework.ui.EntityTablePanel.ControlKeys.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.util.Collections.singletonList;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toSet;
 
@@ -245,7 +244,7 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void exportCSV(File file) throws IOException {
-		Files.write(file.toPath(), singletonList(table().export()
+		Files.write(file.toPath(), List.of(table().export()
 						.delimiter(',')
 						.selected(true)
 						.get()));
@@ -269,7 +268,8 @@ final class LookupTablePanel extends EntityTablePanel {
 		List<Entity> entities = objectMapper.deserializeEntities(
 						String.join("\n", Files.readAllLines(file.toPath())));
 		clearTableAndConditions();
-		tableModel().addItemsAtSorted(0, entities);
+		tableModel().items().visible().addItemsAt(0, entities);
+		tableModel().items().visible().sort();
 	}
 
 	private JToolBar createColumnSelectionToolBar() {

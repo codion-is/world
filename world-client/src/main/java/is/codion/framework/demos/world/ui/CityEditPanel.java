@@ -38,11 +38,11 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import static is.codion.swing.common.ui.component.Components.gridLayoutPanel;
 import static is.codion.swing.common.ui.layout.Layouts.borderLayout;
-import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.toSet;
 
 public final class CityEditPanel extends EntityEditPanel {
@@ -62,8 +62,8 @@ public final class CityEditPanel extends EntityEditPanel {
 						.control(Control.builder()
 										.command(this::populateLocation)
 										.enabled(State.and(active(),
-														editModel().isNull(City.LOCATION),
-														editModel().exists()))
+														editModel().entity().isNull(City.LOCATION),
+														editModel().entity().exists()))
 										.smallIcon(FrameworkIcons.instance().icon(Foundation.MAP))));
 	}
 
@@ -104,7 +104,7 @@ public final class CityEditPanel extends EntityEditPanel {
 	private void populateLocation() throws ValidationException, IOException, DatabaseException {
 		CityEditModel editModel = editModel();
 		editModel.populateLocation();
-		displayLocation(singleton(editModel.entity().get()));
+		displayLocation(List.of(editModel.entity().get()));
 	}
 
 	private void displayLocation(Collection<Entity> cities) {
