@@ -36,13 +36,6 @@ jlink {
 
     addExtraDependencies("slf4j-api")
 
-    prepareMergedJarsDir {
-        doLast {
-            //https://github.com/TIBCOSoftware/jasperreports/issues/463
-            project.delete(files("${mergedJarsDir}/net/sf/jasperreports/fonts"))
-        }
-    }
-
     launcher {
         jvmArgs = applicationDefaultJvmArgs
     }

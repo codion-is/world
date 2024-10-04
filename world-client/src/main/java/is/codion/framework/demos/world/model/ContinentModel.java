@@ -19,7 +19,7 @@
 package is.codion.framework.demos.world.model;
 
 import is.codion.common.model.condition.ConditionModel;
-import is.codion.common.model.condition.ConditionModel.AutomaticWildcard;
+import is.codion.common.model.condition.ConditionModel.Wildcard;
 import is.codion.framework.db.EntityConnectionProvider;
 import is.codion.framework.demos.world.domain.api.World.Continent;
 import is.codion.framework.demos.world.domain.api.World.Country;
@@ -84,9 +84,9 @@ public final class ContinentModel extends SwingEntityModel {
 		private CountryModel(EntityConnectionProvider connectionProvider) {
 			super(Country.TYPE, connectionProvider);
 			editModel().readOnly().set(true);
-			ConditionModel<?, ?> continentConditionModel =
+			ConditionModel<?> continentConditionModel =
 							tableModel().queryModel().conditions().get(Country.CONTINENT);
-			continentConditionModel.automaticWildcard().set(AutomaticWildcard.NONE);
+			continentConditionModel.wildcard().set(Wildcard.NONE);
 			continentConditionModel.caseSensitive().set(true);
 		}
 	}

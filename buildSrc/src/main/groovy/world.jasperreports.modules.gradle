@@ -3,8 +3,10 @@ plugins {
 }
 
 extraJavaModuleInfo {
-    automaticModule("net.sf.jasperreports:jasperreports", "net.sf.jasperreports.core")
-
+    // We turn the pdf and font jasperreport automatic modules into full fledged modules,
+    // otherwise when the jlink plugin runs it combines the contents of these jars with
+    // the jasperreports core jar, overwriting the jasperreports_extension.properties file
+    // from the core jar, causing errors that are *incredibly* hard to debug.
     module("net.sf.jasperreports:jasperreports-pdf", "net.sf.jasperreports.pdf") {
         exportAllPackages()
         requires("net.sf.jasperreports.core")
@@ -12,13 +14,12 @@ extraJavaModuleInfo {
         requires("org.apache.commons.logging")
         requires("com.github.librepdf.openpdf")
     }
-
-    knownModule("commons-logging:commons-logging", "org.apache.commons.logging")
-    knownModule("com.github.librepdf:openpdf", "com.github.librepdf.openpdf")
-
     module("net.sf.jasperreports:jasperreports-fonts", "net.sf.jasperreports.fonts") {
         exportAllPackages()
     }
+
+    knownModule("commons-logging:commons-logging", "org.apache.commons.logging")
+    knownModule("com.github.librepdf:openpdf", "com.github.librepdf.openpdf")
 
     automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
     automaticModule("com.adobe.xmp:xmpcore", "com.adobe.xmp.xmpcore")
