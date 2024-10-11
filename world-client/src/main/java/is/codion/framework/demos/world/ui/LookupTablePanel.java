@@ -24,7 +24,7 @@ import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.json.domain.EntityObjectMapper;
 import is.codion.swing.common.ui.Utilities;
 import is.codion.swing.common.ui.component.button.ToggleButtonType;
-import is.codion.swing.common.ui.component.table.ColumnConditionPanel.ConditionState;
+import is.codion.swing.common.ui.component.table.ConditionPanel.ConditionView;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.common.ui.control.Controls;
 import is.codion.swing.common.ui.control.ToggleControl;
@@ -105,10 +105,11 @@ final class LookupTablePanel extends EntityTablePanel {
 	private JDialog mapKitDialog;
 
 	LookupTablePanel(SwingEntityTableModel lookupModel) {
-		super(lookupModel, config -> config.showRefreshProgressBar(true));
+		super(lookupModel, config -> config
+						.showRefreshProgressBar(true)
+						.conditionView(ConditionView.SIMPLE));
 		columnSelectionPanelVisible.addConsumer(this::setColumnSelectionPanelVisible);
 		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		conditionPanel().state().set(ConditionState.SIMPLE);
 		configurePopupMenuAndToolBar();
 		bindEvents();
 	}

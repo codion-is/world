@@ -19,19 +19,33 @@
 package is.codion.framework.demos.world.ui;
 
 import is.codion.framework.demos.world.domain.api.World.City;
+import is.codion.framework.demos.world.domain.api.World.Country;
 import is.codion.framework.demos.world.model.CityTableModel;
 import is.codion.framework.demos.world.model.CityTableModel.PopulateLocationTask;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.common.ui.dialog.Dialogs;
+import is.codion.swing.framework.ui.EntityTableCellRenderer;
 import is.codion.swing.framework.ui.icon.FrameworkIcons;
 
 import org.kordamp.ikonli.foundation.Foundation;
 
+import java.awt.Color;
+import java.util.Objects;
+
 final class CityTablePanel extends ChartTablePanel {
 
 	CityTablePanel(CityTableModel tableModel) {
-		super(tableModel, tableModel.chartDataset(), "Cities", config ->
-						config.editable(attributes -> attributes.remove(City.LOCATION)));
+		super(tableModel, tableModel.chartDataset(), "Cities", config -> config
+						.table(builder -> builder
+										.cellRenderer(City.POPULATION, EntityTableCellRenderer.builder(City.POPULATION, tableModel)
+														.foreground((table, city, attribute, population) ->
+																		population > 1_000_000 ? Color.YELLOW : null)
+														.build())
+										.cellRenderer(City.NAME, EntityTableCellRenderer.builder(City.NAME, tableModel)
+														.foreground((table, city, attribute, name) ->
+																		Objects.equals(city.get(City.ID), city.get(City.COUNTRY_FK).get(Country.CAPITAL)) ? Color.GREEN : null)
+														.build()))
+						.editable(attributes -> attributes.remove(City.LOCATION)));
 		configurePopupMenu(config -> config.clear()
 						.control(createPopulateLocationControl())
 						.separator()

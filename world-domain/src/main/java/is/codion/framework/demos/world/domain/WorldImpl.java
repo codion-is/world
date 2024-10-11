@@ -96,7 +96,6 @@ public final class WorldImpl extends DomainModel {
 						.validator(new CityValidator())
 						.orderBy(ascending(City.NAME))
 						.stringFactory(City.NAME)
-						.foregroundColorProvider(new CityColorProvider())
 						.caption("City")
 						.build();
 	}

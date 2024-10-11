@@ -21,7 +21,6 @@ package is.codion.framework.demos.world.domain.api;
 import is.codion.common.db.operation.FunctionType;
 import is.codion.framework.db.EntityConnection;
 import is.codion.framework.domain.DomainType;
-import is.codion.framework.domain.entity.ColorProvider;
 import is.codion.framework.domain.entity.DefaultEntityValidator;
 import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.domain.entity.EntityType;
@@ -35,7 +34,6 @@ import is.codion.framework.domain.entity.exception.ValidationException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Objects;
 
 import static is.codion.common.db.operation.FunctionType.functionType;
 
@@ -159,31 +157,6 @@ public interface World {
 		}
 	}
 	// end::location[]
-
-	// tag::cityColorProvider[]
-	final class CityColorProvider implements ColorProvider {
-
-		@Serial
-		private static final long serialVersionUID = 1;
-
-		private static final String YELLOW = "#ffff00";
-		private static final String GREEN = "#00ff00";
-
-		@Override
-		public Object color(Entity city, Attribute<?> attribute) {
-			if (attribute.equals(City.POPULATION) &&
-							city.get(City.POPULATION) > 1_000_000) {
-				return YELLOW;
-			}
-			if (attribute.equals(City.NAME) &&
-							Objects.equals(city.get(City.ID), city.get(City.COUNTRY_FK).get(Country.CAPITAL))) {
-				return GREEN;
-			}
-
-			return null;
-		}
-	}
-	// end::cityColorProvider[]
 
 	// tag::noOfSpeakersProvider[]
 	final class NoOfSpeakersProvider implements DerivedAttribute.Provider<Integer> {

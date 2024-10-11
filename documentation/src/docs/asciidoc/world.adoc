@@ -178,11 +178,6 @@ include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/Worl
 include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=cityValidator]
 ----
 
-[source,java,options="nowrap"]
-----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=cityColorProvider]
-----
-
 ===== Implementation
 
 [source,java,options="nowrap"]
