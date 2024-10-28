@@ -21,12 +21,12 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.19")
+            version("codion", "0.18.20")
             version("h2", "2.3.232")
             version("json", "20240205")
             version("jfreechart", "1.5.4")
             version("jxmapviewer2", "2.8")
-            version("junit", "5.11.1")
+            version("junit", "5.11.2")
             version("flatlaf", "3.5.2")
             version("ikonli.foundation", "12.3.1")
             version("jasperreports", "7.0.1")
