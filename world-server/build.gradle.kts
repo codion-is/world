@@ -1,5 +1,5 @@
 plugins {
-    id "org.beryx.jlink"
+    id("org.beryx.jlink")
 }
 
 dependencies {
@@ -9,15 +9,25 @@ dependencies {
     runtimeOnly(libs.codion.dbms.h2)
     runtimeOnly(libs.h2)
 
-    runtimeOnly project(":world-domain")
+    runtimeOnly(project(":world-domain"))
 
     //logging library, skipping the email stuff
     runtimeOnly(libs.codion.plugin.logback.proxy) {
-        exclude group: "com.sun.mail", module: "javax.mail"
+        exclude(group = "com.sun.mail", module = "javax.mail")
     }
 }
 
-applicationDefaultJvmArgs = [
+val serverHost: String by project
+val serverRegistryPort: String by project
+val serverPort: String by project
+val serverHttpPort: String by project
+val serverAdminPort: String by project
+
+application {
+    mainModule.set("is.codion.framework.server")
+    mainClass.set("is.codion.framework.server.EntityServer")
+
+    applicationDefaultJvmArgs = listOf(
         "-Xmx256m",
         "-Dlogback.configurationFile=logback.xml",
         //RMI configuration
@@ -48,57 +58,64 @@ applicationDefaultJvmArgs = [
         "-Dcodion.server.connectionPoolUsers=scott:tiger",
         //Client logging disabled by default
         "-Dcodion.server.clientLogging=false"
-]
-
-application {
-    mainModule.set("is.codion.framework.server")
-    mainClass.set("is.codion.framework.server.EntityServer")
+    )
 }
 
 jlink {
     imageName.set(project.name)
     moduleName.set(application.mainModule)
-    options = ["--strip-debug", "--no-header-files", "--no-man-pages", "--ignore-signing-information",
-               "--add-modules", "is.codion.framework.db.local,is.codion.dbms.h2,is.codion.plugin.hikari.pool," +
-                       "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain,is.codion.framework.servlet"]
+    options.set(
+        listOf(
+            "--strip-debug",
+            "--no-header-files",
+            "--no-man-pages",
+            "--ignore-signing-information",
+            "--add-modules",
+            "is.codion.framework.db.local,is.codion.dbms.h2,is.codion.plugin.hikari.pool," +
+                    "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain,is.codion.framework.servlet"
+        )
+    )
 
     addExtraDependencies("slf4j-api")
 
     mergedModule {
-        excludeRequires "jetty.servlet.api"
+        excludeRequires("jetty.servlet.api")
     }
 
-    forceMerge "kotlin"
+    forceMerge("kotlin")
 
     launcher {
-        jvmArgs = applicationDefaultJvmArgs
+        jvmArgs.addAll(application.applicationDefaultJvmArgs)
     }
 
     jpackage {
         imageName = "World-Server"
-        if (org.gradle.internal.os.OperatingSystem.current().linux) {
+        if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             installerType = "deb"
             icon = "../world.png"
-            installerOptions = [
-                    "--resource-dir", "build/jpackage/World-Server/lib",
-                    "--linux-shortcut"
-            ]
+            installerOptions = listOf(
+                "--resource-dir",
+                "build/jpackage/World-Server/lib",
+                "--linux-shortcut"
+            )
         }
-        if (org.gradle.internal.os.OperatingSystem.current().windows) {
+        if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
             installerType = "msi"
             icon = "../world.ico"
-            imageOptions += ["--win-console"]
-            installerOptions = [
-                    "--win-menu",
-                    "--win-shortcut"
-            ]
+            imageOptions = imageOptions + listOf("--win-console")
+            installerOptions = listOf(
+                "--win-menu",
+                "--win-shortcut"
+            )
         }
     }
 }
 
-prepareMergedJarsDir.doLast {
-    copy {
-        from "src/main/resources"
-        into "$jlinkBasePath/mergedjars"
+tasks.prepareMergedJarsDir {
+    doLast {
+        copy {
+            from("src/main/resources")
+            into("build/jlinkbase/mergedjars")
+        }
     }
 }

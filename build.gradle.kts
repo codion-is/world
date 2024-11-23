@@ -1,5 +1,5 @@
 plugins {
-    id "java"
+    java
 }
 
 version = libs.versions.codion.get().replace("-SNAPSHOT", "")
@@ -10,7 +10,7 @@ java {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
-    options.deprecation = true
+    options.isDeprecation = true
 }
