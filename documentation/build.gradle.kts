@@ -17,18 +17,13 @@ tasks.asciidoctor {
 
     attributes(
         mapOf(
-            "codion-version" to project.version
+            "codion-version" to project.version,
+            "source-highlighter" to "prettify",
+            "tabsize" to 2
         )
     )
-
     asciidoctorj {
         setVersion("2.5.13")
-        attributes(
-            mapOf(
-                "source-highlighter" to "prettify",
-                "tabsize" to 2
-            )
-        )
     }
 }
 
