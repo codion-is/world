@@ -1,16 +1,10 @@
-[B
-[C
-is.codion.*
-[Lis.codion.*
-[Ljava.*
-java.*
+java.lang.*
+java.math.*
+java.time.*
+java.util.*
 jdk.*
+is.codion.*
 # # # # # # # # #
 # ServerMonitor #
 # # # # # # # # #
 ch.qos.logback.classic.Level
-# # # # # # # # #
-# JasperReports #
-# # # # # # # # #
-[Lnet.sf.jasperreports.*
-net.sf.jasperreports.*
