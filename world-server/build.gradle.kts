@@ -84,10 +84,6 @@ jlink {
 
     forceMerge("kotlin")
 
-    launcher {
-        jvmArgs.addAll(application.applicationDefaultJvmArgs)
-    }
-
     jpackage {
         imageName = "World-Server"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {

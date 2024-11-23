@@ -40,10 +40,6 @@ jlink {
         )
     )
 
-    launcher {
-        jvmArgs.addAll(application.applicationDefaultJvmArgs)
-    }
-
     jpackage {
         imageName = "World-Http"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {

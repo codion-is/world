@@ -41,10 +41,6 @@ jlink {
         )
     )
 
-    launcher {
-        jvmArgs.addAll(application.applicationDefaultJvmArgs)
-    }
-
     mergedModule {
         excludeRequires("com.fasterxml.jackson.annotation")
     }

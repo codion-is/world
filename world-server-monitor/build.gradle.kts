@@ -35,10 +35,6 @@ jlink {
         )
     )
 
-    launcher {
-        jvmArgs.addAll(application.applicationDefaultJvmArgs)
-    }
-
     jpackage {
         imageName = "World-Server-Monitor"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
