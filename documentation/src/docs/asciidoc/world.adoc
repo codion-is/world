@@ -91,7 +91,7 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/CountryTableM
 
 [source,java]
 ----
-include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryTableModelTest.java[tag=**]
+include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryTableModelTest.java[lines=19..-1]
 ----
 
 .country_report.jrxml
