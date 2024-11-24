@@ -18,7 +18,6 @@
  */
 package is.codion.framework.demos.world.model;
 
-import is.codion.common.db.report.ReportException;
 import is.codion.common.user.User;
 import is.codion.framework.db.EntityConnectionProvider;
 import is.codion.framework.db.local.LocalEntityConnectionProvider;
@@ -38,7 +37,7 @@ public final class CountryTableModelTest {
 					User.parse(System.getProperty("codion.test.user", "scott:tiger"));
 
 	@Test
-	void fillCountryReport() throws ReportException, JRException {
+	void fillCountryReport() throws JRException {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
 			tableModel.queryModel().conditions().get(Country.CODE).operands().equal().set("ISL");

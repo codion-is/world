@@ -18,9 +18,6 @@
  */
 package is.codion.framework.demos.world.model;
 
-import is.codion.common.db.exception.DatabaseException;
-import is.codion.common.db.report.ReportException;
-import is.codion.framework.db.EntityConnection;
 import is.codion.framework.db.EntityConnectionProvider;
 import is.codion.framework.demos.world.domain.api.World.City;
 import is.codion.framework.demos.world.domain.api.World.Country;
@@ -50,7 +47,7 @@ public final class CountryTableModel extends SwingEntityTableModel {
 		configureCapitalConditionModel();
 	}
 
-	public JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) throws ReportException {
+	public JasperPrint fillCountryReport(ProgressReporter<String> progressReporter) {
 		CountryReportDataSource dataSource =
 						new CountryReportDataSource(selection().items().get().iterator(),
 										connection(), progressReporter);
@@ -58,7 +55,7 @@ public final class CountryTableModel extends SwingEntityTableModel {
 		return fillReport(classPathReport(CountryTableModel.class, COUNTRY_REPORT), dataSource, reportParameters());
 	}
 
-	private static Map<String, Object> reportParameters() throws ReportException {
+	private static Map<String, Object> reportParameters() {
 		return new HashMap<>(singletonMap(CITY_SUBREPORT_PARAMETER,
 						classPathReport(CityTableModel.class, CITY_REPORT).load()));
 	}
@@ -75,13 +72,7 @@ public final class CountryTableModel extends SwingEntityTableModel {
 	private final class CapitalConditionSupplier implements Supplier<Condition> {
 		@Override
 		public Condition get() {
-			EntityConnection connection = connection();
-			try {
-				return City.ID.in(connection.select(Country.CAPITAL));
-			}
-			catch (DatabaseException e) {
-				throw new RuntimeException(e);
-			}
+			return City.ID.in(connection().select(Country.CAPITAL));
 		}
 	}
 }
