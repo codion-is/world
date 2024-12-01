@@ -15,8 +15,8 @@ dependencies {
 }
 
 application {
-    mainModule.set("is.codion.framework.demos.world.client")
-    mainClass.set("is.codion.framework.demos.world.ui.WorldAppPanel")
+    mainModule.set("is.codion.demos.world.client")
+    mainClass.set("is.codion.demos.world.ui.WorldAppPanel")
 
     applicationDefaultJvmArgs = listOf(
         "-Xmx128m",
@@ -37,7 +37,7 @@ jlink {
             "--no-man-pages",
             "--add-modules",
             "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2," +
-                    "is.codion.plugin.logback.proxy,is.codion.framework.demos.world.domain"
+                    "is.codion.plugin.logback.proxy,is.codion.demos.world.domain"
         )
     )
 

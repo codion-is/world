@@ -18,7 +18,7 @@ This tutorial assumes you have at least skimmed the https://codion.is/doc/{codio
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=world]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=world]
 ----
 
 The domain API sections below continue the World class.
@@ -27,7 +27,7 @@ The domain API sections below continue the World class.
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=world]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=world]
 ----
 
 The domain implementation sections below continue the WorldImpl class.
@@ -51,19 +51,19 @@ include::{dir-source-sql}/create_schema.sql[tags=country]
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=country]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=country]
 ----
 
 ===== Implementation
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=country]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=country]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=averageCityPopulationFunction]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=averageCityPopulationFunction]
 ----
 
 ==== Model
@@ -72,54 +72,54 @@ include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CountryModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CountryModel.java[lines=19..-1]
 ----
 
 ===== CountryEditModel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CountryEditModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CountryEditModel.java[lines=19..-1]
 ----
 
 ===== CountryTableModel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CountryTableModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CountryTableModel.java[lines=19..-1]
 ----
 
 [source,java]
 ----
-include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryTableModelTest.java[lines=19..-1]
+include::{dir-test-source-client}/is/codion/demos/world/model/CountryTableModelTest.java[lines=19..-1]
 ----
 
 .country_report.jrxml
 [%collapsible]
 ====
 [source,xml,options="nowrap"]
-include::{dir-source-reports}/is/codion/framework/demos/world/model/country_report.jrxml[]
+include::{dir-source-reports}/is/codion/demos/world/model/country_report.jrxml[]
 ====
 
 .city_report.jrxml
 [%collapsible]
 ====
 [source,xml,options="nowrap"]
-include::{dir-source-reports}/is/codion/framework/demos/world/model/city_report.jrxml[]
+include::{dir-source-reports}/is/codion/demos/world/model/city_report.jrxml[]
 ====
 
 ===== CountryReportDataSource
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CountryReportDataSource.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CountryReportDataSource.java[lines=19..-1]
 ----
 
 ===== CountryReportDataSourceTest
 
 [source,java,options="nowrap"]
 ----
-include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryReportDataSourceTest.java[lines=19..-1]
+include::{dir-test-source-client}/is/codion/demos/world/model/CountryReportDataSourceTest.java[lines=19..-1]
 ----
 
 ==== UI
@@ -128,21 +128,21 @@ include::{dir-test-source-client}/is/codion/framework/demos/world/model/CountryR
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CountryPanel.java[lines=19..-1]
 ----
 
 ===== CountryEditPanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryEditPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CountryEditPanel.java[lines=19..-1]
 ----
 
 ===== CountryTablePanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CountryTablePanel.java[lines=19..-1]
 ----
 
 === City
@@ -160,34 +160,34 @@ include::{dir-source-sql}/create_schema.sql[tags=city]
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=city]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=city]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=location]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=location]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=locationComparator]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=locationComparator]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=cityValidator]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=cityValidator]
 ----
 
 ===== Implementation
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=city]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=city]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=locationConverter]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=locationConverter]
 ----
 
 ==== Model
@@ -196,14 +196,14 @@ include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CityEditModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CityEditModel.java[lines=19..-1]
 ----
 
 ===== CityTableModel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CityTableModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CityTableModel.java[lines=19..-1]
 ----
 
 ==== UI
@@ -212,14 +212,14 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/CityTableMode
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CityEditPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CityEditPanel.java[lines=19..-1]
 ----
 
 ===== CityTablePanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CityTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CityTablePanel.java[lines=19..-1]
 ----
 
 === CountryLanguage
@@ -237,19 +237,19 @@ include::{dir-source-sql}/create_schema.sql[tags=country_language]
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=country_language]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=country_language]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=noOfSpeakersProvider]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=noOfSpeakersProvider]
 ----
 
 ===== Implementation
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=country_language]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=country_language]
 ----
 
 ==== Model
@@ -258,7 +258,7 @@ include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/CountryLanguageTableModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/CountryLanguageTableModel.java[lines=19..-1]
 ----
 
 ==== UI
@@ -267,14 +267,14 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/CountryLangua
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryLanguageEditPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CountryLanguageEditPanel.java[lines=19..-1]
 ----
 
 ===== CountryLanguageTablePanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/CountryLanguageTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/CountryLanguageTablePanel.java[lines=19..-1]
 ----
 
 == Continents
@@ -289,14 +289,14 @@ image::continents.png[]
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=continent]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=continent]
 ----
 
 ===== Implementation
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=continent]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=continent]
 ----
 
 ==== Model
@@ -305,7 +305,7 @@ include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/ContinentModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/ContinentModel.java[lines=19..-1]
 ----
 
 ==== UI
@@ -314,14 +314,14 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/ContinentMode
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/ContinentPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/ContinentPanel.java[lines=19..-1]
 ----
 
 ===== ContinentTablePanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/ContinentTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/ContinentTablePanel.java[lines=19..-1]
 ----
 
 == Lookup
@@ -336,14 +336,14 @@ image::lookup.png[]
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/framework/demos/world/domain/api/World.java[tags=lookup]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=lookup]
 ----
 
 ===== Implementation
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.java[tags=lookup]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=lookup]
 ----
 
 ==== UI
@@ -352,7 +352,7 @@ include::{dir-source-domain}/is/codion/framework/demos/world/domain/WorldImpl.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/LookupTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/LookupTablePanel.java[lines=19..-1]
 ----
 
 == Common classes
@@ -361,17 +361,17 @@ include::{dir-source-client}/is/codion/framework/demos/world/ui/LookupTablePanel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/ChartTablePanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/ChartTablePanel.java[lines=19..-1]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/ChartPanels.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/ChartPanels.java[lines=19..-1]
 ----
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/Maps.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/Maps.java[lines=19..-1]
 ----
 
 == Application
@@ -380,7 +380,7 @@ include::{dir-source-client}/is/codion/framework/demos/world/ui/Maps.java[lines=
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/model/WorldAppModel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/model/WorldAppModel.java[lines=19..-1]
 ----
 
 == UI
@@ -389,7 +389,7 @@ include::{dir-source-client}/is/codion/framework/demos/world/model/WorldAppModel
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-client}/is/codion/framework/demos/world/ui/WorldAppPanel.java[lines=19..-1]
+include::{dir-source-client}/is/codion/demos/world/ui/WorldAppPanel.java[lines=19..-1]
 ----
 
 [#_domain_unit_test]
@@ -397,7 +397,7 @@ include::{dir-source-client}/is/codion/framework/demos/world/ui/WorldAppPanel.ja
 
 [source,java,options="nowrap"]
 ----
-include::{dir-test-source-domain}/is/codion/framework/demos/world/domain/WorldImplTest.java[lines=19..-1]
+include::{dir-test-source-domain}/is/codion/demos/world/domain/WorldImplTest.java[lines=19..-1]
 ----
 
 == Module Info

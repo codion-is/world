@@ -16,12 +16,21 @@
  *
  * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
  */
-/**
- * Domain API.
- */
-module is.codion.demos.world.domain.api {
-	requires transitive is.codion.framework.domain;
-	requires transitive is.codion.framework.db.core;
+package is.codion.demos.world.ui;
 
-	exports is.codion.demos.world.domain.api;
+import is.codion.swing.framework.model.SwingEntityTableModel;
+import is.codion.swing.framework.ui.EntityTablePanel;
+
+import javax.swing.JTable;
+
+import static is.codion.swing.framework.ui.EntityTablePanel.ControlKeys.REFRESH;
+
+final class ContinentTablePanel extends EntityTablePanel {
+
+	ContinentTablePanel(SwingEntityTableModel tableModel) {
+		super(tableModel, config -> config.includeSouthPanel(false));
+		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		configurePopupMenu(config -> config.clear()
+						.control(REFRESH));
+	}
 }

@@ -14,8 +14,8 @@ val serverHost: String by project
 val serverRegistryPort: String by project
 
 application {
-    mainModule.set("is.codion.framework.demos.world.client")
-    mainClass.set("is.codion.framework.demos.world.ui.WorldAppPanel")
+    mainModule.set("is.codion.demos.world.client")
+    mainClass.set("is.codion.demos.world.ui.WorldAppPanel")
 
     applicationDefaultJvmArgs = listOf(
         "-Xmx128m",

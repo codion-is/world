@@ -16,12 +16,17 @@
  *
  * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
  */
-/**
- * Domain API.
- */
-module is.codion.demos.world.domain.api {
-	requires transitive is.codion.framework.domain;
-	requires transitive is.codion.framework.db.core;
+package is.codion.demos.world.model;
 
-	exports is.codion.demos.world.domain.api;
+import is.codion.framework.db.EntityConnectionProvider;
+import is.codion.swing.framework.model.SwingEntityModel;
+
+public final class CountryModel extends SwingEntityModel {
+
+	CountryModel(EntityConnectionProvider connectionProvider) {
+		super(new CountryTableModel(connectionProvider));
+		SwingEntityModel cityModel = new SwingEntityModel(new CityTableModel(connectionProvider));
+		SwingEntityModel countryLanguageModel = new SwingEntityModel(new CountryLanguageTableModel(connectionProvider));
+		addDetailModels(cityModel, countryLanguageModel);
+	}
 }

@@ -16,12 +16,13 @@
  *
  * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
  */
-/**
- * Domain API.
- */
-module is.codion.demos.world.domain.api {
-	requires transitive is.codion.framework.domain;
-	requires transitive is.codion.framework.db.core;
+package is.codion.demos.world.ui;
 
-	exports is.codion.demos.world.domain.api;
+import is.codion.demos.world.model.CountryLanguageTableModel;
+
+final class CountryLanguageTablePanel extends ChartTablePanel {
+
+	CountryLanguageTablePanel(CountryLanguageTableModel tableModel) {
+		super(tableModel, tableModel.chartDataset(), "Languages");
+	}
 }
