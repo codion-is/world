@@ -15,9 +15,8 @@ dependencies {
 }
 
 application {
-    mainModule.set("is.codion.demos.world.client")
-    mainClass.set("is.codion.demos.world.ui.WorldAppPanel")
-
+    mainModule = "is.codion.demos.world.client"
+    mainClass = "is.codion.demos.world.ui.WorldAppPanel"
     applicationDefaultJvmArgs = listOf(
         "-Xmx128m",
         "-Dcodion.client.connectionType=local",
@@ -28,17 +27,15 @@ application {
 }
 
 jlink {
-    imageName.set(project.name)
-    moduleName.set(application.mainModule)
-    options.set(
-        listOf(
-            "--strip-debug",
-            "--no-header-files",
-            "--no-man-pages",
-            "--add-modules",
-            "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2," +
-                    "is.codion.plugin.logback.proxy,is.codion.demos.world.domain"
-        )
+    imageName = project.name
+    moduleName = application.mainModule
+    options = listOf(
+        "--strip-debug",
+        "--no-header-files",
+        "--no-man-pages",
+        "--add-modules",
+        "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2," +
+                "is.codion.plugin.logback.proxy,is.codion.demos.world.domain"
     )
 
     addExtraDependencies("slf4j-api")
