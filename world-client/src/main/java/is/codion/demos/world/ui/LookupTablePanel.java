@@ -24,7 +24,6 @@ import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.json.domain.EntityObjectMapper;
 import is.codion.swing.common.ui.Utilities;
 import is.codion.swing.common.ui.component.button.ToggleButtonType;
-import is.codion.swing.common.ui.component.table.ConditionPanel.ConditionView;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.common.ui.control.Controls;
 import is.codion.swing.common.ui.control.ToggleControl;
@@ -58,8 +57,8 @@ import static is.codion.demos.world.ui.LookupTablePanel.ExportFormat.JSON;
 import static is.codion.framework.json.domain.EntityObjectMapper.entityObjectMapper;
 import static is.codion.swing.common.ui.component.Components.scrollPane;
 import static is.codion.swing.common.ui.component.Components.toolBar;
+import static is.codion.swing.common.ui.component.table.ConditionPanel.ConditionView.SIMPLE;
 import static is.codion.swing.framework.ui.EntityTablePanel.ControlKeys.*;
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toSet;
 
@@ -107,7 +106,7 @@ final class LookupTablePanel extends EntityTablePanel {
 	LookupTablePanel(SwingEntityTableModel lookupModel) {
 		super(lookupModel, config -> config
 						.showRefreshProgressBar(true)
-						.conditionView(ConditionView.SIMPLE));
+						.conditionView(SIMPLE));
 		columnSelectionPanelVisible.addConsumer(this::setColumnSelectionPanelVisible);
 		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		configurePopupMenuAndToolBar();
@@ -137,7 +136,7 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void configurePopupMenuAndToolBar() {
-		configurePopupMenu(config -> config.clear()
+		configurePopupMenu(layout -> layout.clear()
 						.control(REFRESH)
 						.control(CLEAR)
 						.separator()
@@ -255,7 +254,7 @@ final class LookupTablePanel extends EntityTablePanel {
 		Collection<Entity> entities = tableModel().selection().empty().get() ?
 						tableModel().items().get() :
 						tableModel().selection().items().get();
-		Files.write(file.toPath(), objectMapper.writeValueAsString(entities).getBytes(UTF_8));
+		Files.writeString(file.toPath(), objectMapper.writeValueAsString(entities));
 	}
 
 	private void importJSON() throws IOException {

@@ -32,6 +32,7 @@ import is.codion.swing.framework.model.SwingEntityTableModel;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -93,7 +94,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 		}
 
 		public StateObserver cancelled() {
-			return cancelled.not();
+			return cancelled.observer();
 		}
 
 		public void cancel() {
@@ -101,7 +102,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 		}
 
 		@Override
-		public Void execute(ProgressReporter<String> progressReporter) throws Exception {
+		public Void execute(ProgressReporter<String> progressReporter) throws IOException {
 			Collection<Entity> updatedCities = new ArrayList<>();
 			CityEditModel editModel = editModel();
 			Iterator<Entity> citiesIterator = cities.iterator();

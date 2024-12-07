@@ -41,7 +41,8 @@ public final class CountryReportDataSource extends JasperReportsDataSource<Entit
 
 	private final EntityConnection connection;
 
-	CountryReportDataSource(Iterator<Entity> countryIterator, EntityConnection connection,
+	CountryReportDataSource(Iterator<Entity> countryIterator,
+													EntityConnection connection,
 													ProgressReporter<String> progressReporter) {
 		super(countryIterator, new CountryValueProvider(),
 						new CountryReportProgressReporter(progressReporter));

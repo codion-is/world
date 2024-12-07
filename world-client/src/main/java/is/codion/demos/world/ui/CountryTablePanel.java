@@ -18,7 +18,7 @@
  */
 package is.codion.demos.world.ui;
 
-import is.codion.demos.world.domain.api.World;
+import is.codion.demos.world.domain.api.World.Country;
 import is.codion.demos.world.model.CountryTableModel;
 import is.codion.swing.common.model.worker.ProgressWorker.ProgressReporter;
 import is.codion.swing.common.ui.control.Control;
@@ -38,7 +38,7 @@ final class CountryTablePanel extends EntityTablePanel {
 
 	CountryTablePanel(SwingEntityTableModel tableModel) {
 		super(tableModel, config -> config
-						.editable(attributes -> attributes.remove(World.Country.CAPITAL_FK)));
+						.editable(attributes -> attributes.remove(Country.CAPITAL_FK)));
 	}
 
 	@Override
@@ -46,8 +46,8 @@ final class CountryTablePanel extends EntityTablePanel {
 		control(PRINT).set(Control.builder()
 						.command(this::viewCountryReport)
 						.name("Country report")
-						.enabled(tableModel().selection().empty().not())
 						.smallIcon(FrameworkIcons.instance().print())
+						.enabled(tableModel().selection().empty().not())
 						.build());
 	}
 

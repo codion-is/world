@@ -47,8 +47,8 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
 	private static final String DEFAULT_FLAT_LOOK_AND_FEEL = "com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerIJTheme";
 
-	public WorldAppPanel(WorldAppModel appModel) {
-		super(appModel);
+	public WorldAppPanel(WorldAppModel applicationModel) {
+		super(applicationModel);
 		FrameworkIcons.instance().add(Foundation.MAP, Foundation.PAGE_EXPORT, Foundation.PAGE_ADD, Foundation.CHECK);
 	}
 
@@ -68,11 +68,13 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 	}
 
 	public static void main(String[] args) throws CancelException {
-		Locale.setDefault(new Locale("en", "EN"));
-		Arrays.stream(FlatAllIJThemes.INFOS).forEach(LookAndFeelProvider::addLookAndFeel);
+		Locale.setDefault(Locale.of("en", "EN"));
+		Arrays.stream(FlatAllIJThemes.INFOS)
+						.forEach(LookAndFeelProvider::addLookAndFeel);
 		EntityPanel.Config.TOOLBAR_CONTROLS.set(true);
 		FilterTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
-		ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
+		ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING
+						.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
 		EntityApplicationPanel.builder(WorldAppModel.class, WorldAppPanel.class)
 						.applicationName("World")
 						.domainType(World.DOMAIN)
