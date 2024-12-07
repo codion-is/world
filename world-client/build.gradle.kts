@@ -38,8 +38,6 @@ dependencies {
     testImplementation(libs.codion.framework.db.local)
     testRuntimeOnly(libs.codion.dbms.h2)
     testRuntimeOnly(libs.h2)
-    testImplementation(libs.junit.api)
-    testRuntimeOnly(libs.junit.engine)
 }
 
 extraJavaModuleInfo {
@@ -55,13 +53,6 @@ jasperreports {
 
 sourceSets.main {
     resources.srcDir(tasks.compileAllReports)
-}
-
-tasks.test {
-    useJUnitPlatform()
-    systemProperty("codion.test.user", "scott:tiger")
-    systemProperty("codion.db.url", "jdbc:h2:mem:h2db")
-    systemProperty("codion.db.initScripts", "classpath:create_schema.sql")
 }
 
 tasks.register<WriteProperties>("writeVersion") {
