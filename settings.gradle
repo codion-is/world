@@ -54,7 +54,6 @@ dependencyResolutionManagement {
             library("jfreechart", "org.jfree", "jfreechart").versionRef("jfreechart")
             library("ikonli-foundation", "org.kordamp.ikonli", "ikonli-foundation-pack").versionRef("ikonli.foundation")
 
-            library("flatlaf", "com.formdev", "flatlaf").versionRef("flatlaf")
             library("flatlaf-intellij-themes", "com.formdev", "flatlaf-intellij-themes").versionRef("flatlaf")
             library("jasperreports-jdt", "net.sf.jasperreports", "jasperreports-jdt").versionRef("jasperreports")
             library("jasperreports-pdf", "net.sf.jasperreports", "jasperreports-pdf").versionRef("jasperreports")

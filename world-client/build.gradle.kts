@@ -16,7 +16,6 @@ dependencies {
 
     implementation(libs.json)
     implementation(libs.jfreechart)
-    implementation(libs.flatlaf)
     implementation(libs.flatlaf.intellij.themes)
     implementation(libs.ikonli.foundation)
 
