@@ -26,7 +26,7 @@ dependencyResolutionManagement {
             version("json", "20240205")
             version("jfreechart", "1.5.4")
             version("jxmapviewer2", "2.8")
-            version("flatlaf", "3.5.3")
+            version("flatlaf", "3.5.4")
             version("ikonli.foundation", "12.3.1")
             version("jasperreports", "7.0.1")
 
