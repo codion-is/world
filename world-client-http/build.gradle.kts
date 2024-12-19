@@ -40,7 +40,6 @@ jlink {
     jpackage {
         imageName = "World-Http"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
-            installerType = "deb"
             icon = "../world.png"
             installerOptions = listOf(
                 "--resource-dir",
@@ -49,7 +48,6 @@ jlink {
             )
         }
         if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
-            installerType = "msi"
             icon = "../world.ico"
             installerOptions = listOf(
                 "--win-menu",

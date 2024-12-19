@@ -84,7 +84,6 @@ jlink {
     jpackage {
         imageName = "World-Server"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
-            installerType = "deb"
             icon = "../world.png"
             installerOptions = listOf(
                 "--resource-dir",
@@ -93,7 +92,6 @@ jlink {
             )
         }
         if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
-            installerType = "msi"
             icon = "../world.ico"
             imageOptions = imageOptions + listOf("--win-console")
             installerOptions = listOf(
