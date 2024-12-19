@@ -2,8 +2,6 @@ plugins {
     java
 }
 
-version = libs.versions.codion.get().replace("-SNAPSHOT", "")
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(23)
@@ -12,6 +10,8 @@ java {
 
 configure(subprojects) {
     apply(plugin = "java")
+
+    version = rootProject.libs.versions.codion.get().replace("-SNAPSHOT", "")
 
     tasks.withType<JavaCompile>().configureEach {
         options.encoding = "UTF-8"
