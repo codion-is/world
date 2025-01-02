@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -49,10 +49,10 @@ public final class CityEditModel extends SwingEntityEditModel {
 	}
 
 	public void populateLocation() throws IOException {
-		Location location = lookupLocation(entity().get())
-						.orElseThrow(() -> new RuntimeException("Location not found for city: " + entity()));
+		Location location = lookupLocation(editor().get())
+						.orElseThrow(() -> new RuntimeException("Location not found for city: " + editor().get()));
 		value(City.LOCATION).set(location);
-		if (entity().modified().get()) {
+		if (editor().modified().get()) {
 			update();
 		}
 	}

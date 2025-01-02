@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -43,9 +43,9 @@ public final class ContinentModel extends SwingEntityModel {
 
 	ContinentModel(EntityConnectionProvider connectionProvider) {
 		super(Continent.TYPE, connectionProvider);
-		tableModel().refresher().success().addConsumer(this::refreshChartDatasets);
+		tableModel().items().refresher().success().addConsumer(this::refreshChartDatasets);
 		CountryModel countryModel = new CountryModel(connectionProvider);
-		addDetailModel(new CountryModelLink(countryModel)).active().set(true);
+		detailModels().add(new CountryModelLink(countryModel)).active().set(true);
 	}
 
 	public PieDataset<String> populationDataset() {
@@ -101,7 +101,7 @@ public final class ContinentModel extends SwingEntityModel {
 		public void onSelection(Collection<Entity> selectedEntities) {
 			Collection<String> continentNames = Entity.values(Continent.NAME, selectedEntities);
 			if (detailModel().tableModel().queryModel().conditions().setInOperands(Country.CONTINENT, continentNames)) {
-				detailModel().tableModel().refresh();
+				detailModel().tableModel().items().refresh();
 			}
 		}
 	}

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -41,7 +41,7 @@ final class CountryEditPanel extends EntityEditPanel {
 
 	@Override
 	protected void initializeUI() {
-		initialFocusAttribute().set(Country.CODE);
+		focus().initial().set(Country.CODE);
 
 		createTextField(Country.CODE)
 						.columns(6)
@@ -72,7 +72,7 @@ final class CountryEditPanel extends EntityEditPanel {
 						.editable(true);
 		createTextField(Country.HEADOFSTATE);
 		//create a panel with a button for adding a new city
-		createForeignKeyComboBoxPanel(Country.CAPITAL_FK, this::createCapitalEditPanel)
+		createComboBoxPanel(Country.CAPITAL_FK, this::createCapitalEditPanel)
 						.comboBoxPreferredWidth(PREFERRED_COMBO_BOX_WIDTH)
 						.includeAddButton(true);
 		//add a field displaying the avarage city population for the selected country
@@ -126,9 +126,9 @@ final class CountryEditPanel extends EntityEditPanel {
 
 	private EntityEditPanel createCapitalEditPanel() {
 		CityEditPanel capitalEditPanel = new CityEditPanel(new SwingEntityEditModel(City.TYPE, editModel().connectionProvider()));
-		if (editModel().entity().exists().get()) {
+		if (editModel().editor().exists().get()) {
 			//if an existing country is selected, then we don't allow it to be changed
-			capitalEditPanel.editModel().value(City.COUNTRY_FK).set(editModel().entity().get());
+			capitalEditPanel.editModel().value(City.COUNTRY_FK).set(editModel().editor().get());
 			//initialize the panel components, so we can configure the country component
 			capitalEditPanel.initialize();
 			//disable the country selection component

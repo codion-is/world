@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -71,7 +71,7 @@ final class ContinentPanel extends EntityPanel {
 						.build();
 
 		EntityTablePanel countryTablePanel =
-						new EntityTablePanel(model.detailModel(Country.TYPE).tableModel(),
+						new EntityTablePanel(model.detailModels().get(Country.TYPE).tableModel(),
 										config -> config
 														.includeConditions(false)
 														.includeToolBar(false));

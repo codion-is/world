@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -60,16 +60,16 @@ public final class CityEditPanel extends EntityEditPanel {
 						.control(Control.builder()
 										.command(this::populateLocation)
 										.enabled(State.and(active(),
-														editModel().entity().isNull(City.LOCATION),
-														editModel().entity().exists()))
+														editModel().editor().isNull(City.LOCATION),
+														editModel().editor().exists()))
 										.smallIcon(FrameworkIcons.instance().icon(Foundation.MAP))));
 	}
 
 	@Override
 	protected void initializeUI() {
-		initialFocusAttribute().set(City.COUNTRY_FK);
+		focus().initial().set(City.COUNTRY_FK);
 
-		createForeignKeyComboBox(City.COUNTRY_FK)
+		createComboBox(City.COUNTRY_FK)
 						.preferredWidth(120);
 		createTextField(City.NAME);
 		createTextField(City.DISTRICT);
@@ -96,13 +96,13 @@ public final class CityEditPanel extends EntityEditPanel {
 		JComponent countryComponent = component(City.COUNTRY_FK).get();
 		countryComponent.setEnabled(false);
 		countryComponent.setFocusable(false);
-		initialFocusAttribute().set(City.NAME);
+		focus().initial().set(City.NAME);
 	}
 
 	private void populateLocation() throws IOException {
 		CityEditModel editModel = editModel();
 		editModel.populateLocation();
-		displayLocation(List.of(editModel.entity().get()));
+		displayLocation(List.of(editModel.editor().get()));
 	}
 
 	private void displayLocation(Collection<Entity> cities) {

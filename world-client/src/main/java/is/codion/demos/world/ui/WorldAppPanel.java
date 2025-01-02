@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -54,13 +54,13 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
 	@Override
 	protected List<EntityPanel> createEntityPanels() {
-		CountryModel countryModel = applicationModel().entityModel(Country.TYPE);
+		CountryModel countryModel = applicationModel().entityModels().get(Country.TYPE);
 		CountryPanel countryPanel = new CountryPanel(countryModel);
 
-		ContinentModel continentModel = applicationModel().entityModel(Continent.TYPE);
+		ContinentModel continentModel = applicationModel().entityModels().get(Continent.TYPE);
 		ContinentPanel continentPanel = new ContinentPanel(continentModel);
 
-		SwingEntityModel lookupModel = applicationModel().entityModel(Lookup.TYPE);
+		SwingEntityModel lookupModel = applicationModel().entityModels().get(Lookup.TYPE);
 		EntityPanel lookupPanel = new EntityPanel(lookupModel,
 						new LookupTablePanel(lookupModel.tableModel()));
 

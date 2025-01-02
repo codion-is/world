@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -38,10 +38,10 @@ public class CountryEditModelTest {
 	void averageCityPopulation() {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryEditModel countryEditModel = new CountryEditModel(connectionProvider);
-			countryEditModel.entity().set(connectionProvider.connection().selectSingle(
+			countryEditModel.editor().set(connectionProvider.connection().selectSingle(
 							Country.NAME.equalTo("Afghanistan")));
 			assertEquals(583_025, countryEditModel.averageCityPopulation().get());
-			countryEditModel.entity().defaults();
+			countryEditModel.editor().defaults();
 			assertNull(countryEditModel.averageCityPopulation().get());
 		}
 	}

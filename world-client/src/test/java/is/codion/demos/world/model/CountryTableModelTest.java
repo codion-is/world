@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2024 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -41,7 +41,7 @@ public final class CountryTableModelTest {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
 			tableModel.queryModel().conditions().get(Country.CODE).operands().equal().set("ISL");
-			tableModel.refresh();
+			tableModel.items().refresh();
 			tableModel.selection().index().set(0);
 			JasperPrint jasperPrint = tableModel.fillCountryReport(new ProgressReporter<String>() {
 				@Override

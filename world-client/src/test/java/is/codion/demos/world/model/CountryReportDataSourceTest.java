@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -51,8 +51,8 @@ public final class CountryReportDataSourceTest {
 	@Test
 	void iterate() throws JRException {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
-			Value<Integer> progressCounter = Value.value();
-			Value<String> publishedValue = Value.value();
+			Value<Integer> progressCounter = Value.nullable();
+			Value<String> publishedValue = Value.nullable();
 			ProgressReporter<String> progressReporter = new ProgressReporter<>() {
 				@Override
 				public void report(int progress) {

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -36,9 +36,9 @@ final class CountryLanguageEditPanel extends EntityEditPanel {
 
 	@Override
 	protected void initializeUI() {
-		initialFocusAttribute().set(CountryLanguage.COUNTRY_FK);
+		focus().initial().set(CountryLanguage.COUNTRY_FK);
 
-		createForeignKeyComboBox(CountryLanguage.COUNTRY_FK)
+		createComboBox(CountryLanguage.COUNTRY_FK)
 						.preferredWidth(120);
 		createTextField(CountryLanguage.LANGUAGE);
 		createCheckBox(CountryLanguage.IS_OFFICIAL);

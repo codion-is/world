@@ -1,5 +1,5 @@
 plugins {
-    id("org.asciidoctor.jvm.convert") version "4.0.3"
+    id("org.asciidoctor.jvm.convert") version "4.0.4"
 }
 
 version = libs.versions.codion.get().replace("-SNAPSHOT", "")

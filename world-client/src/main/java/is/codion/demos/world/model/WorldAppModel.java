@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -34,9 +34,9 @@ public final class WorldAppModel extends SwingEntityApplicationModel {
 		SwingEntityModel lookupModel = new SwingEntityModel(Lookup.TYPE, connectionProvider);
 		ContinentModel continentModel = new ContinentModel(connectionProvider);
 
-		countryModel.tableModel().refresh();
-		continentModel.tableModel().refresh();
+		countryModel.tableModel().items().refresh();
+		continentModel.tableModel().items().refresh();
 
-		addEntityModels(countryModel, lookupModel, continentModel);
+		entityModels().add(countryModel, lookupModel, continentModel);
 	}
 }

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.ui;
 
@@ -268,7 +268,7 @@ final class LookupTablePanel extends EntityTablePanel {
 		List<Entity> entities = objectMapper.deserializeEntities(
 						String.join("\n", Files.readAllLines(file.toPath())));
 		clearTableAndConditions();
-		tableModel().items().visible().addItemsAt(0, entities);
+		tableModel().items().visible().add(0, entities);
 		tableModel().items().visible().sort();
 	}
 

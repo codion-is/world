@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
+import is.codion.common.observable.Observable;
 import is.codion.common.value.Value;
-import is.codion.common.value.ValueObserver;
 import is.codion.demos.world.domain.api.World.City;
 import is.codion.demos.world.domain.api.World.Country;
 import is.codion.framework.db.EntityConnectionProvider;
@@ -32,21 +32,21 @@ import java.util.Objects;
 
 public final class CountryEditModel extends SwingEntityEditModel {
 
-	private final Value<Double> averageCityPopulation = Value.value();
+	private final Value<Double> averageCityPopulation = Value.nullable();
 
 	CountryEditModel(EntityConnectionProvider connectionProvider) {
 		super(Country.TYPE, connectionProvider);
 		initializeComboBoxModels(Country.CAPITAL_FK);
-		entity().addConsumer(country ->
+		editor().addConsumer(country ->
 						averageCityPopulation.set(averageCityPopulation(country)));
 	}
 
 	@Override
-	public EntityComboBoxModel createForeignKeyComboBoxModel(ForeignKey foreignKey) {
-		EntityComboBoxModel comboBoxModel = super.createForeignKeyComboBoxModel(foreignKey);
+	public EntityComboBoxModel createComboBoxModel(ForeignKey foreignKey) {
+		EntityComboBoxModel comboBoxModel = super.createComboBoxModel(foreignKey);
 		if (foreignKey.equals(Country.CAPITAL_FK)) {
 			//only show cities for currently selected country
-			entity().addConsumer(country ->
+			editor().addConsumer(country ->
 							comboBoxModel.filter().predicate().set(city ->
 											country != null && Objects.equals(city.get(City.COUNTRY_FK), country)));
 		}
@@ -54,14 +54,12 @@ public final class CountryEditModel extends SwingEntityEditModel {
 		return comboBoxModel;
 	}
 
-	public ValueObserver<Double> averageCityPopulation() {
-		return averageCityPopulation.observer();
+	public Observable<Double> averageCityPopulation() {
+		return averageCityPopulation.observable();
 	}
 
 	private Double averageCityPopulation(Entity country) {
-		if (country == null) {
-			return null;
-		}
-		return connection().execute(Country.AVERAGE_CITY_POPULATION, country.get(Country.CODE));
+		return country == null ? null :
+						connection().execute(Country.AVERAGE_CITY_POPULATION, country.get(Country.CODE));
 	}
 }

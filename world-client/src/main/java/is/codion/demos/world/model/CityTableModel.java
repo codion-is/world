@@ -14,13 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
 import is.codion.common.event.Event;
+import is.codion.common.state.ObservableState;
 import is.codion.common.state.State;
-import is.codion.common.state.StateObserver;
 import is.codion.demos.world.domain.api.World.City;
 import is.codion.demos.world.domain.api.World.Country;
 import is.codion.framework.db.EntityConnectionProvider;
@@ -49,7 +49,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 		super(new CityEditModel(connectionProvider));
 		selection().items().addConsumer(displayLocationEvent);
 		selection().indexes().addListener(this::updateCitiesWithoutLocationSelected);
-		refresher().success().addConsumer(this::refreshChartDataset);
+		items().refresher().success().addConsumer(this::refreshChartDataset);
 	}
 
 	public PieDataset<String> chartDataset() {
@@ -64,8 +64,8 @@ public final class CityTableModel extends SwingEntityTableModel {
 		displayLocationEvent.addConsumer(consumer);
 	}
 
-	public StateObserver citiesWithoutLocationSelected() {
-		return citiesWithoutLocationSelected.observer();
+	public ObservableState citiesWithoutLocationSelected() {
+		return citiesWithoutLocationSelected.observable();
 	}
 
 	private void refreshChartDataset(Collection<Entity> cities) {
@@ -93,8 +93,8 @@ public final class CityTableModel extends SwingEntityTableModel {
 			return cities.size();
 		}
 
-		public StateObserver cancelled() {
-			return cancelled.observer();
+		public ObservableState cancelled() {
+			return cancelled.observable();
 		}
 
 		public void cancel() {

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Codion World Demo.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (c) 2023 - 2024, Björn Darri Sigurðsson.
+ * Copyright (c) 2023 - 2025, Björn Darri Sigurðsson.
  */
 package is.codion.demos.world.model;
 
@@ -35,7 +35,7 @@ public final class CountryLanguageTableModel extends SwingEntityTableModel {
 	CountryLanguageTableModel(EntityConnectionProvider connectionProvider) {
 		super(CountryLanguage.TYPE, connectionProvider);
 		editModel().initializeComboBoxModels(CountryLanguage.COUNTRY_FK);
-		refresher().success().addConsumer(this::refreshChartDataset);
+		items().refresher().success().addConsumer(this::refreshChartDataset);
 	}
 
 	public PieDataset<String> chartDataset() {
