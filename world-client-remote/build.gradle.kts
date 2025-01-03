@@ -43,12 +43,9 @@ jlink {
     }
 
     jpackage {
-        imageName = "World-Remote"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             icon = "../world.png"
             installerOptions = listOf(
-                "--resource-dir",
-                "build/jpackage/World-Remote/lib",
                 "--linux-shortcut"
             )
         }

@@ -41,12 +41,9 @@ jlink {
     addExtraDependencies("slf4j-api")
 
     jpackage {
-        imageName = "World-Local"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             icon = "../world.png"
             installerOptions = listOf(
-                "--resource-dir",
-                "build/jpackage/World-Local/lib",
                 "--linux-shortcut"
             )
         }

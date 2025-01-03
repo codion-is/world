@@ -36,12 +36,9 @@ jlink {
     )
 
     jpackage {
-        imageName = "World-Server-Monitor"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             icon = "../world.png"
             installerOptions = listOf(
-                "--resource-dir",
-                "build/jpackage/World-Server-Monitor/lib",
                 "--linux-shortcut"
             )
         }

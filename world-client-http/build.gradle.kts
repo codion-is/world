@@ -38,12 +38,9 @@ jlink {
     )
 
     jpackage {
-        imageName = "World-Http"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             icon = "../world.png"
             installerOptions = listOf(
-                "--resource-dir",
-                "build/jpackage/World-Http/lib",
                 "--linux-shortcut"
             )
         }

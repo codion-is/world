@@ -82,12 +82,9 @@ jlink {
     forceMerge("kotlin")
 
     jpackage {
-        imageName = "World-Server"
         if (org.gradle.internal.os.OperatingSystem.current().isLinux) {
             icon = "../world.png"
             installerOptions = listOf(
-                "--resource-dir",
-                "build/jpackage/World-Server/lib",
                 "--linux-shortcut"
             )
         }
