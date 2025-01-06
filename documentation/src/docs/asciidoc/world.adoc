@@ -2,6 +2,7 @@
 = World Tutorial
 :toc: left
 :imagesdir: images
+:root-dir: ../../../..
 :dir-source-domain-api: ../../../../world-domain-api/src/main/java
 :dir-source-domain: ../../../../world-domain/src/main/java
 :dir-source-client: ../../../../world-client/src/main/java
@@ -9,6 +10,8 @@
 :dir-source-sql: ../../../../world-domain/src/main/resources
 :dir-test-source-domain: ../../../../world-domain/src/test/java
 :dir-test-source-client: ../../../../world-client/src/test/java
+
+NOTE: For the Gradle build configuration see <<#_build, Build>> section.
 
 This tutorial assumes you have at least skimmed the https://codion.is/doc/{codion-version}/manual/manual.html#_domain_model[Domain model] part of the Codion manual.
 
@@ -424,3 +427,177 @@ include::{dir-source-domain}/module-info.java[lines=19..-1]
 ----
 include::{dir-source-client}/module-info.java[lines=19..-1]
 ----
+
+== Build
+
+=== buildSrc
+
+.settings.gradle
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/buildSrc/settings.gradle[]
+----
+====
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/buildSrc/build.gradle.kts[]
+----
+====
+
+.chinook.jasperreports.modules.gradle
+[%collapsible]
+====
+[source,groovy,options="nowrap"]
+----
+include::{root-dir}/buildSrc/src/main/groovy/world.jasperreports.modules.gradle[]
+----
+====
+
+.chinook.spotless.plugin.gradle
+[%collapsible]
+====
+[source,groovy,options="nowrap"]
+----
+include::{root-dir}/buildSrc/src/main/groovy/world.spotless.plugin.gradle[]
+----
+====
+
+=== Project
+
+==== Properties
+.gradle.properties
+[%collapsible]
+====
+[source,options="nowrap"]
+----
+include::{root-dir}/gradle.properties[]
+----
+====
+
+==== Settings
+
+.settings.gradle
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/settings.gradle[]
+----
+====
+
+==== Build
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/build.gradle.kts[]
+----
+====
+
+== Modules
+
+=== world-domain-api
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-domain-api/build.gradle.kts[]
+----
+====
+
+=== world-domain
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-domain/build.gradle.kts[]
+----
+====
+
+=== world-client
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-client/build.gradle.kts[]
+----
+====
+
+=== world-client-local
+
+NOTE: Configuration only, client with a local JDBC connection.
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-client-local/build.gradle.kts[]
+----
+====
+
+=== world-client-remote
+
+NOTE: Configuration only, client with a remote connection.
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-client-remote/build.gradle.kts[]
+----
+====
+
+=== world-client-http
+
+NOTE: Configuration only, client with an HTTP connection.
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-client-http/build.gradle.kts[]
+----
+====
+
+=== world-server
+
+NOTE: Configuration only, runs the server the world domain.
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-server/build.gradle.kts[]
+----
+====
+
+=== world-server-monitor
+
+NOTE: Configuration only, server-monitor.
+
+.build.gradle.kts
+[%collapsible]
+====
+[source,kotlin,options="nowrap"]
+----
+include::{root-dir}/world-server-monitor/build.gradle.kts[]
+----
+====
