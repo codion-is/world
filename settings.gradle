@@ -21,12 +21,11 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.23")
+            version("codion", "0.18.24")
             version("h2", "2.3.232")
             version("json", "20240205")
             version("jfreechart", "1.5.4")
             version("jxmapviewer2", "2.8")
-            version("flatlaf", "3.5.4")
             version("ikonli.foundation", "12.3.1")
             version("jasperreports", "7.0.1")
 
@@ -42,6 +41,8 @@ dependencyResolutionManagement {
             library("codion-plugin-jasperreports", "is.codion", "codion-plugin-jasperreports").versionRef("codion")
             library("codion-plugin-logback-proxy", "is.codion", "codion-plugin-logback-proxy").versionRef("codion")
             library("codion-plugin-hikari-pool", "is.codion", "codion-plugin-hikari-pool").versionRef("codion")
+            library("codion-plugin-flatlaf", "is.codion", "codion-plugin-flatlaf").versionRef("codion")
+            library("codion-plugin-flatlaf-intellij-themes", "is.codion", "codion-plugin-flatlaf-intellij-themes").versionRef("codion")
             library("codion-framework-server", "is.codion", "codion-framework-server").versionRef("codion")
             library("codion-framework-servlet", "is.codion", "codion-framework-servlet").versionRef("codion")
             library("codion-tools-monitor-ui", "is.codion", "codion-tools-monitor-ui").versionRef("codion")
@@ -54,7 +55,6 @@ dependencyResolutionManagement {
             library("jfreechart", "org.jfree", "jfreechart").versionRef("jfreechart")
             library("ikonli-foundation", "org.kordamp.ikonli", "ikonli-foundation-pack").versionRef("ikonli.foundation")
 
-            library("flatlaf-intellij-themes", "com.formdev", "flatlaf-intellij-themes").versionRef("flatlaf")
             library("jasperreports-jdt", "net.sf.jasperreports", "jasperreports-jdt").versionRef("jasperreports")
             library("jasperreports-pdf", "net.sf.jasperreports", "jasperreports-pdf").versionRef("jasperreports")
             library("jasperreports-fonts", "net.sf.jasperreports", "jasperreports-fonts").versionRef("jasperreports")

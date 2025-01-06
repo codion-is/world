@@ -23,8 +23,9 @@ module is.codion.demos.world.client {
 	requires is.codion.framework.json.domain;
 	requires is.codion.swing.framework.ui;
 	requires is.codion.plugin.jasperreports;
+	requires is.codion.plugin.flatlaf;
+	requires is.codion.plugin.flatlaf.intellij.themes;
 	requires is.codion.demos.world.domain.api;
-	requires com.formdev.flatlaf.intellijthemes;
 	requires org.kordamp.ikonli.foundation;
 	requires org.jfree.jfreechart;
 	requires net.sf.jasperreports.core;

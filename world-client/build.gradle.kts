@@ -10,13 +10,14 @@ dependencies {
 
     implementation(libs.codion.framework.json.domain)
     implementation(libs.codion.swing.framework.ui)
+    implementation(libs.codion.plugin.flatlaf)
+    implementation(libs.codion.plugin.flatlaf.intellij.themes)
     implementation(libs.codion.plugin.jasperreports) {
         exclude(group = "org.apache.xmlgraphics")
     }
 
     implementation(libs.json)
     implementation(libs.jfreechart)
-    implementation(libs.flatlaf.intellij.themes)
     implementation(libs.ikonli.foundation)
 
     implementation(libs.jxmapviewer2) {
