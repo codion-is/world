@@ -11,6 +11,8 @@
 :dir-test-source-domain: ../../../../world-domain/src/test/java
 :dir-test-source-client: ../../../../world-client/src/test/java
 
+https://github.com/codion-is/world[World Demo on Github]
+
 NOTE: For the Gradle build configuration see <<#_build, Build>> section.
 
 This tutorial assumes you have at least skimmed the https://codion.is/doc/{codion-version}/manual/manual.html#_domain_model[Domain model] part of the Codion manual.
