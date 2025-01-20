@@ -105,7 +105,6 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	LookupTablePanel(SwingEntityTableModel lookupModel) {
 		super(lookupModel, config -> config
-						.showRefreshProgressBar(true)
 						.conditionView(SIMPLE));
 		columnSelectionPanelVisible.addConsumer(this::setColumnSelectionPanelVisible);
 		table().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
