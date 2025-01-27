@@ -31,7 +31,9 @@ final class CountryLanguageEditPanel extends EntityEditPanel {
 
 	CountryLanguageEditPanel(SwingEntityEditModel editModel) {
 		super(editModel);
-		editModel.value(CountryLanguage.IS_OFFICIAL).edited().addListener(this::update);
+		// Perform an update each time the IS_OFFICIAL
+		// value is edited, bypassing the update confirmation
+		editModel.editor().value(CountryLanguage.IS_OFFICIAL).edited().addListener(this::update);
 	}
 
 	@Override

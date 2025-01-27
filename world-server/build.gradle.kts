@@ -35,8 +35,8 @@ application {
         "-Djava.rmi.server.randomIDs=true",
         "-Djava.rmi.server.useCodebaseOnly=true",
         //The serialization whitelist
-        "-Dcodion.server.objectInputFilterFactoryClassName=is.codion.common.rmi.server.WhitelistInputFilterFactory",
-        "-Dcodion.server.serializationFilterWhitelist=classpath:serialization-whitelist.txt",
+        "-Dcodion.server.objectInputFilterFactoryClassName=is.codion.common.rmi.server.SerializationFilterFactory",
+        "-Dcodion.server.serialization.filter.patternFile=classpath:serialization-whitelist.txt",
         //SSL configuration
         "-Dcodion.server.classpathKeyStore=keystore.jks",
         "-Djavax.net.ssl.keyStorePassword=crappypass",

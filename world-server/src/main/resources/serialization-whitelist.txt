@@ -1,10 +1,10 @@
-java.lang.*
-java.math.*
-java.time.*
-java.util.*
-jdk.*
-is.codion.*
-# # # # # # # # #
-# ServerMonitor #
-# # # # # # # # #
+java.lang.**
+java.math.**
+java.time.**
+java.util.**
+jdk.**
+is.codion.**
+# ServerMonitor
 ch.qos.logback.classic.Level
+# Reject all other classes
+!*
