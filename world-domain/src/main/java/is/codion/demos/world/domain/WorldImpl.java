@@ -196,7 +196,7 @@ public final class WorldImpl extends DomainModel {
 										Country.FLAG.define()
 														.column()
 														.caption("Flag")
-														.lazy(true),
+														.selected(false),
 										Country.CODE_2.define()
 														.column()
 														.caption("Code2")
@@ -297,7 +297,7 @@ public final class WorldImpl extends DomainModel {
 										Lookup.COUNTRY_FLAG.define()
 														.column()
 														.caption("Flag")
-														.lazy(true),
+														.selected(false),
 										Lookup.COUNTRY_CODE2.define()
 														.column()
 														.caption("Code2"),
