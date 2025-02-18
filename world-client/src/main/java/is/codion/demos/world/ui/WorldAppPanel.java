@@ -41,24 +41,28 @@ import javax.swing.SwingConstants;
 import java.util.List;
 import java.util.Locale;
 
+import static java.util.Collections.emptyList;
+
 public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 
-	public WorldAppPanel(WorldAppModel applicationModel) {
-		super(applicationModel);
+	static {
 		FrameworkIcons.instance().add(Foundation.MAP, Foundation.PAGE_EXPORT, Foundation.PAGE_ADD, Foundation.CHECK);
 	}
 
-	@Override
-	protected List<EntityPanel> createEntityPanels() {
+	public WorldAppPanel(WorldAppModel applicationModel) {
+		super(applicationModel, createPanels(applicationModel), emptyList());
+	}
+
+	private static List<EntityPanel> createPanels(WorldAppModel applicationModel) {
 		CountryModel countryModel = (CountryModel)
-						applicationModel().entityModels().get(Country.TYPE);
+						applicationModel.entityModels().get(Country.TYPE);
 		CountryPanel countryPanel = new CountryPanel(countryModel);
 
 		ContinentModel continentModel = (ContinentModel)
-						applicationModel().entityModels().get(Continent.TYPE);
+						applicationModel.entityModels().get(Continent.TYPE);
 		ContinentPanel continentPanel = new ContinentPanel(continentModel);
 
-		SwingEntityModel lookupModel = applicationModel().entityModels().get(Lookup.TYPE);
+		SwingEntityModel lookupModel = applicationModel.entityModels().get(Lookup.TYPE);
 		EntityPanel lookupPanel = new EntityPanel(lookupModel,
 						new LookupTablePanel(lookupModel.tableModel()));
 

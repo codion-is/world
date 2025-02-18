@@ -2,7 +2,7 @@ plugins {
     `java-library`
     id("world.jasperreports.modules")
     id("world.spotless.plugin")
-    id("io.github.f-cramer.jasperreports") version "0.0.3"
+    id("io.github.f-cramer.jasperreports") version "0.0.4"
 }
 
 dependencies {
@@ -24,7 +24,7 @@ dependencies {
         isTransitive = false
     }
 
-    compileOnly(libs.jasperreports.jdt) {
+    jasperreportsClasspath(libs.jasperreports.jdt) {
         exclude(group = "net.sf.jasperreports")
     }
     implementation(libs.jasperreports.pdf) {
@@ -38,10 +38,6 @@ dependencies {
     testImplementation(libs.codion.framework.db.local)
     testRuntimeOnly(libs.codion.dbms.h2)
     testRuntimeOnly(libs.h2)
-}
-
-extraJavaModuleInfo {
-    automaticModule("org.eclipse.jdt:ecj", "org.eclipse.jdt.ecj")
 }
 
 jasperreports {
