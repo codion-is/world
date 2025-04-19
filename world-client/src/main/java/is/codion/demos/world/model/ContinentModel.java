@@ -45,7 +45,7 @@ public final class ContinentModel extends SwingEntityModel {
 
 	ContinentModel(EntityConnectionProvider connectionProvider) {
 		super(Continent.TYPE, connectionProvider);
-		tableModel().items().refresher().result().addConsumer(this::refreshChartDatasets);
+		tableModel().items().visible().addConsumer(this::refreshChartDatasets);
 		detailModels().add(ModelLink.builder(new CountryModel(connectionProvider))
 						.onSelection(new OnContinentsSelected())
 						.active(true)
@@ -89,7 +89,7 @@ public final class ContinentModel extends SwingEntityModel {
 			super(Country.TYPE, connectionProvider);
 			editModel().readOnly().set(true);
 			ConditionModel<?> continentCondition =
-							tableModel().queryModel().conditions().get(Country.CONTINENT);
+							tableModel().queryModel().condition().get(Country.CONTINENT);
 			continentCondition.operands().wildcard().set(Wildcard.NONE);
 			continentCondition.caseSensitive().set(true);
 		}
@@ -101,7 +101,7 @@ public final class ContinentModel extends SwingEntityModel {
 		public void accept(Collection<Entity> continents) {
 			SwingEntityTableModel countryTableModel = detailModels().get(Country.TYPE).tableModel();
 			Collection<String> continentNames = Entity.values(Continent.NAME, continents);
-			if (countryTableModel.queryModel().conditions().get(Country.CONTINENT).set().in(continentNames)) {
+			if (countryTableModel.queryModel().condition().get(Country.CONTINENT).set().in(continentNames)) {
 				countryTableModel.items().refresh();
 			}
 		}

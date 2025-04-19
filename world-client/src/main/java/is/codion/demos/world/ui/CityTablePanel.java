@@ -56,7 +56,7 @@ final class CityTablePanel extends ChartTablePanel {
 
 		return Control.builder()
 						.command(this::populateLocation)
-						.name("Populate location")
+						.caption("Populate location")
 						.enabled(cityTableModel.cityWithoutLocationSelected())
 						.smallIcon(FrameworkIcons.instance().get(Foundation.MAP))
 						.build();
@@ -69,11 +69,10 @@ final class CityTablePanel extends ChartTablePanel {
 		Dialogs.progressWorkerDialog(task)
 						.owner(this)
 						.title("Populating locations")
-						.maximumProgress(task.maximumProgress())
 						.stringPainted(true)
 						.control(Control.builder()
 										.command(task::cancel)
-										.name("Cancel")
+										.caption("Cancel")
 										.enabled(task.cancelled().not()))
 						.onException(this::displayPopulateException)
 						.execute();

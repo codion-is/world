@@ -228,8 +228,8 @@ public final class WorldImpl extends DomainModel {
 														.columnHasDefaultValue(true)
 														.nullable(false),
 										CountryLanguage.NO_OF_SPEAKERS.define()
-														.derived(new NoOfSpeakersProvider(),
-																		CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
+														.derived(CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
+														.provider(new NoOfSpeakersProvider())
 														.caption("No. of speakers")
 														.numberFormatGrouping(true),
 										CountryLanguage.PERCENTAGE.define()
