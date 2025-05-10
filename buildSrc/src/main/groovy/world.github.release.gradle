@@ -1,0 +1,18 @@
+plugins {
+    id("com.github.breadmoirai.github-release")
+}
+
+githubRelease {
+    authorization = "Token " + properties["githubAccessToken"]
+    owner = "codion-is"
+    allowUploadToExisting = true
+    releaseAssets.from(tasks.named("jlinkZip").get().outputs.files)
+    releaseAssets.from(fileTree(tasks.named("jpackage").get().outputs.files.singleFile) {
+        exclude(project.name + "/**")
+    })
+}
+
+tasks.named("githubRelease") {
+    dependsOn(tasks.named("jlinkZip"))
+    dependsOn(tasks.named("jpackage"))
+}
