@@ -71,13 +71,15 @@ tasks.prepareMergedJarsDir {
     }
 }
 
-githubRelease {
-    token(properties["githubAccessToken"] as String)
-    owner = "codion-is"
-    repo = "world"
-    allowUploadToExisting = true
-    releaseAssets.from(tasks.named("jlinkZip").get().outputs.files)
-    releaseAssets.from(fileTree(tasks.named("jpackage").get().outputs.files.singleFile) {
-        exclude(project.name + "/**")
-    })
+if (properties.containsKey("githubAccessToken")) {
+    githubRelease {
+        token(properties["githubAccessToken"] as String)
+        owner = "codion-is"
+        repo = "world"
+        allowUploadToExisting = true
+        releaseAssets.from(tasks.named("jlinkZip").get().outputs.files)
+        releaseAssets.from(fileTree(tasks.named("jpackage").get().outputs.files.singleFile) {
+            exclude(project.name + "/**", project.name + ".app/**")
+        })
+    }
 }
