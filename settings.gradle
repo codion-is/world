@@ -20,10 +20,10 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            version("codion", "0.18.34")
+            version("codion", "0.18.38")
             version("h2", "2.3.232")
             version("json", "20240205")
-            version("jfreechart", "1.5.4")
+            version("jfreechart", "1.5.6")
             version("jxmapviewer2", "2.8")
             version("ikonli.foundation", "12.4.0")
             version("jasperreports", "7.0.3")

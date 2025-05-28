@@ -25,6 +25,8 @@ application {
         "-Dcodion.client.connectionType=local",
         "-Dcodion.db.url=jdbc:h2:mem:h2db",
         "-Dcodion.db.initScripts=classpath:create_schema.sql",
+        "-Dis.codion.swing.framework.ui.EntityTablePanel.includeQueryInspector=true",
+        "-Dis.codion.swing.framework.ui.EntityEditPanel.includeQueryInspector=true",
         "-Dsun.awt.disablegrab=true"
     )
 }
