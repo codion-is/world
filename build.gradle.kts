@@ -13,6 +13,10 @@ java {
 
 configure(subprojects) {
     apply(plugin = "java")
+    
+    dependencies {
+        implementation(platform(rootProject.libs.codion.framework.bom))
+    }
 
     version = rootProject.libs.versions.codion.get().replace("-SNAPSHOT", "")
 

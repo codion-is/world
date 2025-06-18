@@ -18,45 +18,4 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
     }
-    versionCatalogs {
-        libs {
-            version("codion", "0.18.38")
-            version("h2", "2.3.232")
-            version("json", "20240205")
-            version("jfreechart", "1.5.6")
-            version("jxmapviewer2", "2.8")
-            version("ikonli.foundation", "12.4.0")
-            version("jasperreports", "7.0.3")
-
-            library("codion-dbms-h2", "is.codion", "codion-dbms-h2").versionRef("codion")
-            library("codion-framework-domain", "is.codion", "codion-framework-domain").versionRef("codion")
-            library("codion-framework-domain-test", "is.codion", "codion-framework-domain-test").versionRef("codion")
-            library("codion-framework-json-domain", "is.codion", "codion-framework-json-domain").versionRef("codion")
-            library("codion-framework-db-core", "is.codion", "codion-framework-db-core").versionRef("codion")
-            library("codion-framework-db-rmi", "is.codion", "codion-framework-db-rmi").versionRef("codion")
-            library("codion-framework-db-local", "is.codion", "codion-framework-db-local").versionRef("codion")
-            library("codion-framework-db-http", "is.codion", "codion-framework-db-http").versionRef("codion")
-            library("codion-swing-framework-ui", "is.codion", "codion-swing-framework-ui").versionRef("codion")
-            library("codion-plugin-jasperreports", "is.codion", "codion-plugin-jasperreports").versionRef("codion")
-            library("codion-plugin-logback-proxy", "is.codion", "codion-plugin-logback-proxy").versionRef("codion")
-            library("codion-plugin-hikari-pool", "is.codion", "codion-plugin-hikari-pool").versionRef("codion")
-            library("codion-plugin-flatlaf", "is.codion", "codion-plugin-flatlaf").versionRef("codion")
-            library("codion-plugin-flatlaf-intellij-themes", "is.codion", "codion-plugin-flatlaf-intellij-themes").versionRef("codion")
-            library("codion-framework-server", "is.codion", "codion-framework-server").versionRef("codion")
-            library("codion-framework-servlet", "is.codion", "codion-framework-servlet").versionRef("codion")
-            library("codion-tools-monitor-ui", "is.codion", "codion-tools-monitor-ui").versionRef("codion")
-
-            library("jxmapviewer2", "org.jxmapviewer", "jxmapviewer2").versionRef("jxmapviewer2")
-
-            library("h2", "com.h2database", "h2").versionRef("h2")
-            library("json", "org.json", "json").versionRef("json")
-
-            library("jfreechart", "org.jfree", "jfreechart").versionRef("jfreechart")
-            library("ikonli-foundation", "org.kordamp.ikonli", "ikonli-foundation-pack").versionRef("ikonli.foundation")
-
-            library("jasperreports-jdt", "net.sf.jasperreports", "jasperreports-jdt").versionRef("jasperreports")
-            library("jasperreports-pdf", "net.sf.jasperreports", "jasperreports-pdf").versionRef("jasperreports")
-            library("jasperreports-fonts", "net.sf.jasperreports", "jasperreports-fonts").versionRef("jasperreports")
-        }
-    }
 }

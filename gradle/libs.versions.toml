@@ -1,0 +1,37 @@
+[versions]
+codion = "0.18.39"
+h2 = "2.3.232"
+json = "20240205"
+jfreechart = "1.5.6"
+jxmapviewer2 = "2.8"
+ikonli-foundation = "12.4.0"
+jasperreports = "7.0.3"
+
+[libraries]
+codion-framework-bom = { module = "is.codion:codion-framework-bom", version.ref = "codion" }
+codion-dbms-h2 = { module = "is.codion:codion-dbms-h2" }
+codion-framework-domain = { module = "is.codion:codion-framework-domain" }
+codion-framework-domain-test = { module = "is.codion:codion-framework-domain-test" }
+codion-framework-json-domain = { module = "is.codion:codion-framework-json-domain" }
+codion-framework-db-core = { module = "is.codion:codion-framework-db-core" }
+codion-framework-db-rmi = { module = "is.codion:codion-framework-db-rmi" }
+codion-framework-db-local = { module = "is.codion:codion-framework-db-local" }
+codion-framework-db-http = { module = "is.codion:codion-framework-db-http" }
+codion-swing-framework-ui = { module = "is.codion:codion-swing-framework-ui" }
+codion-plugin-jasperreports = { module = "is.codion:codion-plugin-jasperreports" }
+codion-plugin-logback-proxy = { module = "is.codion:codion-plugin-logback-proxy" }
+codion-plugin-hikari-pool = { module = "is.codion:codion-plugin-hikari-pool" }
+codion-plugin-flatlaf = { module = "is.codion:codion-plugin-flatlaf" }
+codion-plugin-flatlaf-intellij-themes = { module = "is.codion:codion-plugin-flatlaf-intellij-themes" }
+codion-framework-server = { module = "is.codion:codion-framework-server" }
+codion-framework-servlet = { module = "is.codion:codion-framework-servlet" }
+codion-tools-monitor-ui = { module = "is.codion:codion-tools-monitor-ui" }
+
+jxmapviewer2 = { module = "org.jxmapviewer:jxmapviewer2", version.ref = "jxmapviewer2" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+json = { module = "org.json:json", version.ref = "json" }
+jfreechart = { module = "org.jfree:jfreechart", version.ref = "jfreechart" }
+ikonli-foundation = { module = "org.kordamp.ikonli:ikonli-foundation-pack", version.ref = "ikonli-foundation" }
+jasperreports-jdt = { module = "net.sf.jasperreports:jasperreports-jdt", version.ref = "jasperreports" }
+jasperreports-pdf = { module = "net.sf.jasperreports:jasperreports-pdf", version.ref = "jasperreports" }
+jasperreports-fonts = { module = "net.sf.jasperreports:jasperreports-fonts", version.ref = "jasperreports" }
