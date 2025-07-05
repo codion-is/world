@@ -66,7 +66,8 @@ final class CityTablePanel extends ChartTablePanel {
 		CityTableModel tableModel = (CityTableModel) tableModel();
 		PopulateLocationTask task = tableModel.populateLocationTask();
 
-		Dialogs.progressWorkerDialog(task)
+		Dialogs.progressWorker()
+						.task(task)
 						.owner(this)
 						.title("Populating locations")
 						.stringPainted(true)
@@ -79,7 +80,7 @@ final class CityTablePanel extends ChartTablePanel {
 	}
 
 	private void displayPopulateException(Exception exception) {
-		Dialogs.exceptionDialog()
+		Dialogs.exception()
 						.owner(this)
 						.title("Unable to populate location")
 						.show(exception);

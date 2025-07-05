@@ -52,7 +52,8 @@ final class CountryTablePanel extends EntityTablePanel {
 	}
 
 	private void viewCountryReport() {
-		Dialogs.progressWorkerDialog(this::fillCountryReport)
+		Dialogs.progressWorker()
+						.task(this::fillCountryReport)
 						.owner(this)
 						.maximum(tableModel().selection().count())
 						.stringPainted(true)
@@ -67,7 +68,8 @@ final class CountryTablePanel extends EntityTablePanel {
 	}
 
 	private void viewReport(JasperPrint countryReport) {
-		Dialogs.componentDialog(new JRViewer(countryReport))
+		Dialogs.builder()
+						.component(new JRViewer(countryReport))
 						.owner(this)
 						.modal(false)
 						.title("Country report")

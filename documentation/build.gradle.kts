@@ -26,9 +26,3 @@ tasks.asciidoctor {
         setVersion("2.5.13")
     }
 }
-
-tasks.register<Sync>("copyToGitHubPages") {
-    group = "documentation"
-    from(tasks.asciidoctor)
-    into("../../codion-pages/doc/" + project.version + "/tutorials/world")
-}

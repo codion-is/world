@@ -32,8 +32,8 @@ import java.awt.Dimension;
 
 import static is.codion.demos.world.ui.ChartPanels.createBarChartPanel;
 import static is.codion.demos.world.ui.ChartPanels.createPieChartPanel;
-import static is.codion.swing.common.ui.Sizes.setPreferredHeight;
 import static is.codion.swing.common.ui.component.Components.*;
+import static is.codion.swing.common.ui.component.Sizes.preferredHeight;
 import static is.codion.swing.common.ui.layout.Layouts.borderLayout;
 import static java.awt.event.KeyEvent.VK_1;
 import static java.awt.event.KeyEvent.VK_2;
@@ -52,7 +52,7 @@ final class ContinentPanel extends EntityPanel {
 		ChartPanel surfaceAreaChartPanel = createPieChartPanel(this, model.surfaceAreaDataset(), "Surface area");
 		ChartPanel gnpChartPanel = createPieChartPanel(this, model.gnpDataset(), "GNP");
 		ChartPanel lifeExpectancyChartPanel = createBarChartPanel(this, model.lifeExpectancyDataset(), "Life expectancy", "Continent", "Years");
-		setPreferredHeight(lifeExpectancyChartPanel, 120);
+		preferredHeight(lifeExpectancyChartPanel, 120);
 
 		Dimension pieChartSize = new Dimension(260, 260);
 		populationChartPanel.setPreferredSize(pieChartSize);
@@ -75,7 +75,7 @@ final class ContinentPanel extends EntityPanel {
 										config -> config
 														.includeConditions(false)
 														.includeToolBar(false));
-		setPreferredHeight(countryTablePanel, 300);
+		preferredHeight(countryTablePanel, 300);
 
 		JTabbedPane tabbedPane = tabbedPane()
 						.tabBuilder("Charts", chartPanel)

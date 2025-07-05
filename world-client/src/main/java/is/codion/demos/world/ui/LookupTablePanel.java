@@ -96,7 +96,8 @@ final class LookupTablePanel extends EntityTablePanel {
 					.smallIcon(ICONS.get(Foundation.MAP))
 					.caption("Show map")
 					.build();
-	private final JScrollPane columnSelectionScrollPane = scrollPane(createColumnSelectionToolBar())
+	private final JScrollPane columnSelectionScrollPane = scrollPane()
+					.view(createColumnSelectionToolBar())
 					.verticalUnitIncrement(16)
 					.build();
 	private final JXMapKit mapKit = Maps.createMapKit();
@@ -195,7 +196,8 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private void setMapDialogVisible(boolean visible) {
 		if (mapKitDialog == null) {
-			mapKitDialog = Dialogs.componentDialog(mapKit)
+			mapKitDialog = Dialogs.builder()
+							.component(mapKit)
 							.owner(this)
 							.modal(false)
 							.title("World Map")
@@ -216,10 +218,12 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void export(ExportFormat format) {
-		File fileToSave = Dialogs.fileSelectionDialog()
+		File fileToSave = Dialogs.select()
+						.files()
 						.owner(this)
 						.selectFileToSave(format.defaultFileName());
-		Dialogs.progressWorkerDialog(() -> export(fileToSave, format))
+		Dialogs.progressWorker()
+						.task(() -> export(fileToSave, format))
 						.owner(this)
 						.title("Exporting data")
 						.onResult("Export successful")
@@ -257,9 +261,10 @@ final class LookupTablePanel extends EntityTablePanel {
 	}
 
 	private void importJSON() throws IOException {
-		importJSON(Dialogs.fileSelectionDialog()
+		importJSON(Dialogs.select()
+						.files()
 						.owner(this)
-						.fileFilter(new FileNameExtensionFilter("JSON", "json"))
+						.filter(new FileNameExtensionFilter("JSON", "json"))
 						.selectFile());
 	}
 
@@ -273,7 +278,8 @@ final class LookupTablePanel extends EntityTablePanel {
 	private JToolBar createColumnSelectionToolBar() {
 		Controls toggleColumnsControls = table().createToggleColumnsControls();
 
-		return toolBar(Controls.builder()
+		return toolBar()
+						.controls(Controls.builder()
 						.control(createSelectAllColumnsControl(toggleColumnsControls))
 						.separator()
 						.actions(toggleColumnsControls.actions()))
