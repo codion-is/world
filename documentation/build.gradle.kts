@@ -5,13 +5,12 @@ plugins {
 version = libs.versions.codion.get().replace("-SNAPSHOT", "")
 
 tasks.asciidoctor {
-    inputs.dir("../world-domain-api/src/main/java")
-    inputs.dir("../world-domain/src/main/java")
-    inputs.dir("../world-client/src/main/java")
-    inputs.dir("../world-client/src/main/reports")
-    inputs.dir("../world-domain/src/main/resources")
-    inputs.dir("../world-domain/src/test/java")
-    inputs.dir("../world-client/src/test/java")
+    dependsOn(rootProject.subprojects.map { it.tasks.build })
+    rootProject.subprojects.forEach { subproject ->
+        inputs.file(subproject.buildFile)
+        inputs.files(subproject.sourceSets.main.get().allSource)
+        inputs.files(subproject.sourceSets.test.get().allSource)
+    }
 
     baseDirFollowsSourceFile()
 
