@@ -19,7 +19,7 @@
 package is.codion.demos.world.model;
 
 import is.codion.common.event.Event;
-import is.codion.common.observable.Observer;
+import is.codion.common.observer.Observer;
 import is.codion.common.state.ObservableState;
 import is.codion.common.state.State;
 import is.codion.demos.world.domain.api.World.City;
@@ -104,7 +104,7 @@ public final class CityTableModel extends SwingEntityTableModel {
 			Collection<Entity> updatedCities = new ArrayList<>();
 			CityEditModel editModel = (CityEditModel) editModel();
 			Iterator<Entity> citiesIterator = cities.iterator();
-			while (citiesIterator.hasNext() && !cancelled.get()) {
+			while (citiesIterator.hasNext() && !cancelled.is()) {
 				Entity city = citiesIterator.next();
 				progressReporter.publish(city.get(City.COUNTRY_FK).get(Country.NAME) + " - " + city.get(City.NAME));
 				editModel.populateLocation(city);

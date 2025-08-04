@@ -17,5 +17,6 @@ include "documentation"
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+        mavenLocal()
     }
 }
