@@ -1,7 +1,7 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version("jlink", "3.1.1")
+            version("jlink", "3.1.2")
             version("extra-module-info", "1.13")
             version("spotless", "7.1.0")
 
