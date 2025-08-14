@@ -48,10 +48,10 @@ final class ContinentPanel extends EntityPanel {
 	protected void initializeUI() {
 		ContinentModel model = (ContinentModel) model();
 
-		ChartPanel populationChartPanel = createPieChartPanel(this, model.populationDataset(), "Population");
-		ChartPanel surfaceAreaChartPanel = createPieChartPanel(this, model.surfaceAreaDataset(), "Surface area");
-		ChartPanel gnpChartPanel = createPieChartPanel(this, model.gnpDataset(), "GNP");
-		ChartPanel lifeExpectancyChartPanel = createBarChartPanel(this, model.lifeExpectancyDataset(), "Life expectancy", "Continent", "Years");
+		ChartPanel populationChartPanel = createPieChartPanel(model.populationDataset(), "Population");
+		ChartPanel surfaceAreaChartPanel = createPieChartPanel(model.surfaceAreaDataset(), "Surface area");
+		ChartPanel gnpChartPanel = createPieChartPanel(model.gnpDataset(), "GNP");
+		ChartPanel lifeExpectancyChartPanel = createBarChartPanel(model.lifeExpectancyDataset(), "Life expectancy", "Continent", "Years");
 		preferredHeight(lifeExpectancyChartPanel, 120);
 
 		Dimension pieChartSize = new Dimension(260, 260);
@@ -78,10 +78,12 @@ final class ContinentPanel extends EntityPanel {
 		preferredHeight(countryTablePanel, 300);
 
 		JTabbedPane tabbedPane = tabbedPane()
-						.tabBuilder("Charts", chartPanel)
+						.tab("Charts")
+						.component(chartPanel)
 						.mnemonic(VK_1)
 						.add()
-						.tabBuilder("Countries", countryTablePanel.initialize())
+						.tab("Countries")
+						.component(countryTablePanel.initialize())
 						.mnemonic(VK_2)
 						.add()
 						.build();

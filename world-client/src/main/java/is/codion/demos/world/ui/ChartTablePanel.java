@@ -48,19 +48,21 @@ abstract class ChartTablePanel extends EntityTablePanel {
 														String chartTitle, Consumer<Config> config) {
 		super(tableModel, config);
 		setPreferredSize(new Dimension(200, 200));
-		chartPanel = createPieChartPanel(this, chartDataset, chartTitle);
+		chartPanel = createPieChartPanel(chartDataset, chartTitle);
 	}
 
 	@Override
 	protected final void layoutPanel(JComponent tableComponent, JPanel southPanel) {
 		super.layoutPanel(tabbedPane()
-						.tabBuilder("Table", borderLayoutPanel()
+						.tab("Table")
+						.component(borderLayoutPanel()
 										.center(tableComponent)
 										.south(southPanel)
 										.build())
 						.mnemonic(VK_1)
 						.add()
-						.tabBuilder("Chart", chartPanel)
+						.tab("Chart")
+						.component(chartPanel)
 						.mnemonic(VK_2)
 						.add()
 						.build(), southPanel);
