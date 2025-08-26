@@ -93,7 +93,7 @@ final class LookupTablePanel extends EntityTablePanel {
 
 	private final Control toggleMapControl = Control.builder()
 					.toggle(mapDialogVisible)
-					.smallIcon(ICONS.get(Foundation.MAP))
+					.icon(ICONS.get(Foundation.MAP))
 					.caption("Show map")
 					.build();
 	private final JScrollPane columnSelectionScrollPane = scrollPane()
@@ -125,7 +125,7 @@ final class LookupTablePanel extends EntityTablePanel {
 						.command(this::clearTableAndConditions)
 						.caption("Clear")
 						.mnemonic('C')
-						.smallIcon(ICONS.clear())
+						.icon(ICONS.clear())
 						.build());
 	}
 
@@ -142,7 +142,7 @@ final class LookupTablePanel extends EntityTablePanel {
 						.separator()
 						.control(Controls.builder()
 										.caption("Export")
-										.smallIcon(ICONS.get(Foundation.PAGE_EXPORT))
+										.icon(ICONS.get(Foundation.PAGE_EXPORT))
 										.control(Control.builder()
 														.command(this::exportCSV)
 														.caption("CSV..."))
@@ -151,7 +151,7 @@ final class LookupTablePanel extends EntityTablePanel {
 														.caption("JSON...")))
 						.control(Controls.builder()
 										.caption("Import")
-										.smallIcon(ICONS.get(Foundation.PAGE_ADD))
+										.icon(ICONS.get(Foundation.PAGE_ADD))
 										.control(Control.builder()
 														.command(this::importJSON)
 														.caption("JSON...")))
@@ -160,7 +160,7 @@ final class LookupTablePanel extends EntityTablePanel {
 						.separator()
 						.control(Controls.builder()
 										.caption("Columns")
-										.smallIcon(FrameworkIcons.instance().columns())
+										.icon(FrameworkIcons.instance().columns())
 										.control(Control.builder()
 														.toggle(columnSelectionPanelVisible)
 														.caption("Select")
@@ -306,7 +306,7 @@ final class LookupTablePanel extends EntityTablePanel {
 										.map(ToggleControl.class::cast)
 										.forEach(toggleControl -> toggleControl.value().set(true)))
 						.caption("Select all")
-						.smallIcon(ICONS.get(Foundation.CHECK))
+						.icon(ICONS.get(Foundation.CHECK))
 						.build();
 	}
 }
