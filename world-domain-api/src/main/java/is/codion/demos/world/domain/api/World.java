@@ -26,8 +26,7 @@ import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.domain.entity.EntityType;
 import is.codion.framework.domain.entity.attribute.Attribute;
 import is.codion.framework.domain.entity.attribute.Column;
-import is.codion.framework.domain.entity.attribute.DerivedAttribute;
-import is.codion.framework.domain.entity.attribute.DerivedAttribute.SourceValues;
+import is.codion.framework.domain.entity.attribute.DerivedValue;
 import is.codion.framework.domain.entity.attribute.ForeignKey;
 import is.codion.framework.domain.entity.exception.ValidationException;
 
@@ -158,16 +157,16 @@ public interface World {
 	}
 	// end::location[]
 
-	// tag::noOfSpeakersProvider[]
-	final class NoOfSpeakersProvider implements DerivedAttribute.Provider<Integer> {
+	// tag::noOfSpeakers[]
+	final class NoOfSpeakers implements DerivedValue<Integer> {
 
 		@Serial
 		private static final long serialVersionUID = 1;
 
 		@Override
-		public Integer get(SourceValues values) {
-			Double percentage = values.get(CountryLanguage.PERCENTAGE);
-			Entity country = values.get(CountryLanguage.COUNTRY_FK);
+		public Integer get(SourceValues source) {
+			Double percentage = source.get(CountryLanguage.PERCENTAGE);
+			Entity country = source.get(CountryLanguage.COUNTRY_FK);
 			if (percentage != null && country != null && !country.isNull(Country.POPULATION)) {
 				return Double.valueOf(country.get(Country.POPULATION) * (percentage / 100)).intValue();
 			}
@@ -175,7 +174,7 @@ public interface World {
 			return null;
 		}
 	}
-	// end::noOfSpeakersProvider[]
+	// end::noOfSpeakers[]
 
 	// tag::cityValidator[]
 	final class CityValidator extends DefaultEntityValidator implements Serializable {

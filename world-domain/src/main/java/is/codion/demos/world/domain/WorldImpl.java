@@ -229,7 +229,7 @@ public final class WorldImpl extends DomainModel {
 														.nullable(false),
 										CountryLanguage.NO_OF_SPEAKERS.define()
 														.derived(CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
-														.provider(new NoOfSpeakersProvider())
+														.value(new NoOfSpeakers())
 														.caption("No. of speakers")
 														.numberFormatGrouping(true),
 										CountryLanguage.PERCENTAGE.define()

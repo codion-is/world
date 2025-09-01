@@ -247,7 +247,7 @@ include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tag
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=noOfSpeakersProvider]
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=noOfSpeakers]
 ----
 
 ===== Implementation
