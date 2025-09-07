@@ -68,7 +68,7 @@ include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=co
 
 [source,java,options="nowrap"]
 ----
-include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=averageCityPopulationFunction]
+include::{dir-source-domain}/is/codion/demos/world/domain/WorldImpl.java[tags=averageCityPopulation]
 ----
 
 ==== Model
