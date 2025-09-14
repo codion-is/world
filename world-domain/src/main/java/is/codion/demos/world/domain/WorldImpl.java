@@ -85,7 +85,7 @@ public final class WorldImpl extends DomainModel {
 														.column()
 														.caption("Population")
 														.nullable(false)
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										City.LOCATION.define()
 														.column()
 														.caption("Location")
@@ -128,12 +128,12 @@ public final class WorldImpl extends DomainModel {
 														.column()
 														.caption("Surface area")
 														.nullable(false)
-														.numberFormatGrouping(true)
-														.maximumFractionDigits(2),
+														.numberGrouping(true)
+														.fractionDigits(2),
 										Country.INDEPYEAR.define()
 														.column()
 														.caption("Indep. year")
-														.valueRange(-2000, 2500),
+														.range(-2000, 2500),
 										Country.INDEPYEAR_SEARCHABLE.define()
 														.column()
 														.expression("to_char(indepyear)")
@@ -143,22 +143,22 @@ public final class WorldImpl extends DomainModel {
 														.column()
 														.caption("Population")
 														.nullable(false)
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Country.LIFE_EXPECTANCY.define()
 														.column()
 														.caption("Life expectancy")
-														.maximumFractionDigits(1)
-														.valueRange(0, 99),
+														.fractionDigits(1)
+														.range(0, 99),
 										Country.GNP.define()
 														.column()
 														.caption("GNP")
-														.numberFormatGrouping(true)
-														.maximumFractionDigits(2),
+														.numberGrouping(true)
+														.fractionDigits(2),
 										Country.GNPOLD.define()
 														.column()
 														.caption("GNP old")
-														.numberFormatGrouping(true)
-														.maximumFractionDigits(2),
+														.numberGrouping(true)
+														.fractionDigits(2),
 										Country.LOCALNAME.define()
 														.column()
 														.caption("Local name")
@@ -180,7 +180,7 @@ public final class WorldImpl extends DomainModel {
 										Country.CAPITAL_POPULATION.define()
 														.denormalized(Country.CAPITAL_FK, City.POPULATION)
 														.caption("Capital pop.")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Country.NO_OF_CITIES.define()
 														.subquery("""
 																		SELECT COUNT(*)
@@ -231,13 +231,13 @@ public final class WorldImpl extends DomainModel {
 														.derived(CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
 														.value(new NoOfSpeakers())
 														.caption("No. of speakers")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										CountryLanguage.PERCENTAGE.define()
 														.column()
 														.caption("Percentage")
 														.nullable(false)
-														.maximumFractionDigits(1)
-														.valueRange(0, 100))
+														.fractionDigits(1)
+														.range(0, 100))
 						.orderBy(OrderBy.builder()
 										.ascending(CountryLanguage.LANGUAGE)
 										.descending(CountryLanguage.PERCENTAGE)
@@ -266,25 +266,25 @@ public final class WorldImpl extends DomainModel {
 										Lookup.COUNTRY_SURFACEAREA.define()
 														.column()
 														.caption("Surface area")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Lookup.COUNTRY_INDEPYEAR.define()
 														.column()
 														.caption("Indep. year"),
 										Lookup.COUNTRY_POPULATION.define()
 														.column()
 														.caption("Country population")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Lookup.COUNTRY_LIFEEXPECTANCY.define()
 														.column()
 														.caption("Life expectancy"),
 										Lookup.COUNTRY_GNP.define()
 														.column()
 														.caption("GNP")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Lookup.COUNTRY_GNPOLD.define()
 														.column()
 														.caption("GNP old")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Lookup.COUNTRY_LOCALNAME.define()
 														.column()
 														.caption("Local name"),
@@ -312,7 +312,7 @@ public final class WorldImpl extends DomainModel {
 										Lookup.CITY_POPULATION.define()
 														.column()
 														.caption("City population")
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Lookup.CITY_LOCATION.define()
 														.column()
 														.caption("City location")
@@ -343,13 +343,13 @@ public final class WorldImpl extends DomainModel {
 														.caption("Surface area")
 														.expression("sum(surfacearea)")
 														.aggregate(true)
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Continent.POPULATION.define()
 														.column()
 														.caption("Population")
 														.expression("sum(population)")
 														.aggregate(true)
-														.numberFormatGrouping(true),
+														.numberGrouping(true),
 										Continent.MIN_LIFE_EXPECTANCY.define()
 														.column()
 														.caption("Min. life expectancy")
@@ -375,7 +375,7 @@ public final class WorldImpl extends DomainModel {
 														.caption("GNP")
 														.expression("sum(gnp)")
 														.aggregate(true)
-														.numberFormatGrouping(true))
+														.numberGrouping(true))
 						.table("world.country")
 						.readOnly(true)
 						.caption("Continent")
