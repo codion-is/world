@@ -225,7 +225,7 @@ public final class WorldImpl extends DomainModel {
 										CountryLanguage.IS_OFFICIAL.define()
 														.column()
 														.caption("Is official")
-														.hasDatabaseDefault(true)
+														.withDefault(true)
 														.nullable(false),
 										CountryLanguage.NO_OF_SPEAKERS.define()
 														.derived(CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
