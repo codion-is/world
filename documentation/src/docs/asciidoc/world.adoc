@@ -39,7 +39,7 @@ The domain implementation sections below continue the WorldImpl class.
 
 == Countries
 
-image::countries.png[]
+image::world-client.png[]
 
 === Country
 
