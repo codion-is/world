@@ -178,7 +178,9 @@ public final class WorldImpl extends DomainModel {
 														.foreignKey()
 														.caption("Capital"),
 										Country.CAPITAL_POPULATION.define()
-														.denormalized(Country.CAPITAL_FK, City.POPULATION)
+														.denormalized()
+														.from(Country.CAPITAL_FK)
+														.attribute(City.POPULATION)
 														.caption("Capital pop.")
 														.numberGrouping(true),
 										Country.NO_OF_CITIES.define()
