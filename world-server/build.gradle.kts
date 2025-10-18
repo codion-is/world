@@ -38,7 +38,7 @@ application {
         "-Djava.rmi.server.randomIDs=true",
         "-Djava.rmi.server.useCodebaseOnly=true",
         //The serialization whitelist
-        "-Dcodion.server.objectInputFilterFactoryClassName=is.codion.common.rmi.server.SerializationFilterFactory",
+        "-Dcodion.server.objectInputFilterFactory=is.codion.common.rmi.server.SerializationFilterFactory",
         "-Dcodion.server.serialization.filter.patternFile=classpath:serialization-whitelist.txt",
         //SSL configuration
         "-Dcodion.server.classpathKeyStore=keystore.jks",
@@ -46,7 +46,7 @@ application {
         //The port used by clients
         "-Dcodion.server.port=${serverPort}",
         //The servlet server
-        "-Dcodion.server.auxiliaryServerFactoryClassNames=is.codion.framework.servlet.EntityServiceFactory",
+        "-Dcodion.server.auxiliaryServerFactories=is.codion.framework.servlet.EntityServiceFactory",
         "-Dcodion.server.http.secure=false",
         "-Dcodion.server.http.port=${serverHttpPort}",
         //The port for the admin interface, used by the server monitor
