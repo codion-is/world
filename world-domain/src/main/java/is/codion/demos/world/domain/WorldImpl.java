@@ -180,7 +180,7 @@ public final class WorldImpl extends DomainModel {
 										Country.CAPITAL_POPULATION.define()
 														.denormalized()
 														.from(Country.CAPITAL_FK)
-														.attribute(City.POPULATION)
+														.using(City.POPULATION)
 														.caption("Capital pop.")
 														.numberGrouping(true),
 										Country.NO_OF_CITIES.define()
@@ -232,7 +232,7 @@ public final class WorldImpl extends DomainModel {
 										CountryLanguage.NO_OF_SPEAKERS.define()
 														.derived()
 														.from(CountryLanguage.COUNTRY_FK, CountryLanguage.PERCENTAGE)
-														.value(new NoOfSpeakers())
+														.with(new NoOfSpeakers())
 														.caption("No. of speakers")
 														.numberGrouping(true),
 										CountryLanguage.PERCENTAGE.define()
@@ -390,14 +390,13 @@ public final class WorldImpl extends DomainModel {
 	private static final class LocationConverter implements Converter<Location, String> {
 
 		@Override
-		public String toColumnValue(Location location,
-																Statement statement) {
+		public String toColumn(Location location, Statement statement) {
 			return "POINT (" + location.longitude() + " " + location.latitude() + ")";
 		}
 
 		@Override
-		public Location fromColumnValue(String columnValue) {
-			String[] latLon = columnValue
+		public Location fromColumn(String value) {
+			String[] latLon = value
 							.replace("POINT (", "")
 							.replace(")", "")
 							.split(" ");

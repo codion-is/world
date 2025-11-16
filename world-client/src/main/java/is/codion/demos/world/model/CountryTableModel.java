@@ -48,6 +48,7 @@ public final class CountryTableModel extends SwingEntityTableModel {
 	CountryTableModel(EntityConnectionProvider connectionProvider) {
 		super(new CountryEditModel(connectionProvider));
 		configureCapitalConditionModel();
+		sort().order(Country.FLAG).locked().set(true);//todo disable sort for non-comparable columns?
 		showFlags.addConsumer(this::showFlagsChanged);
 	}
 
