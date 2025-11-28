@@ -57,28 +57,6 @@ gradlew world-client-local:jlink
 gradlew world-client-local:jpackage
 ----
 
-=== world-client-http
-
-Configuration only.
-Swing client configured with a HTTP connection.
-
-==== Run
-
-NOTE: The server must be running
-
-[source,shell]
-----
-gradlew world-client-http:run
-----
-
-==== Package
-
-[source,shell]
-----
-gradlew world-client-http:jlink
-gradlew world-client-http:jpackage
-----
-
 === world-client-remote
 
 Configuration only.
@@ -117,7 +95,6 @@ The server host name and ports are configured in *gradle.properties*.
 serverHost=localhost
 serverPort=2223
 serverRegistryPort=1098
-serverHttpPort=8088
 serverAdminPort=4445
 ----
 

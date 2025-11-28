@@ -7,7 +7,6 @@ plugins {
 
 dependencies {
     runtimeOnly(libs.codion.framework.server)
-    runtimeOnly(libs.codion.framework.servlet)
     runtimeOnly(libs.codion.plugin.hikari.pool)
     runtimeOnly(libs.codion.dbms.h2)
     runtimeOnly(libs.h2)
@@ -45,10 +44,6 @@ application {
         "-Djavax.net.ssl.keyStorePassword=crappypass",
         //The port used by clients
         "-Dcodion.server.port=${serverPort}",
-        //The servlet server
-        "-Dcodion.server.auxiliaryServerFactories=is.codion.framework.servlet.EntityServiceFactory",
-        "-Dcodion.server.http.secure=false",
-        "-Dcodion.server.http.port=${serverHttpPort}",
         //The port for the admin interface, used by the server monitor
         "-Dcodion.server.admin.port=${serverAdminPort}",
         //The admin user credentials, used by the server monitor application
