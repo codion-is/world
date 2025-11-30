@@ -74,12 +74,12 @@ public final class ContinentModel extends SwingEntityModel {
 		gnpDataset.clear();
 		lifeExpectancyDataset.clear();
 		continents.forEach(continent -> {
-			String contientName = continent.get(Continent.NAME);
-			populationDataset.setValue(contientName, continent.get(Continent.POPULATION));
-			surfaceAreaDataset.setValue(contientName, continent.get(Continent.SURFACE_AREA));
-			gnpDataset.setValue(contientName, continent.get(Continent.GNP));
-			lifeExpectancyDataset.addValue(continent.get(Continent.MIN_LIFE_EXPECTANCY), "Lowest", contientName);
-			lifeExpectancyDataset.addValue(continent.get(Continent.MAX_LIFE_EXPECTANCY), "Highest", contientName);
+			String continentName = continent.get(Continent.NAME);
+			populationDataset.setValue(continentName, continent.get(Continent.POPULATION));
+			surfaceAreaDataset.setValue(continentName, continent.get(Continent.SURFACE_AREA));
+			gnpDataset.setValue(continentName, continent.get(Continent.GNP));
+			lifeExpectancyDataset.addValue(continent.get(Continent.MIN_LIFE_EXPECTANCY), "Lowest", continentName);
+			lifeExpectancyDataset.addValue(continent.get(Continent.MAX_LIFE_EXPECTANCY), "Highest", continentName);
 		});
 	}
 
@@ -89,7 +89,7 @@ public final class ContinentModel extends SwingEntityModel {
 			super(Country.TYPE, connectionProvider);
 			editModel().settings().readOnly().set(true);
 			ConditionModel<?> continentCondition =
-							tableModel().queryModel().condition().get(Country.CONTINENT);
+							tableModel().query().condition().get(Country.CONTINENT);
 			continentCondition.operands().wildcard().set(Wildcard.NONE);
 			continentCondition.caseSensitive().set(true);
 		}
@@ -101,7 +101,7 @@ public final class ContinentModel extends SwingEntityModel {
 		public void accept(Collection<Entity> continents) {
 			SwingEntityTableModel countryTableModel = detailModels().get(Country.TYPE).tableModel();
 			Collection<String> continentNames = Entity.values(Continent.NAME, continents);
-			if (countryTableModel.queryModel().condition().get(Country.CONTINENT).set().in(continentNames)) {
+			if (countryTableModel.query().condition().get(Country.CONTINENT).set().in(continentNames)) {
 				countryTableModel.items().refresh();
 			}
 		}

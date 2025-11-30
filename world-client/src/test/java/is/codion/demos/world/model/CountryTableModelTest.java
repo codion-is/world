@@ -40,7 +40,7 @@ public final class CountryTableModelTest {
 	void fillCountryReport() throws JRException {
 		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
 			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
-			tableModel.queryModel().condition().get(Country.CODE).operands().equal().set("ISL");
+			tableModel.query().condition().get(Country.CODE).operands().equal().set("ISL");
 			tableModel.items().refresh();
 			tableModel.selection().index().set(0);
 			JasperPrint jasperPrint = tableModel.fillCountryReport(new ProgressReporter<String>() {
