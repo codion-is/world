@@ -183,6 +183,11 @@ include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tag
 include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=cityValidator]
 ----
 
+[source,java,options="nowrap"]
+----
+include::{dir-source-domain-api}/is/codion/demos/world/domain/api/World.java[tags=locationValidator]
+----
+
 ===== Implementation
 
 [source,java,options="nowrap"]
@@ -562,19 +567,6 @@ NOTE: Configuration only, client with a remote connection.
 [source,kotlin,options="nowrap"]
 ----
 include::{root-dir}/world-client-remote/build.gradle.kts[]
-----
-====
-
-=== world-client-http
-
-NOTE: Configuration only, client with an HTTP connection.
-
-.build.gradle.kts
-[%collapsible]
-====
-[source,kotlin,options="nowrap"]
-----
-include::{root-dir}/world-client-http/build.gradle.kts[]
 ----
 ====
 

@@ -25,6 +25,7 @@ import is.codion.framework.domain.entity.Entity;
 import is.codion.framework.domain.entity.EntityType;
 import is.codion.framework.domain.entity.EntityValidator;
 import is.codion.framework.domain.entity.attribute.Attribute;
+import is.codion.framework.domain.entity.attribute.AttributeValidator;
 import is.codion.framework.domain.entity.attribute.Column;
 import is.codion.framework.domain.entity.attribute.DerivedValue;
 import is.codion.framework.domain.entity.attribute.ForeignKey;
@@ -215,4 +216,16 @@ public interface World {
 		}
 	}
 	// end::locationComparator[]
+
+	// tag::locationValidator[]
+	final class LocationValidator implements AttributeValidator<Location> {
+
+		@Override
+		public void validate(Location value) {
+			if (value.latitude < -90 || value.latitude > 90 || value.longitude < -180 || value.longitude > 180) {
+				throw new IllegalArgumentException("Invalid location coordinate: " + value);
+			}
+		}
+	}
+	// end::locationValidator[]
 }
