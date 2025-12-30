@@ -205,6 +205,9 @@ public interface World {
 	// tag::locationComparator[]
 	final class LocationComparator implements Comparator<Location>, Serializable {
 
+		@Serial
+		private static final long serialVersionUID = 1;
+
 		@Override
 		public int compare(Location l1, Location l2) {
 			int result = Double.compare(l1.latitude(), l2.latitude());
@@ -219,6 +222,9 @@ public interface World {
 
 	// tag::locationValidator[]
 	final class LocationValidator implements AttributeValidator<Location> {
+
+		@Serial
+		private static final long serialVersionUID = 1;
 
 		@Override
 		public void validate(Location value) {

@@ -1,10 +1,9 @@
 [versions]
-codion = "0.18.62"
+codion = "0.18.63"
 h2 = "2.3.232"
 json = "20240205"
 jfreechart = "1.5.6"
 jxmapviewer2 = "2.8"
-ikonli-foundation = "12.4.0"
 jasperreports = "7.0.3"
 
 [libraries]
@@ -29,7 +28,6 @@ jxmapviewer2 = { module = "org.jxmapviewer:jxmapviewer2", version.ref = "jxmapvi
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
 json = { module = "org.json:json", version.ref = "json" }
 jfreechart = { module = "org.jfree:jfreechart", version.ref = "jfreechart" }
-ikonli-foundation = { module = "org.kordamp.ikonli:ikonli-foundation-pack", version.ref = "ikonli-foundation" }
 jasperreports-jdt = { module = "net.sf.jasperreports:jasperreports-jdt", version.ref = "jasperreports" }
 jasperreports-pdf = { module = "net.sf.jasperreports:jasperreports-pdf", version.ref = "jasperreports" }
 jasperreports-fonts = { module = "net.sf.jasperreports:jasperreports-fonts", version.ref = "jasperreports" }

@@ -26,7 +26,6 @@ module is.codion.demos.world.client {
 	requires is.codion.plugin.flatlaf;
 	requires is.codion.plugin.flatlaf.intellij.themes;
 	requires is.codion.demos.world.domain.api;
-	requires org.kordamp.ikonli.foundation;
 	requires org.jfree.jfreechart;
 	requires net.sf.jasperreports.core;
 	requires net.sf.jasperreports.pdf;

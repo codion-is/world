@@ -18,7 +18,6 @@ dependencies {
 
     implementation(libs.json)
     implementation(libs.jfreechart)
-    implementation(libs.ikonli.foundation)
 
     implementation(libs.jxmapviewer2) {
         isTransitive = false
