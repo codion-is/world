@@ -3,7 +3,7 @@ codion = "0.18.63"
 h2 = "2.3.232"
 json = "20240205"
 jfreechart = "1.5.6"
-jxmapviewer2 = "2.8"
+jxmapviewer2 = "2.8.1"
 jasperreports = "7.0.3"
 
 [libraries]
