@@ -1,5 +1,5 @@
 [versions]
-codion = "0.18.64"
+codion = "0.18.65"
 h2 = "2.3.232"
 json = "20251224"
 jfreechart = "1.5.6"
@@ -19,7 +19,7 @@ codion-swing-framework-ui = { module = "is.codion:codion-swing-framework-ui" }
 codion-plugin-jasperreports = { module = "is.codion:codion-plugin-jasperreports" }
 codion-plugin-logback-proxy = { module = "is.codion:codion-plugin-logback-proxy" }
 codion-plugin-hikari-pool = { module = "is.codion:codion-plugin-hikari-pool" }
-codion-plugin-flatlaf-lookandfeels = { group = "is.codion", name = "codion-plugin-flatlaf-lookandfeels" }
+codion-plugin-flatlaf-themes = { group = "is.codion", name = "codion-plugin-flatlaf-themes" }
 codion-plugin-flatlaf-intellij-themes = { module = "is.codion:codion-plugin-flatlaf-intellij-themes" }
 codion-framework-server = { module = "is.codion:codion-framework-server" }
 codion-tools-monitor-ui = { module = "is.codion:codion-tools-monitor-ui" }

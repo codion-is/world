@@ -10,7 +10,7 @@ dependencies {
 
     implementation(libs.codion.framework.json.domain)
     implementation(libs.codion.swing.framework.ui)
-    implementation(libs.codion.plugin.flatlaf.lookandfeels)
+    implementation(libs.codion.plugin.flatlaf.themes)
     implementation(libs.codion.plugin.flatlaf.intellij.themes)
     implementation(libs.codion.plugin.jasperreports) {
         exclude(group = "org.apache.xmlgraphics")
