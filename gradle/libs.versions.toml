@@ -1,5 +1,5 @@
 [versions]
-codion = "0.18.65"
+codion = "0.18.66"
 h2 = "2.3.232"
 json = "20251224"
 jfreechart = "1.5.6"
