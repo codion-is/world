@@ -28,7 +28,7 @@ import is.codion.demos.world.model.ContinentModel;
 import is.codion.demos.world.model.CountryModel;
 import is.codion.demos.world.model.WorldAppModel;
 import is.codion.plugin.flatlaf.intellij.themes.monokaipro.MonokaiPro;
-import is.codion.swing.common.ui.component.indicator.ValidIndicatorFactory;
+import is.codion.swing.common.ui.component.indicator.ValidIndicator;
 import is.codion.swing.common.ui.component.table.FilterTableCellRenderer;
 import is.codion.swing.framework.model.SwingEntityModel;
 import is.codion.swing.framework.ui.EntityApplication;
@@ -77,7 +77,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 		Locale.setDefault(Locale.of("en", "EN"));
 		EntityPanel.Config.TOOLBAR_CONTROLS.set(true);
 		FilterTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
-		ValidIndicatorFactory.FACTORY_CLASS.set("is.codion.plugin.flatlaf.indicator.FlatLafValidIndicatorFactory");
+		ValidIndicator.INDICATOR_CLASS.set("is.codion.plugin.flatlaf.indicator.FlatLafValidIndicator");
 		ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING
 						.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
 		EntityApplication.builder(WorldAppModel.class, WorldAppPanel.class)
