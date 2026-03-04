@@ -19,8 +19,9 @@
 package is.codion.demos.world.ui;
 
 import is.codion.demos.world.domain.api.World.CountryLanguage;
-import is.codion.framework.model.EntityEditor;
+import is.codion.framework.domain.entity.exception.EntityValidationException;
 import is.codion.swing.framework.model.SwingEntityEditModel;
+import is.codion.swing.framework.model.SwingEntityEditor;
 import is.codion.swing.framework.ui.EntityEditPanel;
 
 import javax.swing.JPanel;
@@ -41,21 +42,21 @@ final class CountryLanguageEditPanel extends EntityEditPanel {
 
 	@Override
 	protected void initializeUI() {
-		createComboBox(CountryLanguage.COUNTRY_FK)
+		create().comboBox(CountryLanguage.COUNTRY_FK)
 						.preferredWidth(120);
-		createTextField(CountryLanguage.LANGUAGE);
-		createCheckBox(CountryLanguage.IS_OFFICIAL);
-		createDoubleField(CountryLanguage.PERCENTAGE)
+		create().textField(CountryLanguage.LANGUAGE);
+		create().checkBox(CountryLanguage.IS_OFFICIAL);
+		create().doubleField(CountryLanguage.PERCENTAGE)
 						.range(0, 100)
 						.silentValidation(true)
 						.columns(4);
-		createTextField(CountryLanguage.NO_OF_SPEAKERS)
+		create().textField(CountryLanguage.NO_OF_SPEAKERS)
 						.columns(6);
 
 		JPanel percentageOfficialPanel = gridLayoutPanel(1, 3)
-						.add(createInputPanel(CountryLanguage.PERCENTAGE))
-						.add(createInputPanel(CountryLanguage.IS_OFFICIAL))
-						.add(createInputPanel(CountryLanguage.NO_OF_SPEAKERS))
+						.add(create().inputPanel(CountryLanguage.PERCENTAGE))
+						.add(create().inputPanel(CountryLanguage.IS_OFFICIAL))
+						.add(create().inputPanel(CountryLanguage.NO_OF_SPEAKERS))
 						.build();
 
 		setLayout(gridLayout(0, 1));
@@ -66,12 +67,17 @@ final class CountryLanguageEditPanel extends EntityEditPanel {
 	}
 
 	private void updateIsOfficial() {
-		EntityEditor editor = editModel().editor();
+		SwingEntityEditor editor = editModel().editor();
 		//Only when IS_OFFICIAL is the only attribute being edited in an existing entity
 		if (editor.modified().attributes().is(singleton(CountryLanguage.IS_OFFICIAL))) {
-			updateCommand()
-							.confirm(false)
-							.execute();
+			try {
+				updateCommand()
+								.confirm(false)
+								.execute();
+			}
+			catch (EntityValidationException e) {
+				onValidationException(e);
+			}
 		}
 	}
 }

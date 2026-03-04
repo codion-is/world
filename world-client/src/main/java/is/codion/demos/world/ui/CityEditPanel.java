@@ -23,6 +23,7 @@ import is.codion.demos.world.domain.api.World.City;
 import is.codion.demos.world.model.CityEditModel;
 import is.codion.demos.world.model.CityTableModel;
 import is.codion.framework.domain.entity.Entity;
+import is.codion.framework.domain.entity.exception.EntityValidationException;
 import is.codion.swing.common.ui.control.Control;
 import is.codion.swing.framework.model.SwingEntityEditModel;
 import is.codion.swing.framework.ui.EntityEditPanel;
@@ -66,17 +67,17 @@ public final class CityEditPanel extends EntityEditPanel {
 
 	@Override
 	protected void initializeUI() {
-		createComboBox(City.COUNTRY_FK)
+		create().comboBox(City.COUNTRY_FK)
 						.preferredWidth(120);
-		createTextField(City.NAME);
-		createTextField(City.DISTRICT);
-		createTextField(City.POPULATION);
+		create().textField(City.NAME);
+		create().textField(City.DISTRICT);
+		create().textField(City.POPULATION);
 
 		JPanel inputPanel = gridLayoutPanel(0, 1)
-						.add(createInputPanel(City.COUNTRY_FK))
-						.add(createInputPanel(City.NAME))
-						.add(createInputPanel(City.DISTRICT))
-						.add(createInputPanel(City.POPULATION))
+						.add(create().inputPanel(City.COUNTRY_FK))
+						.add(create().inputPanel(City.NAME))
+						.add(create().inputPanel(City.DISTRICT))
+						.add(create().inputPanel(City.POPULATION))
 						.build();
 
 		JPanel centerPanel = gridLayoutPanel(1, 0)
@@ -96,7 +97,7 @@ public final class CityEditPanel extends EntityEditPanel {
 		focus().initial().set(City.NAME);
 	}
 
-	private void populateLocation() throws IOException {
+	private void populateLocation() throws IOException, EntityValidationException {
 		CityEditModel editModel = (CityEditModel) editModel();
 		editModel.populateLocation();
 		displayLocations(List.of(editModel.editor().entity().get()));
