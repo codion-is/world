@@ -95,7 +95,7 @@ jlink {
                 "--win-menu",
                 "--win-shortcut"
             )
-            imageOptions = imageOptions + listOf("--win-console")
+            imageOptions.add("--win-console")
         }
         if (OperatingSystem.current().isMacOsX) {
             icon = "../world.icns"
