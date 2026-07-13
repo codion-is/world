@@ -18,7 +18,7 @@ application {
     mainClass = "is.codion.tools.monitor.ui.EntityServerMonitorPanel"
     applicationDefaultJvmArgs = listOf(
         "-Xmx512m",
-        "-Dcodion.server.hostname=${serverHost}",
+        "-Dcodion.client.hostname=${serverHost}",
         "-Dcodion.server.registryPort=${serverRegistryPort}",
         "-Dcodion.client.trustStore=truststore.jks",
         "-Dcodion.client.trustStorePassword=crappypass",
