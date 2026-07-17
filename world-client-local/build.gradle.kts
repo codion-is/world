@@ -69,9 +69,9 @@ jlink {
     }
 }
 
-if (properties.containsKey("githubAccessToken")) {
+if (project.hasProperty("githubAccessToken")) {
     githubRelease {
-        token(properties["githubAccessToken"] as String)
+        token(project.findProperty("githubAccessToken") as String)
         owner = "codion-is"
         repo = "world"
         allowUploadToExisting = true
