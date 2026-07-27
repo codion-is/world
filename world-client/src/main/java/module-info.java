@@ -23,7 +23,7 @@ module is.codion.demos.world.client {
 	requires is.codion.framework.json.domain;
 	requires is.codion.swing.framework.ui;
 	requires is.codion.plugin.jasperreports;
-	requires is.codion.plugin.flatlaf;
+	requires is.codion.plugin.flatlaf.themes;
 	requires is.codion.plugin.flatlaf.intellij.themes;
 	requires is.codion.demos.world.domain.api;
 	requires org.jfree.jfreechart;
