@@ -22,8 +22,8 @@ import is.codion.common.model.worker.ProgressWorker.ProgressReporter;
 import is.codion.common.utilities.user.User;
 import is.codion.demos.world.domain.WorldImpl;
 import is.codion.demos.world.domain.api.World.Country;
-import is.codion.framework.db.EntityConnectionProvider;
-import is.codion.framework.db.local.LocalEntityConnectionProvider;
+import is.codion.framework.db.EntityConnection;
+import is.codion.framework.db.local.LocalEntityConnection;
 
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRException;
@@ -38,8 +38,8 @@ public final class CountryTableModelTest {
 
 	@Test
 	void fillCountryReport() throws JRException {
-		try (EntityConnectionProvider connectionProvider = createConnectionProvider()) {
-			CountryTableModel tableModel = new CountryTableModel(connectionProvider);
+		try (EntityConnection connection = createConnection()) {
+			CountryTableModel tableModel = new CountryTableModel(connection);
 			tableModel.query().condition().get(Country.CODE).operands().equal().set("ISL");
 			tableModel.items().refresh();
 			tableModel.selection().index().set(0);
@@ -53,8 +53,8 @@ public final class CountryTableModelTest {
 		}
 	}
 
-	private static EntityConnectionProvider createConnectionProvider() {
-		return LocalEntityConnectionProvider.builder()
+	private static EntityConnection createConnection() {
+		return LocalEntityConnection.builder()
 						.domain(new WorldImpl())
 						.user(UNIT_TEST_USER)
 						.build();
