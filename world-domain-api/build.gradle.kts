@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     api(libs.codion.framework.domain)
-    api(libs.codion.framework.db.core)
+    api(libs.codion.framework.db)
 }

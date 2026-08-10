@@ -1,5 +1,5 @@
 [versions]
-codion = "0.18.82"
+codion = "0.18.83"
 h2 = "2.3.232"
 json = "20260522"
 jfreechart = "1.5.6"
@@ -12,7 +12,7 @@ codion-dbms-h2 = { module = "is.codion:codion-dbms-h2" }
 codion-framework-domain = { module = "is.codion:codion-framework-domain" }
 codion-framework-domain-test = { module = "is.codion:codion-framework-domain-test" }
 codion-framework-json-domain = { module = "is.codion:codion-framework-json-domain" }
-codion-framework-db-core = { module = "is.codion:codion-framework-db-core" }
+codion-framework-db = { module = "is.codion:codion-framework-db" }
 codion-framework-db-rmi = { module = "is.codion:codion-framework-db-rmi" }
 codion-framework-db-local = { module = "is.codion:codion-framework-db-local" }
 codion-swing-framework-ui = { module = "is.codion:codion-swing-framework-ui" }
