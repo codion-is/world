@@ -1,6 +1,6 @@
 [versions]
-codion = "0.18.85"
-h2 = "2.3.232"
+codion = "0.18.86"
+h2 = "2.5.250"
 json = "20260522"
 jfreechart = "1.5.6"
 jxmapviewer2 = "2.8.1"

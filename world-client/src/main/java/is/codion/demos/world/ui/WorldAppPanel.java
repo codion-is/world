@@ -80,7 +80,7 @@ public final class WorldAppPanel extends EntityApplicationPanel<WorldAppModel> {
 		EntityPanel.Config.TOOLBAR_CONTROLS.set(true);
 		FilterTableCellRenderer.NUMERICAL_HORIZONTAL_ALIGNMENT.set(SwingConstants.CENTER);
 		ValidationIndicator.INDICATOR_CLASS.set("is.codion.plugin.flatlaf.indicator.FlatLafValidationIndicator");
-		ReferentialIntegrityErrorHandling.REFERENTIAL_INTEGRITY_ERROR_HANDLING
+		ReferentialIntegrityErrorHandling.HANDLING
 						.set(ReferentialIntegrityErrorHandling.DISPLAY_DEPENDENCIES);
 		FlatLookAndFeelThemes.addAll();
 		FlatLookAndFeelIntelliJThemes.addAll();
