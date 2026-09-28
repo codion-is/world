@@ -18,7 +18,6 @@
  */
 package is.codion.demos.world.domain;
 
-import is.codion.common.db.operation.DatabaseFunction;
 import is.codion.common.utilities.item.Item;
 import is.codion.framework.db.EntityConnection;
 import is.codion.framework.domain.DomainModel;
@@ -26,6 +25,7 @@ import is.codion.framework.domain.entity.EntityDefinition;
 import is.codion.framework.domain.entity.OrderBy;
 import is.codion.framework.domain.entity.attribute.Column.Converter;
 import is.codion.framework.domain.entity.query.EntitySelectQuery;
+import is.codion.framework.domain.operation.DatabaseFunction;
 
 import java.sql.Statement;
 import java.util.List;

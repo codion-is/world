@@ -52,7 +52,7 @@ application {
         "-Dcodion.db.url=jdbc:h2:mem:h2db",
         "-Dcodion.db.initScripts=classpath:create_schema.sql",
         //A connection pool based on this user is created on startup
-        "-Dcodion.server.connectionPoolUsers=scott:tiger",
+        "-Dcodion.server.pool.users=scott:tiger",
         //Client logging disabled by default
         "-Dcodion.server.clientLogging=false"
     )
