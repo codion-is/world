@@ -68,7 +68,7 @@ jlink {
         "--no-man-pages",
         "--ignore-signing-information",
         "--add-modules",
-        "is.codion.framework.db.local,is.codion.dbms.h2,is.codion.plugin.hikari.pool," +
+        "is.codion.framework.db.local,is.codion.dbms.h2,com.h2database,is.codion.plugin.hikari.pool," +
                 "is.codion.plugin.logback.proxy,is.codion.demos.world.domain"
     )
 

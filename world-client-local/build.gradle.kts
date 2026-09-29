@@ -40,7 +40,7 @@ jlink {
         "--no-header-files",
         "--no-man-pages",
         "--add-modules",
-        "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2," +
+        "jdk.crypto.ec,is.codion.framework.db.local,is.codion.dbms.h2,com.h2database," +
                 "is.codion.plugin.logback.proxy,is.codion.demos.world.domain"
     )
 
