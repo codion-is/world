@@ -20,8 +20,8 @@ package is.codion.demos.world.model;
 
 import is.codion.common.model.worker.ProgressWorker.ProgressReporter;
 import is.codion.common.model.worker.ProgressWorker.ProgressResultTaskHandler;
-import is.codion.common.reactive.event.Event;
 import is.codion.common.reactive.observer.Observer;
+import is.codion.common.reactive.signal.Signal;
 import is.codion.common.reactive.state.ObservableState;
 import is.codion.common.reactive.state.State;
 import is.codion.demos.world.domain.api.World.City;
@@ -41,7 +41,7 @@ import java.util.List;
 public final class CityTableModel extends SwingEntityTableModel {
 
 	private final DefaultPieDataset<String> chartDataset = new DefaultPieDataset<>();
-	private final Event<Collection<Entity>> displayLocationEvent = Event.event();
+	private final Signal<Collection<Entity>> displayLocationEvent = Signal.signal();
 	private final State cityWithoutLocationSelected = State.state();
 
 	CityTableModel(EntityConnection connection) {
