@@ -34,6 +34,9 @@ public final class CountryEditModel extends SwingEntityEditModel {
 
 	CountryEditModel(EntityConnection connection) {
 		super(Country.TYPE, connection);
+		// The flag is not selected by default, so the country selected in the
+		// table comes without it, the editor loading it so that it can be edited
+		editor().value(Country.FLAG).populate().set(true);
 		editor().entity().addConsumer(this::setAverageCityPopulation);
 		//only show cities for currently selected country
 		editor().entity().addConsumer(this::filterCities);
